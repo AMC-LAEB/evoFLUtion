@@ -1,0 +1,23 @@
+name: flu
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - pip=22.2.2
+  - snakemake-minimal=5.13
+  - trimmomatic=0.39
+  - fastqc=0.11.9 
+  - bowtie2=2.4.5
+  - samtools=1.15.1 
+  - bcftools=1.15.1
+  - bedtools=2.30.0  
+  - iqtree=2.2.0.3
+  - mafft=7.508
+  - treetime=0.9.4
+  - pip:
+    - xlrd==2.0.1
+    - Biopython==1.80
+    - matplotlib==3.5.3
+    - pandas==1.4.4
+    - openpyxl==3.0.10
