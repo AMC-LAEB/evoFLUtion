@@ -42,4 +42,3 @@ MANIFEST
 
 #git is a pain with jupyter notebook so ignoring those for the time being
 *.ipynb_checkpoints
-*.ipynb
