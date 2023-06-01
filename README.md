@@ -12,6 +12,7 @@ Analysis is comprised out of three parts:
 - [Sequence download](#sequence-download)
 - [Treason - Molecular clock phylogenetic trees per season](#treason---molecular-clock-phylogenetic-trees-per-season)
 - [Substitution frequency trajectories and LBI distributions](#substitution-frequency-trajectories-and-lbi-distributions)
+- [Isolates used in the original analysis](#isolates-used-in-the-original-analysis)
 - [References](#references)
 
 ## Requirements
@@ -83,6 +84,10 @@ options:
 ## Substitution frequency trajectories and LBI distributions
 
 To computed substitutions as well as their trajectories and LBI distributions from the Treason output, the [LBI_analysis jupyter notebook](notebooks/LBI_analysis.ipynb) can be used. All plots from the study can be produced using this notebook.
+
+## Isolates used in the original analysis
+
+All GISAID ids per bootstrap replicate per season for the entire analysis are listed in [isolates_analysis.csv](data/isolates_analysis.csv).
 
 ## References
 
