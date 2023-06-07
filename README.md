@@ -27,7 +27,7 @@ The conda environment can be updated via ``conda env update -f environment.yml``
 For the analysis performed in the manuscript we downloaded all sequences and metadata that resulted from the following search in the GISAID EpiFlu Database: Type=A, H=3, N=2, Host=Human, Location=-all-, Collection date From=2000-01-01, Collection date To=2019-12-31, segment=HA. All other settings were left at default.  
 Since GISAID only allows a maximum download of 20000 sequences, we downloaded the sequences in batches.  
 
-The strains/isolates/sequences used for this study are listed under 
+The strains/isolates/sequences used for this study are listed under [isolate_analysis.csv](data/isolates_analysis.csv)
 
 ## Treason - Molecular clock phylogenetic trees per season
 
