@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# evoFLUtion - Predictability of Frequency Trajectories of Hemagglutinin Amino Acid Substitutions in Seasonal Influenza A/H3N2 Viruses
+# evoFLUtion - Predicting the Evolutionary Fate of Hemagglutinin Amino Acid Substitutions in Seasonal Influenza A/H3N2 Viruses
 
 Scripts and data for the analysis and influenza A/H3N2 (HA) amino acid substitutions.  
 Analysis is comprised out of three parts:
