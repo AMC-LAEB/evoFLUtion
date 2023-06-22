@@ -22,6 +22,7 @@ def ArgumentParser():
     parser.add_argument('-d','--data-folder', required=True, action="store", type=str, help="data folder where raw GISAID sequence and metadata are stored")
     parser.add_argument('-o','--output', required=False, action="store", type=str, help="output directory to store all generated output file (default: ./)")
     parser.add_argument('-s','--segments', required=False, nargs='+', action="store", type=str, help="segment abbreviations that will be analyzed")
+    parser.add_argument('-st','--subtype', required=False, action="store", type=str, default="H3N2", choices=["H3N2", "H1N1pdm"], help="subtype to be analyzed (default: A/H3N2)")
 
     parser.add_argument('-p','--protein', required=False, action="store_true", help="if sequences need be translated into protein sequences (coding region only) and if mutations in final LBI need to be translated")
     parser.add_argument('-on','--only-nonsyn', required=False, action="store_true", help="if '-p' flag is specified, only report non-synonymous mutations in tree files")
@@ -112,6 +113,9 @@ def main():
         sys.stderr.write(f"Error: specified segments are not recognized. Choose from {', '.join(all_segments)}")#\nCheck if installed properly")
         sys.exit(-1)
 
+    #get subtype
+    subtype = args.subtype
+
     #get data folder
     datafolder = os.path.join(cwd, args.data_folder)
     if not os.path.isdir (datafolder):
@@ -147,7 +151,7 @@ def main():
     metcols = ["Isolate_Id", "PB2 Segment_Id", "PB1 Segment_Id", "PA Segment_Id", "HA Segment_Id", "NP Segment_Id",
                "NA Segment_Id", "MP Segment_Id", "NS Segment_Id", "Isolate_Name", "Passage_History", "Location", "Collection_Date"]
 
-    if not os.path.isfile(f"{output}/raw/metadata_gisaid_raw.csv") or args.redo_all:
+    if not os.path.isfile(f"{output}/raw/{subtype}_metadata_gisaid_raw.csv") or args.redo_all:
         print ("Merging Raw GISAID sequences into a single file per segment")
         print (strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         segment_records= {}
@@ -192,7 +196,7 @@ def main():
                     unique.append(record)
 
             #write output 
-            merge_file = os.path.join(rawdir, f"{segment}_gisaid_raw.fasta")
+            merge_file = os.path.join(rawdir, f"{subtype}_{segment}_gisaid_raw.fasta")
             with open(merge_file, 'w') as fw:
                 SeqIO.write(unique, fw, "fasta")
             print (f"finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
@@ -201,7 +205,7 @@ def main():
         print ("creating merge file for metadata")
         print (strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         try:
-            metadf.to_csv(os.path.join(rawdir, "metadata_gisaid_raw.csv"), index=False)
+            metadf.to_csv(os.path.join(rawdir, f"{subtype}_metadata_gisaid_raw.csv"), index=False)
         except:
             sys.stderr.write(f"Could not find metadata file(s) in {datafolder}. Check if metadata is in correct directory and in correct format")
             sys.exit(-1)
@@ -217,6 +221,7 @@ def main():
     #setup snakemake config
     config = {
         "segments":segments,
+        "subtype":subtype,
         "output":output,
         "refdir":refdir,
         "translate":args.protein,
