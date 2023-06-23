@@ -125,7 +125,7 @@ def main():
     #get to drop files
     to_drop_files = []
     for f in os.listdir(dropdir):
-        if f.split("_")[0] in segments:
+        if f.split("_")[1] in segments and f.split("_")[0] == subtype:
             to_drop_files.append(os.path.join(dropdir,f))
 
     #get the output directory
