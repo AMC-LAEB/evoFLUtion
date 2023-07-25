@@ -1,309 +1,4210 @@
 Isolate_Id,reason
-EPI_ISL_13046449,visual outlier
-EPI_ISL_277242,visual outlier
-EPI_ISL_884294,visual outlier
-EPI_ISL_232045,visual outlier
-EPI_ISL_234478,visual outlier
-EPI_ISL_234474,visual outlier
-EPI_ISL_294281,visual outlier
-EPI_ISL_8882135,visual outlier
-EPI_ISL_15724026,visual outlier
-EPI_ISL_241846,visual outlier
-EPI_ISL_8882155,visual outlier
-EPI_ISL_277236,visual outlier
-EPI_ISL_234469,visual outlier
-EPI_ISL_234479,visual outlier
-EPI_ISL_501166,visual outlier
-EPI_ISL_277239,visual outlier
-EPI_ISL_294274,visual outlier
-EPI_ISL_192075,visual outlier
-EPI_ISL_234477,visual outlier
-EPI_ISL_1307177,visual outlier
-EPI_ISL_338326,visual outlier
-EPI_ISL_277241,visual outlier
-EPI_ISL_294289,visual outlier
-EPI_ISL_205586,visual outlier
-EPI_ISL_294275,visual outlier
-EPI_ISL_294279,visual outlier
-EPI_ISL_304787,visual outlier
-EPI_ISL_294273,visual outlier
-EPI_ISL_234476,visual outlier
-EPI_ISL_277238,visual outlier
-EPI_ISL_277240,visual outlier
-EPI_ISL_277237,visual outlier
-EPI_ISL_234480,visual outlier
-EPI_ISL_329971,visual outlier
-EPI_ISL_232044,visual outlier
-EPI_ISL_294296,visual outlier
-EPI_ISL_294277,visual outlier
-EPI_ISL_277235,visual outlier
-EPI_ISL_232048,visual outlier
-EPI_ISL_294288,visual outlier
-EPI_ISL_285998,visual outlier
-EPI_ISL_294271,visual outlier
-EPI_ISL_294291,visual outlier
-EPI_ISL_234475,visual outlier
-EPI_ISL_294286,visual outlier
-EPI_ISL_294294,visual outlier
-EPI_ISL_8882121,visual outlier
-EPI_ISL_177688,visual outlier
-EPI_ISL_1913253,visual outlier
-EPI_ISL_294284,visual outlier
-EPI_ISL_232047,visual outlier
-EPI_ISL_234471,visual outlier
-EPI_ISL_294278,visual outlier
-EPI_ISL_294283,visual outlier
-EPI_ISL_294282,visual outlier
-EPI_ISL_232046,visual outlier
-EPI_ISL_234470,visual outlier
-EPI_ISL_277234,visual outlier
-EPI_ISL_294276,visual outlier
-EPI_ISL_294280,visual outlier
-EPI_ISL_294287,visual outlier
-EPI_ISL_234473,visual outlier
-EPI_ISL_294272,visual outlier
-EPI_ISL_15490784,visual outlier
-EPI_ISL_341299,visual outlier
-EPI_ISL_234481,visual outlier
-EPI_ISL_294285,visual outlier
-EPI_ISL_233371,molecular clock outlier
-EPI_ISL_393707,molecular clock outlier
-EPI_ISL_394052,molecular clock outlier
-EPI_ISL_394110,molecular clock outlier
-EPI_ISL_192967,molecular clock outlier
-EPI_ISL_255504,molecular clock outlier
-EPI_ISL_13046456,molecular clock outlier
-EPI_ISL_275898,molecular clock outlier
-EPI_ISL_298374,molecular clock outlier
-EPI_ISL_299902,molecular clock outlier
-EPI_ISL_295848,molecular clock outlier
-EPI_ISL_277493,molecular clock outlier
-EPI_ISL_305285,molecular clock outlier
-EPI_ISL_295850,molecular clock outlier
-EPI_ISL_295849,molecular clock outlier
-EPI_ISL_277500,molecular clock outlier
-EPI_ISL_272900,molecular clock outlier
-EPI_ISL_266281,molecular clock outlier
-EPI_ISL_277501,molecular clock outlier
-EPI_ISL_292546,molecular clock outlier
-EPI_ISL_300753,molecular clock outlier
-EPI_ISL_281550,molecular clock outlier
-EPI_ISL_296077,molecular clock outlier
-EPI_ISL_292545,molecular clock outlier
-EPI_ISL_337243,molecular clock outlier
-EPI_ISL_366477,molecular clock outlier
-EPI_ISL_255976,molecular clock outlier
-EPI_ISL_255502,molecular clock outlier
-EPI_ISL_266288,molecular clock outlier
-EPI_ISL_312829,molecular clock outlier
-EPI_ISL_270169,molecular clock outlier
-EPI_ISL_359278,molecular clock outlier
-EPI_ISL_165317,visual outlier
-EPI_ISL_166393,visual outlier
-EPI_ISL_149440,visual outlier
-EPI_ISL_144698,visual outlier
-EPI_ISL_144201,visual outlier
-EPI_ISL_144199,visual outlier
-EPI_ISL_144200,visual outlier
-EPI_ISL_144203,visual outlier
-EPI_ISL_144893,visual outlier
-EPI_ISL_143975,visual outlier
-EPI_ISL_145067,visual outlier
-EPI_ISL_143655,visual outlier
-EPI_ISL_143660,visual outlier
-EPI_ISL_144202,visual outlier
-EPI_ISL_143974,visual outlier
-EPI_ISL_143661,visual outlier
-EPI_ISL_143973,visual outlier
-EPI_ISL_145068,visual outlier
-EPI_ISL_145632,visual outlier
-EPI_ISL_83273,swine origin
-EPI_ISL_88934,swine origin
-EPI_ISL_83276,swine origin
-EPI_ISL_83701,swine origin
-EPI_ISL_129798,swine origin
-EPI_ISL_128156,swine origin
-EPI_ISL_129797,swine origin
-EPI_ISL_128157,swine origin
-EPI_ISL_128159,swine origin
-EPI_ISL_122344,swine origin
-EPI_ISL_123210,swine origin
-EPI_ISL_128229,swine origin
-EPI_ISL_123207,swine origin
-EPI_ISL_126245,swine origin
-EPI_ISL_123211,swine origin
-EPI_ISL_128405,swine origin
-EPI_ISL_129799,swine origin
-EPI_ISL_126244,swine origin
-EPI_ISL_123206,swine origin
-EPI_ISL_126243,swine origin
-EPI_ISL_129756,swine origin
-EPI_ISL_128228,swine origin
-EPI_ISL_128158,swine origin
-EPI_ISL_99215,swine origin
-EPI_ISL_99213,swine origin
-EPI_ISL_99214,swine origin
-EPI_ISL_96013,swine origin
-EPI_ISL_96015,swine origin
-EPI_ISL_96012,swine origin
-EPI_ISL_97361,swine origin
-EPI_ISL_99809,swine origin
-EPI_ISL_114711,swine origin
-EPI_ISL_70476,swine origin
-EPI_ISL_98958,molecular clock outlier
-EPI_ISL_300754,molecular clock outlier
-EPI_ISL_98954,molecular clock outlier
-EPI_ISL_333434,molecular clock outlier
-EPI_ISL_277494,molecular clock outlier
-EPI_ISL_98962,molecular clock outlier
-EPI_ISL_289731,molecular clock outlier
-EPI_ISL_60144,molecular clock outlier
-EPI_ISL_274459,molecular clock outlier
-EPI_ISL_77775,molecular clock outlier
-EPI_ISL_118767,molecular clock outlier
-EPI_ISL_393692,molecular clock outlier
-EPI_ISL_300751,molecular clock outlier
-EPI_ISL_14218862,molecular clock outlier
-EPI_ISL_281551,molecular clock outlier
-EPI_ISL_60146,molecular clock outlier
-EPI_ISL_77756,molecular clock outlier
-EPI_ISL_282140,molecular clock outlier
-EPI_ISL_177070,molecular clock outlier
-EPI_ISL_169229,molecular clock outlier
-EPI_ISL_266282,molecular clock outlier
-EPI_ISL_393699,molecular clock outlier
-EPI_ISL_5632520,molecular clock outlier
-EPI_ISL_197945,molecular clock outlier
-EPI_ISL_153171,molecular clock outlier
-EPI_ISL_398269,molecular clock outlier
-EPI_ISL_159618,molecular clock outlier
-EPI_ISL_278393,molecular clock outlier
-EPI_ISL_328072,molecular clock outlier
-EPI_ISL_32481,molecular clock outlier
-EPI_ISL_278385,molecular clock outlier
-EPI_ISL_151118,molecular clock outlier
-EPI_ISL_278386,molecular clock outlier
-EPI_ISL_16749358,molecular clock outlier
-EPI_ISL_103635,molecular clock outlier
-EPI_ISL_159617,molecular clock outlier
-EPI_ISL_145459,molecular clock outlier
-EPI_ISL_165168,molecular clock outlier
-EPI_ISL_134185,molecular clock outlier
-EPI_ISL_6314535,molecular clock outlier
-EPI_ISL_164247,molecular clock outlier
-EPI_ISL_233238,molecular clock outlier
-EPI_ISL_328073,molecular clock outlier
-EPI_ISL_60149,molecular clock outlier
-EPI_ISL_77623,molecular clock outlier
-EPI_ISL_328056,molecular clock outlier
-EPI_ISL_278403,molecular clock outlier
-EPI_ISL_302516,molecular clock outlier
-EPI_ISL_197949,molecular clock outlier
-EPI_ISL_162104,molecular clock outlier
-EPI_ISL_153161,molecular clock outlier
-EPI_ISL_140099,molecular clock outlier
-EPI_ISL_278402,molecular clock outlier
-EPI_ISL_110694,molecular clock outlier
-EPI_ISL_151115,molecular clock outlier
-EPI_ISL_96819,molecular clock outlier
-EPI_ISL_148462,molecular clock outlier
-EPI_ISL_131998,molecular clock outlier
-EPI_ISL_10656418,molecular clock outlier
-EPI_ISL_328057,molecular clock outlier
-EPI_ISL_154641,molecular clock outlier
-EPI_ISL_328065,molecular clock outlier
-EPI_ISL_103630,molecular clock outlier
+EPI_ISL_169446,too short
+EPI_ISL_169643,too short
+EPI_ISL_169644,too short
+EPI_ISL_169645,too short
+EPI_ISL_169646,too short
+EPI_ISL_169647,too short
+EPI_ISL_169648,too short
+EPI_ISL_169860,too short
+EPI_ISL_169861,too short
+EPI_ISL_169862,too short
+EPI_ISL_169863,too short
+EPI_ISL_170101,too short
+EPI_ISL_170102,too short
+EPI_ISL_170103,too short
+EPI_ISL_170183,too short
+EPI_ISL_170368,too short
+EPI_ISL_170369,too short
+EPI_ISL_170370,too short
+EPI_ISL_170999,too short
+EPI_ISL_171000,too short
+EPI_ISL_171002,too short
+EPI_ISL_171003,too short
+EPI_ISL_171004,too short
+EPI_ISL_171869,too short
+EPI_ISL_171871,too short
+EPI_ISL_171940,too short
+EPI_ISL_171941,too short
+EPI_ISL_171942,too short
+EPI_ISL_171943,too short
+EPI_ISL_172235,too short
+EPI_ISL_172237,too short
+EPI_ISL_172238,too short
+EPI_ISL_172278,too short
+EPI_ISL_172635,too short
+EPI_ISL_172942,too short
+EPI_ISL_172943,too short
+EPI_ISL_172944,too short
+EPI_ISL_172945,too short
+EPI_ISL_172946,too short
+EPI_ISL_172947,too short
+EPI_ISL_172951,too short
+EPI_ISL_172952,too short
+EPI_ISL_173036,too short
+EPI_ISL_173037,too short
+EPI_ISL_173038,too short
+EPI_ISL_173039,too short
+EPI_ISL_173040,too short
+EPI_ISL_173041,too short
+EPI_ISL_173042,too short
+EPI_ISL_173043,too short
+EPI_ISL_173044,too short
+EPI_ISL_173290,too short
+EPI_ISL_173291,too short
+EPI_ISL_173292,too short
+EPI_ISL_173293,too short
+EPI_ISL_173863,too short
+EPI_ISL_173864,too short
+EPI_ISL_173868,too short
+EPI_ISL_174266,too short
+EPI_ISL_174267,too short
+EPI_ISL_174268,too short
+EPI_ISL_174269,too short
+EPI_ISL_174271,too short
+EPI_ISL_174272,too short
+EPI_ISL_175581,too short
+EPI_ISL_175582,too short
+EPI_ISL_175583,too short
+EPI_ISL_175584,too short
+EPI_ISL_175587,too short
+EPI_ISL_175588,too short
+EPI_ISL_175589,too short
+EPI_ISL_175590,too short
+EPI_ISL_175591,too short
+EPI_ISL_175592,too short
+EPI_ISL_175593,too short
+EPI_ISL_176757,too short
+EPI_ISL_176758,too short
+EPI_ISL_176759,too short
+EPI_ISL_176760,too short
+EPI_ISL_177095,too short
+EPI_ISL_177096,too short
+EPI_ISL_177097,too short
+EPI_ISL_177098,too short
+EPI_ISL_177099,too short
+EPI_ISL_177404,too short
+EPI_ISL_177405,too short
+EPI_ISL_177406,too short
+EPI_ISL_177407,too short
+EPI_ISL_177408,too short
+EPI_ISL_177409,too short
+EPI_ISL_177410,too short
+EPI_ISL_177411,too short
+EPI_ISL_177412,too short
+EPI_ISL_177554,too short
+EPI_ISL_191545,too short
+EPI_ISL_191548,too short
+EPI_ISL_191550,too short
+EPI_ISL_191554,too short
+EPI_ISL_191556,too short
+EPI_ISL_191559,too short
+EPI_ISL_191562,too short
+EPI_ISL_191564,too short
+EPI_ISL_191566,too short
+EPI_ISL_191567,too short
+EPI_ISL_191568,too short
+EPI_ISL_191571,too short
+EPI_ISL_191573,too short
+EPI_ISL_191577,too short
+EPI_ISL_191578,too short
+EPI_ISL_191584,too short
+EPI_ISL_191585,too short
+EPI_ISL_191594,too short
+EPI_ISL_191598,too short
+EPI_ISL_191599,too short
+EPI_ISL_191601,too short
+EPI_ISL_191605,too short
+EPI_ISL_191606,too short
+EPI_ISL_191607,too short
+EPI_ISL_191608,too short
+EPI_ISL_191611,too short
+EPI_ISL_191613,too short
+EPI_ISL_191621,too short
+EPI_ISL_191622,too short
+EPI_ISL_191624,too short
+EPI_ISL_191626,too short
+EPI_ISL_191629,too short
+EPI_ISL_191631,too short
+EPI_ISL_191636,too short
+EPI_ISL_191637,too short
+EPI_ISL_191639,too short
+EPI_ISL_191640,too short
+EPI_ISL_191641,too short
+EPI_ISL_191642,too short
+EPI_ISL_191643,too short
+EPI_ISL_191644,too short
+EPI_ISL_191645,too short
+EPI_ISL_191655,too short
+EPI_ISL_191750,too short
+EPI_ISL_191751,too short
+EPI_ISL_191756,too short
+EPI_ISL_191757,too short
+EPI_ISL_191759,too short
+EPI_ISL_191931,too short
+EPI_ISL_191934,too short
+EPI_ISL_191937,too short
+EPI_ISL_191944,too short
+EPI_ISL_191945,too short
+EPI_ISL_191948,too short
+EPI_ISL_191951,too short
+EPI_ISL_192918,too short
+EPI_ISL_192919,too short
+EPI_ISL_192920,too short
+EPI_ISL_192921,too short
+EPI_ISL_192922,too short
+EPI_ISL_192925,too short
+EPI_ISL_192928,too short
+EPI_ISL_192557,too short
+EPI_ISL_192929,too short
+EPI_ISL_192930,too short
+EPI_ISL_192931,too short
+EPI_ISL_192934,too short
+EPI_ISL_192935,too short
+EPI_ISL_192937,too short
+EPI_ISL_192938,too short
+EPI_ISL_192939,too short
+EPI_ISL_192940,too short
+EPI_ISL_192941,too short
+EPI_ISL_192942,too short
+EPI_ISL_192943,too short
+EPI_ISL_192560,too short
+EPI_ISL_192945,too short
+EPI_ISL_192946,too short
+EPI_ISL_192566,too short
+EPI_ISL_192950,too short
+EPI_ISL_192569,too short
+EPI_ISL_192952,too short
+EPI_ISL_192953,too short
+EPI_ISL_192571,too short
+EPI_ISL_192572,too short
+EPI_ISL_192955,too short
+EPI_ISL_192574,too short
+EPI_ISL_192576,too short
+EPI_ISL_192607,too short
+EPI_ISL_192584,too short
+EPI_ISL_192586,too short
+EPI_ISL_192593,too short
+EPI_ISL_192595,too short
+EPI_ISL_192604,too short
+EPI_ISL_192605,too short
+EPI_ISL_192608,too short
+EPI_ISL_192610,too short
+EPI_ISL_192612,too short
+EPI_ISL_192614,too short
+EPI_ISL_194825,too short
+EPI_ISL_194826,too short
+EPI_ISL_194827,too short
+EPI_ISL_194828,too short
+EPI_ISL_194829,too short
+EPI_ISL_195397,too short
+EPI_ISL_195389,too short
+EPI_ISL_195390,too short
+EPI_ISL_195398,too short
+EPI_ISL_195400,too short
+EPI_ISL_195401,too short
+EPI_ISL_195402,too short
+EPI_ISL_195403,too short
+EPI_ISL_195404,too short
+EPI_ISL_195405,too short
+EPI_ISL_195406,too short
+EPI_ISL_195407,too short
+EPI_ISL_195394,too short
+EPI_ISL_195395,too short
+EPI_ISL_196280,too short
+EPI_ISL_196279,too short
+EPI_ISL_190777,too short
+EPI_ISL_172299,too short
+EPI_ISL_174490,too short
+EPI_ISL_179508,too short
+EPI_ISL_188728,too short
+EPI_ISL_188731,too short
+EPI_ISL_190645,too short
+EPI_ISL_200623,too short
+EPI_ISL_200967,too short
+EPI_ISL_200968,too short
+EPI_ISL_200969,too short
+EPI_ISL_200970,too short
+EPI_ISL_196284,too short
+EPI_ISL_196285,too short
+EPI_ISL_202054,too short
+EPI_ISL_202698,too short
+EPI_ISL_202769,too short
+EPI_ISL_202770,too short
+EPI_ISL_203058,too short
+EPI_ISL_203257,too short
+EPI_ISL_203258,too short
+EPI_ISL_203259,too short
+EPI_ISL_203260,too short
+EPI_ISL_203261,too short
+EPI_ISL_203262,too short
+EPI_ISL_203263,too short
+EPI_ISL_203264,too short
+EPI_ISL_203265,too short
+EPI_ISL_203266,too short
+EPI_ISL_203267,too short
+EPI_ISL_203285,too short
+EPI_ISL_203304,too short
+EPI_ISL_203305,too short
+EPI_ISL_203306,too short
+EPI_ISL_203307,too short
+EPI_ISL_203308,too short
+EPI_ISL_203309,too short
+EPI_ISL_203310,too short
+EPI_ISL_203311,too short
+EPI_ISL_203313,too short
+EPI_ISL_203315,too short
+EPI_ISL_203316,too short
+EPI_ISL_203317,too short
+EPI_ISL_203318,too short
+EPI_ISL_203319,too short
+EPI_ISL_203320,too short
+EPI_ISL_203321,too short
+EPI_ISL_203322,too short
+EPI_ISL_203453,too short
+EPI_ISL_205106,too short
+EPI_ISL_205828,too short
+EPI_ISL_205830,too short
+EPI_ISL_205832,too short
+EPI_ISL_206897,too short
+EPI_ISL_206898,too short
+EPI_ISL_206899,too short
+EPI_ISL_206900,too short
+EPI_ISL_206901,too short
+EPI_ISL_206902,too short
+EPI_ISL_212387,too short
+EPI_ISL_212388,too short
+EPI_ISL_212390,too short
+EPI_ISL_212393,too short
+EPI_ISL_212395,too short
+EPI_ISL_212397,too short
+EPI_ISL_212399,too short
+EPI_ISL_213721,too short
+EPI_ISL_213722,too short
+EPI_ISL_213723,too short
+EPI_ISL_213724,too short
+EPI_ISL_213725,too short
+EPI_ISL_213726,too short
+EPI_ISL_213727,too short
+EPI_ISL_216291,too short
+EPI_ISL_216292,too short
+EPI_ISL_216293,too short
+EPI_ISL_216294,too short
+EPI_ISL_215757,too short
+EPI_ISL_218307,too short
+EPI_ISL_218312,too short
+EPI_ISL_218315,too short
+EPI_ISL_218327,too short
+EPI_ISL_218615,too short
+EPI_ISL_218616,too short
+EPI_ISL_220107,too short
+EPI_ISL_221321,too short
+EPI_ISL_221338,too short
+EPI_ISL_221340,too short
+EPI_ISL_224517,too short
+EPI_ISL_224623,too short
+EPI_ISL_231672,too short
+EPI_ISL_231673,too short
+EPI_ISL_231674,too short
+EPI_ISL_231675,too short
+EPI_ISL_231676,too short
+EPI_ISL_231677,too short
+EPI_ISL_231678,too short
+EPI_ISL_231679,too short
+EPI_ISL_231680,too short
+EPI_ISL_231681,too short
+EPI_ISL_231682,too short
+EPI_ISL_231683,too short
+EPI_ISL_232497,too short
+EPI_ISL_232499,too short
+EPI_ISL_232938,too short
+EPI_ISL_232942,too short
+EPI_ISL_232944,too short
+EPI_ISL_232945,too short
+EPI_ISL_232946,too short
+EPI_ISL_232947,too short
+EPI_ISL_232950,too short
+EPI_ISL_232953,too many ambiguous nucleotides
+EPI_ISL_234474,too short
+EPI_ISL_235610,too short
+EPI_ISL_235611,too short
+EPI_ISL_237543,too short
+EPI_ISL_237544,too short
+EPI_ISL_237561,too short
+EPI_ISL_238104,too short
+EPI_ISL_238952,too short
+EPI_ISL_238953,too short
+EPI_ISL_238954,too short
+EPI_ISL_238955,too short
+EPI_ISL_238956,too short
+EPI_ISL_238958,too short
+EPI_ISL_238959,too short
+EPI_ISL_239400,too short
+EPI_ISL_239401,too short
+EPI_ISL_239402,too short
+EPI_ISL_239403,too short
+EPI_ISL_239404,too short
+EPI_ISL_239405,too short
+EPI_ISL_239406,too short
+EPI_ISL_239407,too short
+EPI_ISL_239408,too short
+EPI_ISL_239409,too short
+EPI_ISL_239410,too short
+EPI_ISL_240705,too short
+EPI_ISL_240706,too short
+EPI_ISL_240708,too short
+EPI_ISL_240709,too short
+EPI_ISL_240710,too short
+EPI_ISL_240713,too short
+EPI_ISL_240718,too short
+EPI_ISL_240720,too short
+EPI_ISL_240732,too short
+EPI_ISL_240735,too short
+EPI_ISL_240736,too short
+EPI_ISL_240737,too short
+EPI_ISL_240738,too short
+EPI_ISL_240739,too short
+EPI_ISL_240740,too short
+EPI_ISL_240742,too short
+EPI_ISL_240744,too short
+EPI_ISL_240745,too short
+EPI_ISL_240746,too short
+EPI_ISL_240748,too short
+EPI_ISL_240749,too short
+EPI_ISL_240750,too short
+EPI_ISL_240751,too short
+EPI_ISL_240752,too short
+EPI_ISL_240754,too short
+EPI_ISL_240755,too short
+EPI_ISL_240756,too short
+EPI_ISL_240757,too short
+EPI_ISL_240758,too short
+EPI_ISL_240759,too short
+EPI_ISL_240760,too short
+EPI_ISL_240763,too short
+EPI_ISL_240764,too short
+EPI_ISL_240881,too short
+EPI_ISL_241367,too short
+EPI_ISL_241368,too short
+EPI_ISL_241371,too short
+EPI_ISL_241373,too short
+EPI_ISL_241374,too short
+EPI_ISL_241376,too short
+EPI_ISL_241377,too short
+EPI_ISL_241424,too short
+EPI_ISL_241462,too short
+EPI_ISL_241495,too short
+EPI_ISL_241496,too short
+EPI_ISL_241497,too short
+EPI_ISL_241498,too short
+EPI_ISL_241504,too short
+EPI_ISL_241500,too short
+EPI_ISL_240711,too short
+EPI_ISL_242281,too short
+EPI_ISL_242282,too short
+EPI_ISL_242284,too short
+EPI_ISL_242287,too short
+EPI_ISL_242289,too short
+EPI_ISL_242290,too short
+EPI_ISL_242292,too short
+EPI_ISL_242294,too short
+EPI_ISL_242296,too short
+EPI_ISL_242297,too short
+EPI_ISL_242299,too short
+EPI_ISL_240717,too short
+EPI_ISL_244859,too short
+EPI_ISL_244861,too short
+EPI_ISL_244862,too short
+EPI_ISL_244864,too short
+EPI_ISL_244866,too short
+EPI_ISL_244867,too short
+EPI_ISL_244910,too short
+EPI_ISL_244911,too short
+EPI_ISL_244953,too short
+EPI_ISL_244913,too short
+EPI_ISL_244914,too short
+EPI_ISL_244954,too short
+EPI_ISL_244916,too short
+EPI_ISL_244917,too short
+EPI_ISL_244919,too short
+EPI_ISL_244920,too short
+EPI_ISL_244922,too short
+EPI_ISL_244925,too short
+EPI_ISL_244926,too short
+EPI_ISL_244927,too short
+EPI_ISL_244929,too short
+EPI_ISL_244930,too short
+EPI_ISL_244931,too short
+EPI_ISL_244932,too short
+EPI_ISL_244933,too short
+EPI_ISL_244934,too short
+EPI_ISL_244955,too short
+EPI_ISL_244935,too short
+EPI_ISL_244936,too short
+EPI_ISL_244937,too short
+EPI_ISL_244938,too short
+EPI_ISL_244939,too short
+EPI_ISL_244940,too short
+EPI_ISL_244941,too short
+EPI_ISL_244942,too short
+EPI_ISL_244943,too short
+EPI_ISL_244944,too short
+EPI_ISL_244945,too short
+EPI_ISL_244946,too short
+EPI_ISL_244947,too short
+EPI_ISL_244949,too short
+EPI_ISL_244950,too short
+EPI_ISL_244951,too short
+EPI_ISL_244952,too short
+EPI_ISL_244997,too short
+EPI_ISL_246469,too short
+EPI_ISL_246470,too short
+EPI_ISL_246471,too short
+EPI_ISL_246473,too short
+EPI_ISL_246475,too short
+EPI_ISL_246476,too short
+EPI_ISL_246481,too short
+EPI_ISL_242913,too short
+EPI_ISL_242914,too short
+EPI_ISL_242915,too short
+EPI_ISL_242916,too short
+EPI_ISL_242917,too short
+EPI_ISL_242918,too short
+EPI_ISL_242920,too short
+EPI_ISL_242921,too short
+EPI_ISL_242922,too short
+EPI_ISL_242923,too short
+EPI_ISL_242924,too short
+EPI_ISL_242925,too short
+EPI_ISL_242926,too short
+EPI_ISL_242927,too short
+EPI_ISL_242928,too short
+EPI_ISL_242929,too short
+EPI_ISL_244491,too short
+EPI_ISL_244492,too short
+EPI_ISL_244493,too short
+EPI_ISL_244494,too short
+EPI_ISL_244495,too short
+EPI_ISL_244496,too short
+EPI_ISL_244497,too short
+EPI_ISL_244498,too short
+EPI_ISL_244499,too short
+EPI_ISL_244500,too short
+EPI_ISL_244501,too short
+EPI_ISL_244502,too short
+EPI_ISL_244503,too short
+EPI_ISL_244504,too short
+EPI_ISL_244505,too short
+EPI_ISL_244506,too short
+EPI_ISL_244507,too short
+EPI_ISL_244508,too short
+EPI_ISL_246998,too short
+EPI_ISL_246999,too short
+EPI_ISL_247000,too short
+EPI_ISL_247001,too short
+EPI_ISL_247002,too short
+EPI_ISL_247004,too short
+EPI_ISL_247006,too short
+EPI_ISL_247007,too short
+EPI_ISL_247008,too short
+EPI_ISL_247009,too short
+EPI_ISL_247011,too short
+EPI_ISL_247012,too short
+EPI_ISL_247013,too short
+EPI_ISL_247014,too short
+EPI_ISL_247015,too short
+EPI_ISL_247016,too short
+EPI_ISL_244490,too short
+EPI_ISL_247753,too short
+EPI_ISL_247754,too short
+EPI_ISL_247759,too short
+EPI_ISL_247761,too short
+EPI_ISL_247762,too short
+EPI_ISL_247763,too short
+EPI_ISL_247764,too short
+EPI_ISL_247765,too short
+EPI_ISL_248784,too short
+EPI_ISL_248785,too short
+EPI_ISL_248787,too short
+EPI_ISL_248788,too short
+EPI_ISL_249325,too short
+EPI_ISL_249326,too short
+EPI_ISL_249328,too short
+EPI_ISL_249329,too short
+EPI_ISL_249623,too short
+EPI_ISL_249732,too short
+EPI_ISL_249733,too short
+EPI_ISL_249735,too short
+EPI_ISL_249736,too short
+EPI_ISL_249737,too short
+EPI_ISL_249738,too short
+EPI_ISL_249741,too short
+EPI_ISL_249764,too short
+EPI_ISL_250282,too short
+EPI_ISL_250286,too short
+EPI_ISL_250293,too short
+EPI_ISL_253087,too short
+EPI_ISL_253482,too short
+EPI_ISL_253483,too short
+EPI_ISL_253484,too short
+EPI_ISL_253485,too short
+EPI_ISL_253486,too short
+EPI_ISL_253487,too short
+EPI_ISL_253488,too short
+EPI_ISL_253489,too short
+EPI_ISL_253490,too short
+EPI_ISL_253491,too short
+EPI_ISL_253493,too short
+EPI_ISL_253494,too short
+EPI_ISL_253495,too short
+EPI_ISL_253496,too short
+EPI_ISL_253497,too short
+EPI_ISL_253498,too short
+EPI_ISL_253499,too short
+EPI_ISL_253500,too short
+EPI_ISL_253501,too short
+EPI_ISL_253502,too short
+EPI_ISL_253503,too short
+EPI_ISL_253505,too short
+EPI_ISL_253506,too short
+EPI_ISL_253507,too short
+EPI_ISL_253508,too short
+EPI_ISL_253509,too short
+EPI_ISL_253510,too short
+EPI_ISL_253511,too short
+EPI_ISL_253512,too short
+EPI_ISL_253513,too short
+EPI_ISL_253515,too short
+EPI_ISL_253516,too short
+EPI_ISL_253517,too short
+EPI_ISL_253518,too short
+EPI_ISL_253519,too short
+EPI_ISL_253521,too short
+EPI_ISL_253524,too short
+EPI_ISL_253525,too short
+EPI_ISL_253526,too short
+EPI_ISL_253527,too short
+EPI_ISL_253529,too short
+EPI_ISL_253531,too short
+EPI_ISL_253532,too short
+EPI_ISL_253533,too short
+EPI_ISL_253534,too short
+EPI_ISL_253535,too short
+EPI_ISL_253540,too short
+EPI_ISL_255164,too short
+EPI_ISL_255165,too short
+EPI_ISL_255166,too short
+EPI_ISL_255167,too short
+EPI_ISL_255168,too short
+EPI_ISL_255169,too short
+EPI_ISL_255170,too short
+EPI_ISL_255171,too short
+EPI_ISL_255172,too short
+EPI_ISL_255173,too short
+EPI_ISL_255175,too short
+EPI_ISL_255176,too short
+EPI_ISL_255177,too short
+EPI_ISL_255179,too short
+EPI_ISL_255180,too short
+EPI_ISL_255391,too short
+EPI_ISL_255392,too many ambiguous nucleotides
+EPI_ISL_255399,too short
+EPI_ISL_255401,too short
+EPI_ISL_255402,too short
+EPI_ISL_255403,too short
+EPI_ISL_255404,too short
+EPI_ISL_255406,too many ambiguous nucleotides
+EPI_ISL_255407,too short
+EPI_ISL_255408,too short
+EPI_ISL_255410,too short
+EPI_ISL_255496,too short
+EPI_ISL_256779,too many ambiguous nucleotides
+EPI_ISL_253847,too many ambiguous nucleotides
+EPI_ISL_259347,too short
+EPI_ISL_259348,too short
+EPI_ISL_259349,too short
+EPI_ISL_259350,too short
+EPI_ISL_259351,too short
+EPI_ISL_259352,too short
+EPI_ISL_259379,too short
+EPI_ISL_259486,too short
+EPI_ISL_259487,too short
+EPI_ISL_259488,too short
+EPI_ISL_258945,too short
+EPI_ISL_258946,too short
+EPI_ISL_258947,too short
+EPI_ISL_258948,too short
+EPI_ISL_258949,too short
+EPI_ISL_258950,too short
+EPI_ISL_258951,too short
+EPI_ISL_258953,too short
+EPI_ISL_258954,too short
+EPI_ISL_258955,too short
+EPI_ISL_258956,too short
+EPI_ISL_258957,too short
+EPI_ISL_258958,too short
+EPI_ISL_258959,too short
+EPI_ISL_258962,too short
+EPI_ISL_258963,too short
+EPI_ISL_258964,too short
+EPI_ISL_258965,too short
+EPI_ISL_258966,too short
+EPI_ISL_258967,too short
+EPI_ISL_258968,too short
+EPI_ISL_258969,too short
+EPI_ISL_258970,too short
+EPI_ISL_258973,too short
+EPI_ISL_258974,too short
+EPI_ISL_258975,too short
+EPI_ISL_258976,too short
+EPI_ISL_258977,too short
+EPI_ISL_258978,too short
+EPI_ISL_258979,too short
+EPI_ISL_258980,too short
+EPI_ISL_258981,too short
+EPI_ISL_258982,too short
+EPI_ISL_258984,too short
+EPI_ISL_258986,too short
+EPI_ISL_258987,too short
+EPI_ISL_258990,too short
+EPI_ISL_258991,too short
+EPI_ISL_258992,too short
+EPI_ISL_258993,too short
+EPI_ISL_258994,too short
+EPI_ISL_258995,too short
+EPI_ISL_258996,too short
+EPI_ISL_258997,too short
+EPI_ISL_258998,too short
+EPI_ISL_258999,too short
+EPI_ISL_259000,too short
+EPI_ISL_259001,too short
+EPI_ISL_259002,too short
+EPI_ISL_259003,too short
+EPI_ISL_259004,too short
+EPI_ISL_259005,too short
+EPI_ISL_259006,too short
+EPI_ISL_259008,too short
+EPI_ISL_259009,too short
+EPI_ISL_259012,too short
+EPI_ISL_259013,too short
+EPI_ISL_259014,too short
+EPI_ISL_259015,too short
+EPI_ISL_259019,too short
+EPI_ISL_259020,too short
+EPI_ISL_259021,too short
+EPI_ISL_259022,too short
+EPI_ISL_259023,too short
+EPI_ISL_259024,too short
+EPI_ISL_259027,too short
+EPI_ISL_259028,too short
+EPI_ISL_259033,too short
+EPI_ISL_260963,too short
+EPI_ISL_260964,too short
+EPI_ISL_260966,too short
+EPI_ISL_260970,too short
+EPI_ISL_260972,too short
+EPI_ISL_260973,too short
+EPI_ISL_260974,too short
+EPI_ISL_260975,too short
+EPI_ISL_260996,too short
+EPI_ISL_260997,too short
+EPI_ISL_261004,too short
+EPI_ISL_261005,too short
+EPI_ISL_261006,too short
+EPI_ISL_260977,too short
+EPI_ISL_260982,too short
+EPI_ISL_260978,too short
+EPI_ISL_260979,too short
+EPI_ISL_261022,too short
+EPI_ISL_260990,too short
+EPI_ISL_260991,too short
+EPI_ISL_260992,too short
+EPI_ISL_261012,too short
+EPI_ISL_261013,too short
+EPI_ISL_260993,too short
+EPI_ISL_260995,too short
+EPI_ISL_261000,too short
+EPI_ISL_261001,too short
+EPI_ISL_261002,too short
+EPI_ISL_260981,too short
+EPI_ISL_260994,too short
+EPI_ISL_261003,too short
+EPI_ISL_261007,too short
+EPI_ISL_260998,too short
+EPI_ISL_261008,too short
+EPI_ISL_261009,too short
+EPI_ISL_261010,too short
+EPI_ISL_260999,too short
+EPI_ISL_261011,too short
+EPI_ISL_261014,too short
+EPI_ISL_261015,too short
+EPI_ISL_261016,too short
+EPI_ISL_261018,too short
+EPI_ISL_261019,too short
+EPI_ISL_261020,too short
+EPI_ISL_261017,too short
+EPI_ISL_261021,too short
+EPI_ISL_260983,too short
+EPI_ISL_260986,too short
+EPI_ISL_260987,too short
+EPI_ISL_260980,too short
+EPI_ISL_260989,too short
+EPI_ISL_260976,too short
+EPI_ISL_260984,too short
+EPI_ISL_260985,too short
+EPI_ISL_260988,too short
+EPI_ISL_261407,too short
+EPI_ISL_261479,too short
+EPI_ISL_261481,too short
+EPI_ISL_263036,too short
+EPI_ISL_263311,too short
+EPI_ISL_263312,too short
+EPI_ISL_263316,too short
+EPI_ISL_263317,too short
+EPI_ISL_263318,too short
+EPI_ISL_263319,too short
+EPI_ISL_263320,too short
+EPI_ISL_263321,too short
+EPI_ISL_263322,too short
+EPI_ISL_263327,too short
+EPI_ISL_263330,too short
+EPI_ISL_247076,too short
+EPI_ISL_263346,too short
+EPI_ISL_263366,too short
+EPI_ISL_263367,too short
+EPI_ISL_263368,too short
+EPI_ISL_263475,too many ambiguous nucleotides
+EPI_ISL_263485,too short
+EPI_ISL_263488,too short
+EPI_ISL_263490,too short
+EPI_ISL_263492,too short
+EPI_ISL_263498,too short
+EPI_ISL_263499,too short
+EPI_ISL_263500,too short
+EPI_ISL_263501,too short
+EPI_ISL_263502,too short
+EPI_ISL_263503,too short
+EPI_ISL_263504,too short
+EPI_ISL_263505,too short
+EPI_ISL_263508,too short
+EPI_ISL_263519,too short
+EPI_ISL_263545,too short
+EPI_ISL_263546,too short
+EPI_ISL_263547,too short
+EPI_ISL_263548,too short
+EPI_ISL_263549,too short
+EPI_ISL_263583,too short
+EPI_ISL_263584,too short
+EPI_ISL_263585,too short
+EPI_ISL_263586,too short
+EPI_ISL_263587,too short
+EPI_ISL_263588,too short
+EPI_ISL_263589,too short
+EPI_ISL_240719,too short
+EPI_ISL_240716,too short
+EPI_ISL_240715,too short
+EPI_ISL_240714,too short
+EPI_ISL_268514,too short
+EPI_ISL_268518,too short
+EPI_ISL_268519,too short
+EPI_ISL_268520,too short
+EPI_ISL_268521,too short
+EPI_ISL_268684,too short
+EPI_ISL_268686,too short
+EPI_ISL_268687,too short
+EPI_ISL_268688,too short
+EPI_ISL_268689,too short
+EPI_ISL_270921,too short
+EPI_ISL_270924,too short
+EPI_ISL_270931,too short
+EPI_ISL_270932,too short
+EPI_ISL_270935,too short
+EPI_ISL_270936,too short
+EPI_ISL_270937,too short
+EPI_ISL_270938,too short
+EPI_ISL_270939,too short
+EPI_ISL_270946,too short
+EPI_ISL_270947,too short
+EPI_ISL_270950,too short
+EPI_ISL_270951,too short
+EPI_ISL_270952,too short
+EPI_ISL_270953,too short
+EPI_ISL_270954,too short
+EPI_ISL_270955,too short
+EPI_ISL_270956,too short
+EPI_ISL_270958,too short
+EPI_ISL_270959,too short
+EPI_ISL_270961,too short
+EPI_ISL_270962,too short
+EPI_ISL_270963,too short
+EPI_ISL_270967,too short
+EPI_ISL_270968,too short
+EPI_ISL_270973,too short
+EPI_ISL_270975,too short
+EPI_ISL_270979,too short
+EPI_ISL_271005,too short
+EPI_ISL_270978,too short
+EPI_ISL_270980,too short
+EPI_ISL_270982,too short
+EPI_ISL_271006,too short
+EPI_ISL_270986,too short
+EPI_ISL_271007,too short
+EPI_ISL_270988,too short
+EPI_ISL_270993,too short
+EPI_ISL_270989,too short
+EPI_ISL_270961,too short
+EPI_ISL_272745,too short
+EPI_ISL_272747,too short
+EPI_ISL_272858,too short
+EPI_ISL_273048,too short
+EPI_ISL_273050,too short
+EPI_ISL_273063,too short
+EPI_ISL_273064,too short
+EPI_ISL_273065,too short
+EPI_ISL_273066,too short
+EPI_ISL_273206,too short
+EPI_ISL_273222,too short
+EPI_ISL_273223,too short
+EPI_ISL_273224,too short
+EPI_ISL_273225,too short
+EPI_ISL_273226,too short
+EPI_ISL_273227,too short
+EPI_ISL_273228,too short
+EPI_ISL_273229,too short
+EPI_ISL_273609,too short
+EPI_ISL_273610,too short
+EPI_ISL_273617,too short
+EPI_ISL_273937,too short
+EPI_ISL_273938,too short
+EPI_ISL_273939,too short
+EPI_ISL_273940,too short
+EPI_ISL_274583,too short
+EPI_ISL_274602,too short
+EPI_ISL_274603,too short
+EPI_ISL_274604,too short
+EPI_ISL_274605,too short
+EPI_ISL_274606,too short
+EPI_ISL_274607,too short
+EPI_ISL_274608,too short
+EPI_ISL_274609,too short
+EPI_ISL_274613,too short
+EPI_ISL_274794,too short
+EPI_ISL_274795,too short
+EPI_ISL_274797,too short
+EPI_ISL_274798,too short
+EPI_ISL_274799,too short
+EPI_ISL_275111,too short
+EPI_ISL_275112,too short
+EPI_ISL_275113,too short
+EPI_ISL_275114,too short
+EPI_ISL_275115,too short
+EPI_ISL_275169,too short
+EPI_ISL_275178,too short
+EPI_ISL_275324,too short
+EPI_ISL_275332,too short
+EPI_ISL_275337,too short
+EPI_ISL_275339,too short
+EPI_ISL_275340,too short
+EPI_ISL_275343,too short
+EPI_ISL_275344,too short
+EPI_ISL_275346,too short
+EPI_ISL_275348,too short
+EPI_ISL_275355,too short
+EPI_ISL_275356,too short
+EPI_ISL_275357,too short
+EPI_ISL_275359,too short
+EPI_ISL_280161,too short
+EPI_ISL_280469,too short
+EPI_ISL_280471,too short
+EPI_ISL_280504,too short
+EPI_ISL_283694,too short
+EPI_ISL_283697,too short
+EPI_ISL_285510,too many ambiguous nucleotides
+EPI_ISL_286311,too many ambiguous nucleotides
+EPI_ISL_286925,too many ambiguous nucleotides
+EPI_ISL_286927,too short
+EPI_ISL_286998,too many ambiguous nucleotides
+EPI_ISL_287007,too many ambiguous nucleotides
+EPI_ISL_287016,too many ambiguous nucleotides
+EPI_ISL_287192,too many ambiguous nucleotides
+EPI_ISL_294440,too short
+EPI_ISL_280471,too short
+EPI_ISL_307600,too short
+EPI_ISL_331650,too many ambiguous nucleotides
+EPI_ISL_331729,too many ambiguous nucleotides
+EPI_ISL_331765,too many ambiguous nucleotides
+EPI_ISL_333428,too short
+EPI_ISL_333433,too short
+EPI_ISL_333618,too short
+EPI_ISL_333622,too short
+EPI_ISL_333624,too short
+EPI_ISL_333625,too short
+EPI_ISL_333626,too short
+EPI_ISL_333628,too short
+EPI_ISL_383295,too short
+EPI_ISL_383296,too short
+EPI_ISL_383298,too short
+EPI_ISL_383306,too short
+EPI_ISL_383309,too short
+EPI_ISL_383315,too short
+EPI_ISL_383317,too short
+EPI_ISL_383326,too short
+EPI_ISL_383366,too short
+EPI_ISL_383373,too short
+EPI_ISL_383374,too short
+EPI_ISL_383376,too short
+EPI_ISL_383380,too short
+EPI_ISL_383389,too short
+EPI_ISL_383409,too short
+EPI_ISL_383412,too short
+EPI_ISL_383419,too short
+EPI_ISL_383421,too short
+EPI_ISL_383424,too short
+EPI_ISL_383425,too short
+EPI_ISL_383428,too short
+EPI_ISL_383441,too short
+EPI_ISL_383442,too short
+EPI_ISL_383444,too short
+EPI_ISL_383445,too short
+EPI_ISL_383491,too short
+EPI_ISL_383493,too many ambiguous nucleotides
+EPI_ISL_383498,too short
+EPI_ISL_383525,too short
+EPI_ISL_383529,too short
+EPI_ISL_383532,too short
+EPI_ISL_383534,too short
+EPI_ISL_383543,too short
+EPI_ISL_383559,too short
+EPI_ISL_383588,too short
+EPI_ISL_383609,too short
+EPI_ISL_383612,too short
+EPI_ISL_383618,too short
+EPI_ISL_383626,too short
+EPI_ISL_383627,too short
+EPI_ISL_383631,too short
+EPI_ISL_383642,too short
+EPI_ISL_383657,too short
+EPI_ISL_383663,too short
+EPI_ISL_383665,too short
+EPI_ISL_383671,too short
+EPI_ISL_383679,too short
+EPI_ISL_383683,too short
+EPI_ISL_383715,too short
+EPI_ISL_383725,too short
+EPI_ISL_383751,too short
+EPI_ISL_383752,too short
+EPI_ISL_383822,too short
+EPI_ISL_383831,too short
+EPI_ISL_388173,too short
+EPI_ISL_388176,too short
+EPI_ISL_388184,too short
+EPI_ISL_388203,too short
+EPI_ISL_388204,too short
+EPI_ISL_388205,too short
+EPI_ISL_388227,too short
+EPI_ISL_388232,too short
+EPI_ISL_388233,too short
+EPI_ISL_388235,too short
+EPI_ISL_388236,too short
+EPI_ISL_388240,too short
+EPI_ISL_388668,too short
+EPI_ISL_393345,too short
+EPI_ISL_393343,too short
+EPI_ISL_393342,too short
+EPI_ISL_393341,too short
+EPI_ISL_393339,too short
+EPI_ISL_393335,too short
+EPI_ISL_393333,too short
+EPI_ISL_393330,too short
+EPI_ISL_502766,too short
+EPI_ISL_502767,too short
+EPI_ISL_502768,too short
+EPI_ISL_502769,too short
+EPI_ISL_502770,too short
+EPI_ISL_502771,too short
+EPI_ISL_502772,too short
+EPI_ISL_502773,too short
+EPI_ISL_502774,too short
+EPI_ISL_502775,too short
+EPI_ISL_2454699,too short
+EPI_ISL_13046449,too short
+EPI_ISL_13046503,too short
+EPI_ISL_259025,too short
+EPI_ISL_259026,too short
+EPI_ISL_259029,too short
+EPI_ISL_259030,too short
+EPI_ISL_259031,too short
+EPI_ISL_259032,too short
+EPI_ISL_259034,too short
+EPI_ISL_259035,too short
+EPI_ISL_259036,too short
+EPI_ISL_259066,too short
+EPI_ISL_270920,too short
+EPI_ISL_270922,too short
+EPI_ISL_270928,too short
+EPI_ISL_270941,too short
+EPI_ISL_270984,too short
+EPI_ISL_270985,too short
+EPI_ISL_274591,too short
+EPI_ISL_275284,too short
+EPI_ISL_275369,too short
+EPI_ISL_275372,too short
+EPI_ISL_275382,too short
+EPI_ISL_276954,too short
+EPI_ISL_280157,too short
+EPI_ISL_280158,too short
+EPI_ISL_280159,too short
+EPI_ISL_280160,too short
+EPI_ISL_280162,too short
+EPI_ISL_280185,too short
+EPI_ISL_280186,too short
+EPI_ISL_280373,too short
+EPI_ISL_280375,too short
+EPI_ISL_280374,too short
+EPI_ISL_280376,too short
+EPI_ISL_280377,too short
+EPI_ISL_280379,too short
+EPI_ISL_280380,too short
+EPI_ISL_280381,too short
+EPI_ISL_280382,too short
+EPI_ISL_280383,too short
+EPI_ISL_280384,too short
+EPI_ISL_280385,too short
+EPI_ISL_284311,too short
+EPI_ISL_283150,too short
+EPI_ISL_283151,too short
+EPI_ISL_287997,too short
+EPI_ISL_287998,too short
+EPI_ISL_286153,too short
+EPI_ISL_288429,too short
+EPI_ISL_287569,too short
+EPI_ISL_287570,too short
+EPI_ISL_288728,too short
+EPI_ISL_288729,too short
+EPI_ISL_288730,too short
+EPI_ISL_290258,too short
+EPI_ISL_290259,too short
+EPI_ISL_290260,too short
+EPI_ISL_290261,too short
+EPI_ISL_290262,too short
+EPI_ISL_290264,too short
+EPI_ISL_290267,too short
+EPI_ISL_290271,too short
+EPI_ISL_290275,too short
+EPI_ISL_290985,too short
+EPI_ISL_290986,too short
+EPI_ISL_293442,too short
+EPI_ISL_294270,too many ambiguous nucleotides
+EPI_ISL_280375,too short
+EPI_ISL_280373,too short
+EPI_ISL_280379,too short
+EPI_ISL_280385,too short
+EPI_ISL_280374,too short
+EPI_ISL_293960,too short
+EPI_ISL_293965,too short
+EPI_ISL_293979,too short
+EPI_ISL_295054,too short
+EPI_ISL_298746,too short
+EPI_ISL_298748,too short
+EPI_ISL_298750,too short
+EPI_ISL_300528,too short
+EPI_ISL_302169,too short
+EPI_ISL_301650,too short
+EPI_ISL_301651,too short
+EPI_ISL_301652,too short
+EPI_ISL_301681,too short
+EPI_ISL_301682,too short
+EPI_ISL_301684,too short
+EPI_ISL_301686,too short
+EPI_ISL_301687,too short
+EPI_ISL_301688,too short
+EPI_ISL_302522,too short
+EPI_ISL_304444,too short
+EPI_ISL_304664,too short
+EPI_ISL_304690,too short
+EPI_ISL_304691,too short
+EPI_ISL_304692,too short
+EPI_ISL_304693,too short
+EPI_ISL_304694,too short
+EPI_ISL_304695,too short
+EPI_ISL_306718,too short
+EPI_ISL_306719,too short
+EPI_ISL_306733,too short
+EPI_ISL_306735,too short
+EPI_ISL_306526,too short
+EPI_ISL_306527,too short
+EPI_ISL_306528,too short
+EPI_ISL_306529,too short
+EPI_ISL_306530,too short
+EPI_ISL_308744,too short
+EPI_ISL_308746,too short
+EPI_ISL_308747,too short
+EPI_ISL_308749,too short
+EPI_ISL_307066,too short
+EPI_ISL_311297,too short
+EPI_ISL_311298,too short
+EPI_ISL_311299,too short
+EPI_ISL_312390,too short
+EPI_ISL_312557,too short
+EPI_ISL_312562,too short
+EPI_ISL_312568,too short
+EPI_ISL_312583,too short
+EPI_ISL_313427,too short
+EPI_ISL_313829,too short
+EPI_ISL_313830,too short
+EPI_ISL_313963,too short
+EPI_ISL_314858,too short
+EPI_ISL_314859,too short
+EPI_ISL_314860,too short
+EPI_ISL_314861,too short
+EPI_ISL_314862,too short
+EPI_ISL_314863,too short
+EPI_ISL_314864,too short
+EPI_ISL_314865,too short
+EPI_ISL_314866,too short
+EPI_ISL_314867,too short
+EPI_ISL_314868,too short
+EPI_ISL_314869,too short
+EPI_ISL_314870,too short
+EPI_ISL_314871,too short
+EPI_ISL_314872,too short
+EPI_ISL_314873,too short
+EPI_ISL_314874,too short
+EPI_ISL_315880,too short
+EPI_ISL_315881,too short
+EPI_ISL_315882,too short
+EPI_ISL_315938,too short
+EPI_ISL_315939,too short
+EPI_ISL_315940,too short
+EPI_ISL_329972,too many ambiguous nucleotides
+EPI_ISL_330776,too short
+EPI_ISL_330777,too short
+EPI_ISL_330778,too short
+EPI_ISL_330779,too short
+EPI_ISL_330780,too short
+EPI_ISL_330163,too short
+EPI_ISL_331333,too short
+EPI_ISL_331335,too short
+EPI_ISL_331336,too short
+EPI_ISL_331625,too short
+EPI_ISL_331830,too many ambiguous nucleotides
+EPI_ISL_331832,too many ambiguous nucleotides
+EPI_ISL_331848,too short
+EPI_ISL_332127,too short
+EPI_ISL_332151,too short
+EPI_ISL_332488,too short
+EPI_ISL_332517,too short
+EPI_ISL_332519,too short
+EPI_ISL_332520,too short
+EPI_ISL_332522,too short
+EPI_ISL_332523,too short
+EPI_ISL_332525,too short
+EPI_ISL_332526,too short
+EPI_ISL_332801,too short
+EPI_ISL_334093,too short
+EPI_ISL_334163,too many ambiguous nucleotides
+EPI_ISL_334164,too many ambiguous nucleotides
+EPI_ISL_334166,too many ambiguous nucleotides
+EPI_ISL_335315,too short
+EPI_ISL_336935,too short
+EPI_ISL_336936,too short
+EPI_ISL_336938,too short
+EPI_ISL_336939,too short
+EPI_ISL_336940,too short
+EPI_ISL_336943,too short
+EPI_ISL_337161,too short
+EPI_ISL_337207,too many ambiguous nucleotides
+EPI_ISL_337208,too many ambiguous nucleotides
+EPI_ISL_337211,too many ambiguous nucleotides
+EPI_ISL_337176,too short
+EPI_ISL_337203,too short
+EPI_ISL_337437,too short
+EPI_ISL_337438,too short
+EPI_ISL_337244,too short
+EPI_ISL_337441,too short
+EPI_ISL_337489,too short
+EPI_ISL_337490,too short
+EPI_ISL_337491,too short
+EPI_ISL_337492,too short
+EPI_ISL_337494,too short
+EPI_ISL_339542,too many ambiguous nucleotides
+EPI_ISL_340151,too short
+EPI_ISL_340495,too short
+EPI_ISL_345534,too short
+EPI_ISL_345535,too short
+EPI_ISL_345610,too short
+EPI_ISL_357473,too short
+EPI_ISL_366047,too short
+EPI_ISL_366049,too short
+EPI_ISL_366054,too short
+EPI_ISL_379845,too short
+EPI_ISL_379847,too short
+EPI_ISL_379849,too short
+EPI_ISL_379856,too short
+EPI_ISL_379857,too short
+EPI_ISL_379858,too short
+EPI_ISL_379860,too short
+EPI_ISL_379861,too short
+EPI_ISL_379862,too short
+EPI_ISL_379865,too short
+EPI_ISL_381098,too short
+EPI_ISL_381100,too short
+EPI_ISL_381103,too many ambiguous nucleotides
+EPI_ISL_381104,too many ambiguous nucleotides
+EPI_ISL_381105,too short
+EPI_ISL_383749,too short
+EPI_ISL_383750,too short
+EPI_ISL_396162,too short
+EPI_ISL_396165,too short
+EPI_ISL_396168,too short
+EPI_ISL_396168,too short
+EPI_ISL_396170,too many ambiguous nucleotides
+EPI_ISL_396174,too short
+EPI_ISL_396175,too short
+EPI_ISL_14923894,too many ambiguous nucleotides
+EPI_ISL_14925112,too many ambiguous nucleotides
+EPI_ISL_14925131,too many ambiguous nucleotides
+EPI_ISL_14925145,too many ambiguous nucleotides
+EPI_ISL_14925146,too many ambiguous nucleotides
+EPI_ISL_14925153,too many ambiguous nucleotides
+EPI_ISL_14925173,too many ambiguous nucleotides
+EPI_ISL_14925190,too many ambiguous nucleotides
+EPI_ISL_14925207,too many ambiguous nucleotides
+EPI_ISL_14925215,too many ambiguous nucleotides
+EPI_ISL_14925216,too many ambiguous nucleotides
+EPI_ISL_14925217,too many ambiguous nucleotides
+EPI_ISL_14925223,too many ambiguous nucleotides
+EPI_ISL_14925241,too many ambiguous nucleotides
+EPI_ISL_14925244,too many ambiguous nucleotides
+EPI_ISL_14925257,too many ambiguous nucleotides
+EPI_ISL_14925274,too many ambiguous nucleotides
+EPI_ISL_14925289,too many ambiguous nucleotides
+EPI_ISL_14925292,too many ambiguous nucleotides
+EPI_ISL_14925311,too many ambiguous nucleotides
+EPI_ISL_14925315,too many ambiguous nucleotides
+EPI_ISL_14925533,too many ambiguous nucleotides
+EPI_ISL_14925534,too many ambiguous nucleotides
+EPI_ISL_14925535,too many ambiguous nucleotides
+EPI_ISL_14925536,too many ambiguous nucleotides
+EPI_ISL_14925537,too many ambiguous nucleotides
+EPI_ISL_14925538,too many ambiguous nucleotides
+EPI_ISL_14925539,too many ambiguous nucleotides
+EPI_ISL_14925540,too many ambiguous nucleotides
+EPI_ISL_14925544,too many ambiguous nucleotides
+EPI_ISL_14925545,too many ambiguous nucleotides
+EPI_ISL_14925546,too many ambiguous nucleotides
+EPI_ISL_14925547,too many ambiguous nucleotides
+EPI_ISL_14925549,too many ambiguous nucleotides
+EPI_ISL_14925550,too many ambiguous nucleotides
+EPI_ISL_14925551,too many ambiguous nucleotides
+EPI_ISL_14925552,too many ambiguous nucleotides
+EPI_ISL_14925554,too many ambiguous nucleotides
+EPI_ISL_14925555,too many ambiguous nucleotides
+EPI_ISL_14925556,too many ambiguous nucleotides
+EPI_ISL_14925557,too many ambiguous nucleotides
+EPI_ISL_14925558,too many ambiguous nucleotides
+EPI_ISL_14925559,too many ambiguous nucleotides
+EPI_ISL_14925560,too many ambiguous nucleotides
+EPI_ISL_14925562,too many ambiguous nucleotides
+EPI_ISL_14925563,too many ambiguous nucleotides
+EPI_ISL_14925564,too many ambiguous nucleotides
+EPI_ISL_14925565,too many ambiguous nucleotides
+EPI_ISL_14925567,too many ambiguous nucleotides
+EPI_ISL_14925568,too many ambiguous nucleotides
+EPI_ISL_14925569,too many ambiguous nucleotides
+EPI_ISL_14925570,too many ambiguous nucleotides
+EPI_ISL_14925571,too many ambiguous nucleotides
+EPI_ISL_14925572,too many ambiguous nucleotides
+EPI_ISL_14925573,too many ambiguous nucleotides
+EPI_ISL_14925574,too many ambiguous nucleotides
+EPI_ISL_14925576,too many ambiguous nucleotides
+EPI_ISL_14925577,too many ambiguous nucleotides
+EPI_ISL_14925578,too many ambiguous nucleotides
+EPI_ISL_14925580,too many ambiguous nucleotides
+EPI_ISL_14925581,too many ambiguous nucleotides
+EPI_ISL_14925582,too many ambiguous nucleotides
+EPI_ISL_14925584,too many ambiguous nucleotides
+EPI_ISL_14925585,too many ambiguous nucleotides
+EPI_ISL_14925586,too many ambiguous nucleotides
+EPI_ISL_14925587,too many ambiguous nucleotides
+EPI_ISL_14925588,too many ambiguous nucleotides
+EPI_ISL_14925589,too many ambiguous nucleotides
+EPI_ISL_14925590,too many ambiguous nucleotides
+EPI_ISL_14925636,too many ambiguous nucleotides
+EPI_ISL_14925637,too many ambiguous nucleotides
+EPI_ISL_14925638,too many ambiguous nucleotides
+EPI_ISL_14925639,too many ambiguous nucleotides
+EPI_ISL_14925640,too many ambiguous nucleotides
+EPI_ISL_14925641,too many ambiguous nucleotides
+EPI_ISL_14925642,too many ambiguous nucleotides
+EPI_ISL_14925643,too many ambiguous nucleotides
+EPI_ISL_14925644,too many ambiguous nucleotides
+EPI_ISL_14925645,too many ambiguous nucleotides
+EPI_ISL_14925646,too many ambiguous nucleotides
+EPI_ISL_14925647,too many ambiguous nucleotides
+EPI_ISL_14925648,too many ambiguous nucleotides
+EPI_ISL_14925649,too many ambiguous nucleotides
+EPI_ISL_14925650,too many ambiguous nucleotides
+EPI_ISL_14925652,too many ambiguous nucleotides
+EPI_ISL_14925653,too many ambiguous nucleotides
+EPI_ISL_14925654,too many ambiguous nucleotides
+EPI_ISL_14925655,too many ambiguous nucleotides
+EPI_ISL_14925656,too many ambiguous nucleotides
+EPI_ISL_14925657,too many ambiguous nucleotides
+EPI_ISL_14925658,too many ambiguous nucleotides
+EPI_ISL_14925659,too many ambiguous nucleotides
+EPI_ISL_14925660,too many ambiguous nucleotides
+EPI_ISL_14925661,too many ambiguous nucleotides
+EPI_ISL_14925662,too many ambiguous nucleotides
+EPI_ISL_14925663,too many ambiguous nucleotides
+EPI_ISL_14925664,too many ambiguous nucleotides
+EPI_ISL_14925665,too many ambiguous nucleotides
+EPI_ISL_14925666,too many ambiguous nucleotides
+EPI_ISL_14925667,too many ambiguous nucleotides
+EPI_ISL_14925668,too many ambiguous nucleotides
+EPI_ISL_14925669,too many ambiguous nucleotides
+EPI_ISL_14925670,too many ambiguous nucleotides
+EPI_ISL_14925671,too many ambiguous nucleotides
+EPI_ISL_14925672,too many ambiguous nucleotides
+EPI_ISL_14925673,too many ambiguous nucleotides
+EPI_ISL_14925677,too many ambiguous nucleotides
+EPI_ISL_14925678,too many ambiguous nucleotides
+EPI_ISL_14925679,too many ambiguous nucleotides
+EPI_ISL_14925680,too many ambiguous nucleotides
+EPI_ISL_14925681,too many ambiguous nucleotides
+EPI_ISL_14925682,too many ambiguous nucleotides
+EPI_ISL_14925683,too many ambiguous nucleotides
+EPI_ISL_14925684,too many ambiguous nucleotides
+EPI_ISL_14925685,too many ambiguous nucleotides
+EPI_ISL_14925686,too many ambiguous nucleotides
+EPI_ISL_14925687,too many ambiguous nucleotides
+EPI_ISL_14925688,too many ambiguous nucleotides
+EPI_ISL_14925689,too many ambiguous nucleotides
+EPI_ISL_14925690,too many ambiguous nucleotides
+EPI_ISL_14925691,too many ambiguous nucleotides
+EPI_ISL_14925692,too many ambiguous nucleotides
+EPI_ISL_14925693,too many ambiguous nucleotides
+EPI_ISL_14925694,too many ambiguous nucleotides
+EPI_ISL_14925695,too many ambiguous nucleotides
+EPI_ISL_14925696,too many ambiguous nucleotides
+EPI_ISL_14925698,too many ambiguous nucleotides
+EPI_ISL_14925699,too many ambiguous nucleotides
+EPI_ISL_14925700,too many ambiguous nucleotides
+EPI_ISL_14925701,too many ambiguous nucleotides
+EPI_ISL_14925702,too many ambiguous nucleotides
+EPI_ISL_14925703,too many ambiguous nucleotides
+EPI_ISL_14925705,too many ambiguous nucleotides
+EPI_ISL_14925706,too many ambiguous nucleotides
+EPI_ISL_14925707,too many ambiguous nucleotides
+EPI_ISL_14925708,too many ambiguous nucleotides
+EPI_ISL_14925709,too many ambiguous nucleotides
+EPI_ISL_14925710,too many ambiguous nucleotides
+EPI_ISL_14925712,too many ambiguous nucleotides
+EPI_ISL_14925714,too many ambiguous nucleotides
+EPI_ISL_14925716,too many ambiguous nucleotides
+EPI_ISL_14925717,too many ambiguous nucleotides
+EPI_ISL_14925718,too many ambiguous nucleotides
+EPI_ISL_14925719,too many ambiguous nucleotides
+EPI_ISL_14925720,too many ambiguous nucleotides
+EPI_ISL_14925721,too many ambiguous nucleotides
+EPI_ISL_14925722,too many ambiguous nucleotides
+EPI_ISL_14925723,too many ambiguous nucleotides
+EPI_ISL_14925724,too many ambiguous nucleotides
+EPI_ISL_14925725,too many ambiguous nucleotides
+EPI_ISL_14925726,too many ambiguous nucleotides
+EPI_ISL_14925727,too many ambiguous nucleotides
+EPI_ISL_14925728,too many ambiguous nucleotides
+EPI_ISL_14925729,too many ambiguous nucleotides
+EPI_ISL_14925731,too many ambiguous nucleotides
+EPI_ISL_14925732,too many ambiguous nucleotides
+EPI_ISL_14925733,too many ambiguous nucleotides
+EPI_ISL_14925734,too many ambiguous nucleotides
+EPI_ISL_14925735,too many ambiguous nucleotides
+EPI_ISL_14925736,too many ambiguous nucleotides
+EPI_ISL_14925737,too many ambiguous nucleotides
+EPI_ISL_14925738,too many ambiguous nucleotides
+EPI_ISL_14925739,too many ambiguous nucleotides
+EPI_ISL_14925740,too many ambiguous nucleotides
+EPI_ISL_14925741,too many ambiguous nucleotides
+EPI_ISL_14925742,too many ambiguous nucleotides
+EPI_ISL_14925743,too many ambiguous nucleotides
+EPI_ISL_14925744,too many ambiguous nucleotides
+EPI_ISL_14925745,too many ambiguous nucleotides
+EPI_ISL_14925747,too many ambiguous nucleotides
+EPI_ISL_2680,too short
+EPI_ISL_2682,too short
+EPI_ISL_2683,too short
+EPI_ISL_4849,too short
+EPI_ISL_4850,too short
+EPI_ISL_4859,too short
+EPI_ISL_4879,too short
+EPI_ISL_4870,too short
+EPI_ISL_4866,too short
+EPI_ISL_4863,too short
+EPI_ISL_4871,too short
+EPI_ISL_4862,too short
+EPI_ISL_4861,too short
+EPI_ISL_4873,too short
+EPI_ISL_4874,too short
+EPI_ISL_4867,too short
+EPI_ISL_4860,too short
+EPI_ISL_4869,too short
+EPI_ISL_4878,too short
+EPI_ISL_4959,too short
+EPI_ISL_4877,too short
+EPI_ISL_4872,too short
+EPI_ISL_4868,too short
+EPI_ISL_4864,too short
+EPI_ISL_4865,too short
+EPI_ISL_4875,too short
+EPI_ISL_4876,too short
+EPI_ISL_7253,too short
+EPI_ISL_7512,too short
+EPI_ISL_7517,too short
+EPI_ISL_7518,too short
+EPI_ISL_9550,too short
+EPI_ISL_9552,too short
+EPI_ISL_9553,too short
+EPI_ISL_9554,too short
+EPI_ISL_9555,too short
+EPI_ISL_9556,too short
+EPI_ISL_4246,too short
+EPI_ISL_9557,too short
+EPI_ISL_9558,too short
+EPI_ISL_9560,too short
+EPI_ISL_9561,too short
+EPI_ISL_9563,too short
+EPI_ISL_9564,too short
+EPI_ISL_9565,too short
+EPI_ISL_9566,too short
+EPI_ISL_9569,too short
+EPI_ISL_9570,too short
+EPI_ISL_9573,too short
+EPI_ISL_9574,too short
+EPI_ISL_9575,too short
+EPI_ISL_9576,too short
+EPI_ISL_9577,too short
+EPI_ISL_9578,too short
+EPI_ISL_9579,too short
+EPI_ISL_9580,too short
+EPI_ISL_9581,too short
+EPI_ISL_9582,too short
+EPI_ISL_9583,too short
+EPI_ISL_9584,too short
+EPI_ISL_9585,too short
+EPI_ISL_9586,too short
+EPI_ISL_9587,too short
+EPI_ISL_9588,too short
+EPI_ISL_9589,too short
+EPI_ISL_9590,too short
+EPI_ISL_9591,too short
+EPI_ISL_9593,too short
+EPI_ISL_9594,too short
+EPI_ISL_9595,too short
+EPI_ISL_9596,too short
+EPI_ISL_9597,too short
+EPI_ISL_9598,too short
+EPI_ISL_9599,too short
+EPI_ISL_9602,too short
+EPI_ISL_9603,too short
+EPI_ISL_8516,too short
+EPI_ISL_8560,too short
+EPI_ISL_8559,too short
+EPI_ISL_10535,too short
+EPI_ISL_10535,too short
+EPI_ISL_10606,too short
+EPI_ISL_10625,too short
+EPI_ISL_10626,too short
+EPI_ISL_10627,too short
+EPI_ISL_10628,too short
+EPI_ISL_10629,too short
+EPI_ISL_10630,too short
+EPI_ISL_10631,too short
+EPI_ISL_10632,too short
+EPI_ISL_10633,too short
+EPI_ISL_11454,too short
+EPI_ISL_21068,too short
+EPI_ISL_12732,too short
+EPI_ISL_13850,too short
+EPI_ISL_20136,too short
+EPI_ISL_20135,too short
+EPI_ISL_20281,too short
+EPI_ISL_20341,too short
+EPI_ISL_22579,too short
+EPI_ISL_23092,too short
+EPI_ISL_23093,too short
+EPI_ISL_23094,too short
+EPI_ISL_23095,too short
+EPI_ISL_23592,too short
+EPI_ISL_23593,too short
+EPI_ISL_23635,too short
+EPI_ISL_23696,too short
+EPI_ISL_25047,too short
+EPI_ISL_25049,too short
+EPI_ISL_25050,too short
+EPI_ISL_25051,too short
+EPI_ISL_25052,too short
+EPI_ISL_25053,too short
+EPI_ISL_25059,too short
+EPI_ISL_25060,too short
+EPI_ISL_25061,too short
+EPI_ISL_25062,too short
+EPI_ISL_25063,too short
+EPI_ISL_25064,too short
+EPI_ISL_25065,too short
+EPI_ISL_25066,too short
+EPI_ISL_27607,too short
+EPI_ISL_32669,too short
+EPI_ISL_32670,too short
+EPI_ISL_32671,too short
+EPI_ISL_32672,too short
+EPI_ISL_32673,too short
+EPI_ISL_32674,too short
+EPI_ISL_32675,too short
+EPI_ISL_32676,too short
+EPI_ISL_32677,too short
+EPI_ISL_32678,too short
+EPI_ISL_32679,too short
+EPI_ISL_32680,too short
+EPI_ISL_32681,too short
+EPI_ISL_32682,too short
+EPI_ISL_32683,too short
+EPI_ISL_32684,too short
+EPI_ISL_32685,too short
+EPI_ISL_32686,too short
+EPI_ISL_32687,too short
+EPI_ISL_32688,too short
+EPI_ISL_32689,too short
+EPI_ISL_32690,too short
+EPI_ISL_32691,too short
+EPI_ISL_32692,too short
+EPI_ISL_32693,too short
+EPI_ISL_32694,too short
+EPI_ISL_32695,too short
+EPI_ISL_32696,too short
+EPI_ISL_32697,too short
+EPI_ISL_32698,too short
+EPI_ISL_32699,too short
+EPI_ISL_32700,too short
+EPI_ISL_32701,too short
+EPI_ISL_32702,too short
+EPI_ISL_32703,too short
+EPI_ISL_32704,too short
+EPI_ISL_32705,too short
+EPI_ISL_32706,too short
+EPI_ISL_32707,too short
+EPI_ISL_32708,too short
+EPI_ISL_32709,too short
+EPI_ISL_32710,too short
+EPI_ISL_32711,too short
+EPI_ISL_32712,too short
+EPI_ISL_32713,too short
+EPI_ISL_32714,too short
+EPI_ISL_32715,too short
+EPI_ISL_32716,too short
+EPI_ISL_32717,too short
+EPI_ISL_32718,too short
+EPI_ISL_32719,too short
+EPI_ISL_32720,too short
+EPI_ISL_32721,too short
+EPI_ISL_32722,too short
+EPI_ISL_32723,too short
+EPI_ISL_32724,too short
+EPI_ISL_32725,too short
+EPI_ISL_32726,too short
+EPI_ISL_32727,too short
+EPI_ISL_32728,too short
+EPI_ISL_32729,too short
+EPI_ISL_32730,too short
+EPI_ISL_32731,too short
+EPI_ISL_32732,too short
+EPI_ISL_32733,too short
+EPI_ISL_32734,too short
+EPI_ISL_32735,too short
+EPI_ISL_32736,too short
+EPI_ISL_32737,too short
+EPI_ISL_32738,too short
+EPI_ISL_32739,too short
+EPI_ISL_32740,too short
+EPI_ISL_32741,too short
+EPI_ISL_32742,too short
+EPI_ISL_32743,too short
+EPI_ISL_32744,too short
+EPI_ISL_32745,too short
+EPI_ISL_32746,too short
+EPI_ISL_32747,too short
+EPI_ISL_32748,too short
+EPI_ISL_32749,too short
+EPI_ISL_32750,too short
+EPI_ISL_32751,too short
+EPI_ISL_32752,too short
+EPI_ISL_32753,too short
+EPI_ISL_32754,too short
+EPI_ISL_32755,too short
+EPI_ISL_32756,too short
+EPI_ISL_32757,too short
+EPI_ISL_32758,too short
+EPI_ISL_32759,too short
+EPI_ISL_32760,too short
+EPI_ISL_32761,too short
+EPI_ISL_32762,too short
+EPI_ISL_32763,too short
+EPI_ISL_32764,too short
+EPI_ISL_32765,too short
+EPI_ISL_32766,too short
+EPI_ISL_32767,too short
+EPI_ISL_32768,too short
+EPI_ISL_32769,too short
+EPI_ISL_32770,too short
+EPI_ISL_32771,too short
+EPI_ISL_32772,too short
+EPI_ISL_32773,too short
+EPI_ISL_32774,too short
+EPI_ISL_32775,too short
+EPI_ISL_32776,too short
+EPI_ISL_32777,too short
+EPI_ISL_32778,too short
+EPI_ISL_32779,too short
+EPI_ISL_32890,too short
+EPI_ISL_32780,too short
+EPI_ISL_32781,too short
+EPI_ISL_32782,too short
+EPI_ISL_32783,too short
+EPI_ISL_32784,too short
+EPI_ISL_32891,too short
+EPI_ISL_63661,too short
+EPI_ISL_60959,too short
+EPI_ISL_60960,too short
+EPI_ISL_19574,too short
+EPI_ISL_19573,too short
+EPI_ISL_64020,too short
+EPI_ISL_19576,too short
+EPI_ISL_64117,too short
+EPI_ISL_64280,too short
+EPI_ISL_19579,too short
+EPI_ISL_19580,too short
+EPI_ISL_19581,too short
+EPI_ISL_19578,too short
+EPI_ISL_65100,too short
+EPI_ISL_65101,too short
+EPI_ISL_65103,too short
+EPI_ISL_65104,too short
+EPI_ISL_65105,too short
+EPI_ISL_67002,too short
+EPI_ISL_67003,too short
+EPI_ISL_67005,too short
+EPI_ISL_67007,too short
+EPI_ISL_67008,too short
+EPI_ISL_67009,too short
+EPI_ISL_67010,too short
+EPI_ISL_67012,too short
+EPI_ISL_67014,too short
+EPI_ISL_67015,too short
+EPI_ISL_67016,too short
+EPI_ISL_67018,too short
+EPI_ISL_67019,too short
+EPI_ISL_67020,too short
+EPI_ISL_67021,too short
+EPI_ISL_67023,too short
+EPI_ISL_64650,too short
+EPI_ISL_67202,too short
+EPI_ISL_67203,too short
+EPI_ISL_67204,too short
+EPI_ISL_67205,too short
+EPI_ISL_67206,too short
+EPI_ISL_67207,too short
+EPI_ISL_67208,too short
+EPI_ISL_67209,too short
+EPI_ISL_67667,too short
+EPI_ISL_76544,too short
+EPI_ISL_76545,too short
+EPI_ISL_76546,too short
+EPI_ISL_76547,too short
+EPI_ISL_76548,too short
+EPI_ISL_76549,too short
+EPI_ISL_76550,too short
+EPI_ISL_76551,too short
+EPI_ISL_76552,too short
+EPI_ISL_76553,too short
+EPI_ISL_76554,too short
+EPI_ISL_76555,too short
+EPI_ISL_76556,too short
+EPI_ISL_76557,too short
+EPI_ISL_76558,too short
+EPI_ISL_76559,too short
+EPI_ISL_76560,too short
+EPI_ISL_77571,too short
+EPI_ISL_77572,too short
+EPI_ISL_77573,too short
+EPI_ISL_77574,too short
+EPI_ISL_77575,too short
+EPI_ISL_77576,too short
+EPI_ISL_77577,too short
+EPI_ISL_77578,too short
+EPI_ISL_77579,too short
+EPI_ISL_77580,too short
+EPI_ISL_77581,too short
+EPI_ISL_77582,too short
+EPI_ISL_77583,too short
+EPI_ISL_77584,too short
+EPI_ISL_77585,too short
+EPI_ISL_77586,too short
+EPI_ISL_77587,too short
+EPI_ISL_77588,too short
+EPI_ISL_77589,too short
+EPI_ISL_77590,too short
+EPI_ISL_77591,too short
+EPI_ISL_77592,too short
+EPI_ISL_77596,too short
+EPI_ISL_77593,too short
+EPI_ISL_77594,too short
+EPI_ISL_77595,too short
+EPI_ISL_77597,too short
+EPI_ISL_77598,too short
+EPI_ISL_77599,too short
+EPI_ISL_77600,too short
+EPI_ISL_77601,too short
+EPI_ISL_77602,too short
+EPI_ISL_77603,too short
+EPI_ISL_77605,too short
+EPI_ISL_77604,too short
+EPI_ISL_77794,too short
+EPI_ISL_84351,too short
+EPI_ISL_84352,too short
+EPI_ISL_84353,too short
+EPI_ISL_84354,too short
+EPI_ISL_84355,too short
+EPI_ISL_84356,too short
+EPI_ISL_84357,too short
+EPI_ISL_84358,too short
+EPI_ISL_84359,too short
+EPI_ISL_84432,too short
+EPI_ISL_84433,too short
+EPI_ISL_84434,too short
+EPI_ISL_84436,too short
+EPI_ISL_85036,too short
+EPI_ISL_85037,too short
+EPI_ISL_85038,too short
+EPI_ISL_85040,too short
+EPI_ISL_89060,too short
+EPI_ISL_89075,too short
+EPI_ISL_89080,too short
+EPI_ISL_89081,too short
+EPI_ISL_15792,too short
+EPI_ISL_15808,too short
+EPI_ISL_107951,too short
+EPI_ISL_90571,too short
+EPI_ISL_90572,too short
+EPI_ISL_90573,too short
+EPI_ISL_90574,too short
+EPI_ISL_96014,too short
+EPI_ISL_97469,too short
+EPI_ISL_99638,too short
+EPI_ISL_99869,too short
+EPI_ISL_100003,too short
+EPI_ISL_100055,too short
+EPI_ISL_84041,too short
+EPI_ISL_105812,too short
+EPI_ISL_105867,too short
+EPI_ISL_105868,too short
+EPI_ISL_105869,too short
+EPI_ISL_105870,too short
+EPI_ISL_105873,too short
+EPI_ISL_105874,too short
+EPI_ISL_105875,too short
+EPI_ISL_105877,too short
+EPI_ISL_105878,too short
+EPI_ISL_106007,too short
+EPI_ISL_106008,too short
+EPI_ISL_106009,too short
+EPI_ISL_106010,too short
+EPI_ISL_106011,too short
+EPI_ISL_106085,too short
+EPI_ISL_106096,too short
+EPI_ISL_107037,too short
+EPI_ISL_108361,too short
+EPI_ISL_108362,too short
+EPI_ISL_108364,too short
+EPI_ISL_108365,too short
+EPI_ISL_108366,too short
+EPI_ISL_108367,too short
+EPI_ISL_108368,too short
+EPI_ISL_108371,too short
+EPI_ISL_108372,too short
+EPI_ISL_108375,too short
+EPI_ISL_108378,too short
+EPI_ISL_108379,too short
+EPI_ISL_108382,too short
+EPI_ISL_108383,too short
+EPI_ISL_108384,too short
+EPI_ISL_108385,too short
+EPI_ISL_108386,too short
+EPI_ISL_108387,too short
+EPI_ISL_108388,too short
+EPI_ISL_108389,too short
+EPI_ISL_108390,too short
+EPI_ISL_108391,too short
+EPI_ISL_108392,too short
+EPI_ISL_108393,too short
+EPI_ISL_108394,too short
+EPI_ISL_108395,too short
+EPI_ISL_108396,too short
+EPI_ISL_108401,too short
+EPI_ISL_108407,too short
+EPI_ISL_108421,too short
+EPI_ISL_108431,too short
+EPI_ISL_108435,too short
+EPI_ISL_108440,too short
+EPI_ISL_108443,too short
+EPI_ISL_108444,too short
+EPI_ISL_108445,too short
+EPI_ISL_108447,too short
+EPI_ISL_108448,too short
+EPI_ISL_108449,too short
+EPI_ISL_108495,too short
+EPI_ISL_108498,too short
+EPI_ISL_108499,too short
+EPI_ISL_108502,too short
+EPI_ISL_108504,too short
+EPI_ISL_113540,too short
+EPI_ISL_113541,too short
+EPI_ISL_113542,too short
+EPI_ISL_113543,too short
+EPI_ISL_113544,too short
+EPI_ISL_113545,too short
+EPI_ISL_113546,too short
+EPI_ISL_113547,too short
+EPI_ISL_113548,too short
+EPI_ISL_113551,too short
+EPI_ISL_113556,too short
+EPI_ISL_113600,too short
+EPI_ISL_115779,too short
+EPI_ISL_115780,too short
+EPI_ISL_115781,too short
+EPI_ISL_116091,too short
+EPI_ISL_116092,too short
+EPI_ISL_116093,too short
+EPI_ISL_116094,too short
+EPI_ISL_116095,too short
+EPI_ISL_116096,too short
+EPI_ISL_121549,too short
+EPI_ISL_121548,too short
+EPI_ISL_121550,too short
+EPI_ISL_121551,too short
+EPI_ISL_122022,too short
+EPI_ISL_122023,too short
+EPI_ISL_122022,too short
+EPI_ISL_122022,too short
+EPI_ISL_122022,too short
+EPI_ISL_122022,too short
+EPI_ISL_122023,too short
+EPI_ISL_122023,too short
+EPI_ISL_122347,too short
+EPI_ISL_122348,too short
+EPI_ISL_122349,too short
+EPI_ISL_122350,too short
+EPI_ISL_122351,too short
+EPI_ISL_122352,too short
+EPI_ISL_123010,too short
+EPI_ISL_123013,too short
+EPI_ISL_123028,too short
+EPI_ISL_123034,too short
+EPI_ISL_123060,too short
+EPI_ISL_123209,too short
+EPI_ISL_123588,too short
+EPI_ISL_123961,too short
+EPI_ISL_128154,too short
+EPI_ISL_128315,too short
+EPI_ISL_128350,too short
+EPI_ISL_129294,too short
+EPI_ISL_129295,too short
+EPI_ISL_129296,too short
+EPI_ISL_129297,too short
+EPI_ISL_129339,too short
+EPI_ISL_129340,too short
+EPI_ISL_129341,too short
+EPI_ISL_129342,too short
+EPI_ISL_129343,too short
+EPI_ISL_129344,too short
+EPI_ISL_129345,too short
+EPI_ISL_129346,too short
+EPI_ISL_121493,too short
+EPI_ISL_129753,too short
+EPI_ISL_129757,too short
+EPI_ISL_129759,too short
+EPI_ISL_129793,too short
+EPI_ISL_129795,too short
+EPI_ISL_129796,too short
+EPI_ISL_131698,too short
+EPI_ISL_131852,too short
+EPI_ISL_132249,too short
+EPI_ISL_132409,too many ambiguous nucleotides
+EPI_ISL_132653,too short
+EPI_ISL_132652,too short
+EPI_ISL_132640,too short
+EPI_ISL_132633,too short
+EPI_ISL_132634,too short
+EPI_ISL_132631,too short
+EPI_ISL_132632,too short
+EPI_ISL_132630,too short
+EPI_ISL_132629,too short
+EPI_ISL_132647,too short
+EPI_ISL_132642,too short
+EPI_ISL_132645,too short
+EPI_ISL_132627,too short
+EPI_ISL_132643,too short
+EPI_ISL_132655,too short
+EPI_ISL_132654,too short
+EPI_ISL_132649,too short
+EPI_ISL_132638,too short
+EPI_ISL_132628,too short
+EPI_ISL_132650,too short
+EPI_ISL_132651,too short
+EPI_ISL_132648,too short
+EPI_ISL_132644,too short
+EPI_ISL_132626,too short
+EPI_ISL_132685,too short
+EPI_ISL_132691,too short
+EPI_ISL_132820,too short
+EPI_ISL_132694,too short
+EPI_ISL_132690,too short
+EPI_ISL_132823,too short
+EPI_ISL_132833,too short
+EPI_ISL_132686,too short
+EPI_ISL_132923,too short
+EPI_ISL_133033,too short
+EPI_ISL_134050,too short
+EPI_ISL_134051,too short
+EPI_ISL_134077,too short
+EPI_ISL_134355,too short
+EPI_ISL_134435,too short
+EPI_ISL_135753,too short
+EPI_ISL_135754,too short
+EPI_ISL_135757,too short
+EPI_ISL_135758,too short
+EPI_ISL_135759,too short
+EPI_ISL_135760,too short
+EPI_ISL_135761,too short
+EPI_ISL_135762,too short
+EPI_ISL_135795,too short
+EPI_ISL_135763,too short
+EPI_ISL_135764,too short
+EPI_ISL_135796,too short
+EPI_ISL_135765,too short
+EPI_ISL_135767,too short
+EPI_ISL_135768,too short
+EPI_ISL_135769,too short
+EPI_ISL_135770,too short
+EPI_ISL_135771,too short
+EPI_ISL_135772,too short
+EPI_ISL_135773,too short
+EPI_ISL_135774,too short
+EPI_ISL_135775,too short
+EPI_ISL_135776,too short
+EPI_ISL_135777,too short
+EPI_ISL_135778,too short
+EPI_ISL_135779,too short
+EPI_ISL_135780,too short
+EPI_ISL_135797,too short
+EPI_ISL_135781,too short
+EPI_ISL_135782,too short
+EPI_ISL_135798,too short
+EPI_ISL_135783,too short
+EPI_ISL_135784,too short
+EPI_ISL_135785,too short
+EPI_ISL_135786,too short
+EPI_ISL_135787,too short
+EPI_ISL_135788,too short
+EPI_ISL_135789,too short
+EPI_ISL_135799,too short
+EPI_ISL_135790,too short
+EPI_ISL_135800,too short
+EPI_ISL_135801,too short
+EPI_ISL_135791,too short
+EPI_ISL_135792,too short
+EPI_ISL_135802,too short
+EPI_ISL_135803,too short
+EPI_ISL_135804,too short
+EPI_ISL_135805,too short
+EPI_ISL_135806,too short
+EPI_ISL_135807,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_135799,too short
+EPI_ISL_136435,too short
+EPI_ISL_136436,too short
+EPI_ISL_136461,too short
+EPI_ISL_136462,too short
+EPI_ISL_136513,too short
+EPI_ISL_136514,too short
+EPI_ISL_136600,too short
+EPI_ISL_136627,too short
+EPI_ISL_136644,too short
+EPI_ISL_136657,too short
+EPI_ISL_136658,too short
+EPI_ISL_136669,too short
+EPI_ISL_138243,too short
+EPI_ISL_138244,too short
+EPI_ISL_138249,too short
+EPI_ISL_138250,too short
+EPI_ISL_138308,too short
+EPI_ISL_138309,too short
+EPI_ISL_138310,too short
+EPI_ISL_138311,too short
+EPI_ISL_138312,too short
+EPI_ISL_139129,too short
+EPI_ISL_139130,too short
+EPI_ISL_139132,too short
+EPI_ISL_139141,too short
+EPI_ISL_139504,too short
+EPI_ISL_139505,too short
+EPI_ISL_139506,too short
+EPI_ISL_139507,too short
+EPI_ISL_142853,too short
+EPI_ISL_142855,too short
+EPI_ISL_143278,too short
+EPI_ISL_143279,too short
+EPI_ISL_143280,too short
+EPI_ISL_143281,too short
+EPI_ISL_143282,too short
+EPI_ISL_143283,too short
+EPI_ISL_143284,too short
+EPI_ISL_143285,too short
+EPI_ISL_143286,too short
+EPI_ISL_143287,too short
+EPI_ISL_143288,too short
+EPI_ISL_143289,too short
+EPI_ISL_143290,too short
+EPI_ISL_143291,too short
+EPI_ISL_143292,too short
+EPI_ISL_143293,too short
+EPI_ISL_143294,too short
+EPI_ISL_143295,too short
+EPI_ISL_143296,too short
+EPI_ISL_143297,too short
+EPI_ISL_143298,too short
+EPI_ISL_143299,too short
+EPI_ISL_143300,too short
+EPI_ISL_143301,too short
+EPI_ISL_143302,too short
+EPI_ISL_143303,too short
+EPI_ISL_143304,too short
+EPI_ISL_143305,too short
+EPI_ISL_143306,too short
+EPI_ISL_143307,too short
+EPI_ISL_143308,too short
+EPI_ISL_143309,too short
+EPI_ISL_143310,too short
+EPI_ISL_143311,too short
+EPI_ISL_143312,too short
+EPI_ISL_143313,too short
+EPI_ISL_143314,too short
+EPI_ISL_143315,too short
+EPI_ISL_143316,too short
+EPI_ISL_143317,too short
+EPI_ISL_143318,too short
+EPI_ISL_143958,too short
+EPI_ISL_143970,too short
+EPI_ISL_143971,too short
+EPI_ISL_143972,too short
+EPI_ISL_144974,too short
+EPI_ISL_144975,too short
+EPI_ISL_145754,too short
+EPI_ISL_145755,too short
+EPI_ISL_145756,too short
+EPI_ISL_145757,too short
+EPI_ISL_145758,too short
+EPI_ISL_145759,too short
+EPI_ISL_145760,too short
+EPI_ISL_145761,too short
+EPI_ISL_145762,too short
+EPI_ISL_145763,too short
+EPI_ISL_145764,too short
+EPI_ISL_145765,too short
+EPI_ISL_145786,too short
+EPI_ISL_145787,too short
+EPI_ISL_145922,too short
+EPI_ISL_146033,too short
+EPI_ISL_149944,too short
+EPI_ISL_149945,too short
+EPI_ISL_149946,too short
+EPI_ISL_149947,too short
+EPI_ISL_149948,too short
+EPI_ISL_149949,too short
+EPI_ISL_149950,too short
+EPI_ISL_149951,too short
+EPI_ISL_149952,too short
+EPI_ISL_149953,too short
+EPI_ISL_149954,too short
+EPI_ISL_149955,too short
+EPI_ISL_149956,too short
+EPI_ISL_149957,too short
+EPI_ISL_149958,too short
+EPI_ISL_149959,too short
+EPI_ISL_149960,too short
+EPI_ISL_149961,too short
+EPI_ISL_149962,too short
+EPI_ISL_149963,too short
+EPI_ISL_149964,too short
+EPI_ISL_143439,too short
+EPI_ISL_143441,too short
+EPI_ISL_149965,too short
+EPI_ISL_149966,too short
+EPI_ISL_151681,too short
+EPI_ISL_152937,too short
+EPI_ISL_153209,too short
+EPI_ISL_153341,too short
+EPI_ISL_153878,too short
+EPI_ISL_153886,too short
+EPI_ISL_153887,too short
+EPI_ISL_153888,too short
+EPI_ISL_153889,too short
+EPI_ISL_153890,too short
+EPI_ISL_153891,too short
+EPI_ISL_153892,too short
+EPI_ISL_153893,too short
+EPI_ISL_153894,too short
+EPI_ISL_153895,too short
+EPI_ISL_153896,too short
+EPI_ISL_153898,too short
+EPI_ISL_153899,too short
+EPI_ISL_153909,too short
+EPI_ISL_154049,too short
+EPI_ISL_154050,too short
+EPI_ISL_154674,too short
+EPI_ISL_154675,too short
+EPI_ISL_154975,too short
+EPI_ISL_154980,too short
+EPI_ISL_155264,too short
+EPI_ISL_155265,too short
+EPI_ISL_155266,too short
+EPI_ISL_155267,too short
+EPI_ISL_155268,too short
+EPI_ISL_155269,too short
+EPI_ISL_155270,too short
+EPI_ISL_155272,too short
+EPI_ISL_155273,too short
+EPI_ISL_155274,too short
+EPI_ISL_155275,too short
+EPI_ISL_155276,too short
+EPI_ISL_155277,too short
+EPI_ISL_155278,too short
+EPI_ISL_155279,too short
+EPI_ISL_155280,too short
+EPI_ISL_155281,too short
+EPI_ISL_155282,too short
+EPI_ISL_155283,too short
+EPI_ISL_155284,too short
+EPI_ISL_155285,too short
+EPI_ISL_155286,too short
+EPI_ISL_155287,too short
+EPI_ISL_155288,too short
+EPI_ISL_155289,too short
+EPI_ISL_155290,too short
+EPI_ISL_155291,too short
+EPI_ISL_155292,too short
+EPI_ISL_155293,too short
+EPI_ISL_155294,too short
+EPI_ISL_155295,too short
+EPI_ISL_155296,too short
+EPI_ISL_155297,too short
+EPI_ISL_155298,too short
+EPI_ISL_155299,too short
+EPI_ISL_155300,too short
+EPI_ISL_155301,too short
+EPI_ISL_155302,too short
+EPI_ISL_155303,too short
+EPI_ISL_155304,too short
+EPI_ISL_155306,too short
+EPI_ISL_155307,too short
+EPI_ISL_155308,too short
+EPI_ISL_155309,too short
+EPI_ISL_155310,too short
+EPI_ISL_155311,too short
+EPI_ISL_155312,too short
+EPI_ISL_155313,too short
+EPI_ISL_155314,too short
+EPI_ISL_155315,too short
+EPI_ISL_155316,too short
+EPI_ISL_155317,too short
+EPI_ISL_155320,too short
+EPI_ISL_155321,too short
+EPI_ISL_155322,too short
+EPI_ISL_155323,too short
+EPI_ISL_155324,too short
+EPI_ISL_155325,too short
+EPI_ISL_155326,too short
+EPI_ISL_155327,too short
+EPI_ISL_155328,too short
+EPI_ISL_155329,too short
+EPI_ISL_155330,too short
+EPI_ISL_155331,too short
+EPI_ISL_155332,too short
+EPI_ISL_155333,too short
+EPI_ISL_155334,too short
+EPI_ISL_155335,too short
+EPI_ISL_155336,too short
+EPI_ISL_155337,too short
+EPI_ISL_155338,too short
+EPI_ISL_155339,too short
+EPI_ISL_155340,too short
+EPI_ISL_155341,too short
+EPI_ISL_155342,too short
+EPI_ISL_155343,too short
+EPI_ISL_155344,too short
+EPI_ISL_155345,too short
+EPI_ISL_155346,too short
+EPI_ISL_155347,too short
+EPI_ISL_155348,too short
+EPI_ISL_155349,too short
+EPI_ISL_155350,too short
+EPI_ISL_155351,too short
+EPI_ISL_155352,too short
+EPI_ISL_155353,too short
+EPI_ISL_155354,too short
+EPI_ISL_155355,too short
+EPI_ISL_155356,too short
+EPI_ISL_155357,too short
+EPI_ISL_155358,too short
+EPI_ISL_155359,too short
+EPI_ISL_155360,too short
+EPI_ISL_155361,too short
+EPI_ISL_155362,too short
+EPI_ISL_155363,too short
+EPI_ISL_155364,too short
+EPI_ISL_155365,too short
+EPI_ISL_155366,too short
+EPI_ISL_155367,too short
+EPI_ISL_155368,too short
+EPI_ISL_155369,too short
+EPI_ISL_155370,too short
+EPI_ISL_155371,too short
+EPI_ISL_155372,too short
+EPI_ISL_155373,too short
+EPI_ISL_155374,too short
+EPI_ISL_155375,too short
+EPI_ISL_155376,too short
+EPI_ISL_155377,too short
+EPI_ISL_155378,too short
+EPI_ISL_155379,too short
+EPI_ISL_155381,too short
+EPI_ISL_155382,too short
+EPI_ISL_155383,too short
+EPI_ISL_155384,too short
+EPI_ISL_155385,too short
+EPI_ISL_155386,too short
+EPI_ISL_155387,too short
+EPI_ISL_155388,too short
+EPI_ISL_155389,too short
+EPI_ISL_155390,too short
+EPI_ISL_155391,too short
+EPI_ISL_155392,too short
+EPI_ISL_155393,too short
+EPI_ISL_155394,too short
+EPI_ISL_155395,too short
+EPI_ISL_155396,too short
+EPI_ISL_155397,too short
+EPI_ISL_155398,too short
+EPI_ISL_155399,too short
+EPI_ISL_155400,too short
+EPI_ISL_155401,too short
+EPI_ISL_155402,too short
+EPI_ISL_155403,too short
+EPI_ISL_155404,too short
+EPI_ISL_155405,too short
+EPI_ISL_155406,too short
+EPI_ISL_155407,too short
+EPI_ISL_155408,too short
+EPI_ISL_155409,too short
+EPI_ISL_155410,too short
+EPI_ISL_155411,too short
+EPI_ISL_155412,too short
+EPI_ISL_155413,too short
+EPI_ISL_155414,too short
+EPI_ISL_155415,too short
+EPI_ISL_155416,too short
+EPI_ISL_155417,too short
+EPI_ISL_155418,too short
+EPI_ISL_155419,too short
+EPI_ISL_155420,too short
+EPI_ISL_155421,too short
+EPI_ISL_155422,too short
+EPI_ISL_155423,too short
+EPI_ISL_155424,too short
+EPI_ISL_155425,too short
+EPI_ISL_155426,too short
+EPI_ISL_155427,too short
+EPI_ISL_155428,too short
+EPI_ISL_155429,too short
+EPI_ISL_155430,too short
+EPI_ISL_155431,too short
+EPI_ISL_155432,too short
+EPI_ISL_155433,too short
+EPI_ISL_155434,too short
+EPI_ISL_155435,too short
+EPI_ISL_155436,too short
+EPI_ISL_155437,too short
+EPI_ISL_155438,too short
+EPI_ISL_155439,too short
+EPI_ISL_155440,too short
+EPI_ISL_155441,too short
+EPI_ISL_155442,too short
+EPI_ISL_155443,too short
+EPI_ISL_155444,too short
+EPI_ISL_155445,too short
+EPI_ISL_155446,too short
+EPI_ISL_155447,too short
+EPI_ISL_155448,too short
+EPI_ISL_155449,too short
+EPI_ISL_155450,too short
+EPI_ISL_155451,too short
+EPI_ISL_155453,too short
+EPI_ISL_155454,too short
+EPI_ISL_155455,too short
+EPI_ISL_155456,too short
+EPI_ISL_155457,too short
+EPI_ISL_155459,too short
+EPI_ISL_155461,too short
+EPI_ISL_155471,too short
+EPI_ISL_155472,too short
+EPI_ISL_155473,too short
+EPI_ISL_155475,too short
+EPI_ISL_155476,too short
+EPI_ISL_155478,too short
+EPI_ISL_155479,too short
+EPI_ISL_155480,too short
+EPI_ISL_155481,too short
+EPI_ISL_155489,too short
+EPI_ISL_155490,too short
+EPI_ISL_155491,too short
+EPI_ISL_155492,too short
+EPI_ISL_155493,too short
+EPI_ISL_155494,too short
+EPI_ISL_155495,too short
+EPI_ISL_155496,too short
+EPI_ISL_155497,too short
+EPI_ISL_155498,too short
+EPI_ISL_155499,too short
+EPI_ISL_155502,too short
+EPI_ISL_155503,too short
+EPI_ISL_155504,too short
+EPI_ISL_155505,too short
+EPI_ISL_155506,too short
+EPI_ISL_155507,too short
+EPI_ISL_155508,too short
+EPI_ISL_155509,too short
+EPI_ISL_155510,too short
+EPI_ISL_155511,too short
+EPI_ISL_155512,too short
+EPI_ISL_155513,too short
+EPI_ISL_155514,too short
+EPI_ISL_155515,too short
+EPI_ISL_155516,too short
+EPI_ISL_155517,too short
+EPI_ISL_155518,too short
+EPI_ISL_155519,too short
+EPI_ISL_155520,too short
+EPI_ISL_155521,too short
+EPI_ISL_155522,too short
+EPI_ISL_155523,too short
+EPI_ISL_155524,too short
+EPI_ISL_155525,too short
+EPI_ISL_155526,too short
+EPI_ISL_155527,too short
+EPI_ISL_155528,too short
+EPI_ISL_155529,too short
+EPI_ISL_155530,too short
+EPI_ISL_155531,too short
+EPI_ISL_155532,too short
+EPI_ISL_155533,too short
+EPI_ISL_155534,too short
+EPI_ISL_155535,too short
+EPI_ISL_155536,too short
+EPI_ISL_155537,too short
+EPI_ISL_155538,too short
+EPI_ISL_155539,too short
+EPI_ISL_155540,too short
+EPI_ISL_155541,too short
+EPI_ISL_155542,too short
+EPI_ISL_155543,too short
+EPI_ISL_155544,too short
+EPI_ISL_155545,too short
+EPI_ISL_155546,too short
+EPI_ISL_155547,too short
+EPI_ISL_155729,too short
+EPI_ISL_155985,too short
+EPI_ISL_156009,too short
+EPI_ISL_156010,too short
+EPI_ISL_156039,too short
+EPI_ISL_156049,too short
+EPI_ISL_155973,too short
+EPI_ISL_156027,too short
+EPI_ISL_156531,too short
+EPI_ISL_156532,too short
+EPI_ISL_156533,too short
+EPI_ISL_156534,too short
+EPI_ISL_156535,too short
+EPI_ISL_156536,too short
+EPI_ISL_156537,too short
+EPI_ISL_156538,too short
+EPI_ISL_157007,too short
+EPI_ISL_157008,too short
+EPI_ISL_157009,too short
+EPI_ISL_157010,too short
+EPI_ISL_157011,too short
+EPI_ISL_157012,too short
+EPI_ISL_157013,too short
+EPI_ISL_157545,too short
+EPI_ISL_157546,too short
+EPI_ISL_157547,too short
+EPI_ISL_157548,too short
+EPI_ISL_157549,too short
+EPI_ISL_157550,too short
+EPI_ISL_158769,too short
+EPI_ISL_158886,too short
+EPI_ISL_158982,too short
+EPI_ISL_158983,too short
+EPI_ISL_158984,too short
+EPI_ISL_158985,too short
+EPI_ISL_158981,too short
+EPI_ISL_159086,too short
+EPI_ISL_159087,too short
+EPI_ISL_159088,too short
+EPI_ISL_159089,too short
+EPI_ISL_159090,too short
+EPI_ISL_159581,too short
+EPI_ISL_159582,too short
+EPI_ISL_159583,too short
+EPI_ISL_159584,too short
+EPI_ISL_159585,too short
+EPI_ISL_159586,too short
+EPI_ISL_159590,too short
+EPI_ISL_159592,too short
+EPI_ISL_159593,too short
+EPI_ISL_159594,too short
+EPI_ISL_160269,too short
+EPI_ISL_159591,too short
+EPI_ISL_160439,too short
+EPI_ISL_160440,too short
+EPI_ISL_160442,too short
+EPI_ISL_160443,too short
+EPI_ISL_160444,too short
+EPI_ISL_160445,too short
+EPI_ISL_160834,too short
+EPI_ISL_160835,too short
+EPI_ISL_160836,too short
+EPI_ISL_161347,too short
+EPI_ISL_161348,too short
+EPI_ISL_161349,too short
+EPI_ISL_161350,too short
+EPI_ISL_161351,too short
+EPI_ISL_161352,too short
+EPI_ISL_161353,too short
+EPI_ISL_161354,too short
+EPI_ISL_161355,too short
+EPI_ISL_161356,too short
+EPI_ISL_161357,too short
+EPI_ISL_161358,too short
+EPI_ISL_161359,too short
+EPI_ISL_161360,too short
+EPI_ISL_161361,too short
+EPI_ISL_161362,too short
+EPI_ISL_161363,too short
+EPI_ISL_161364,too short
+EPI_ISL_161365,too short
+EPI_ISL_161366,too short
+EPI_ISL_161367,too short
+EPI_ISL_161368,too short
+EPI_ISL_161370,too short
+EPI_ISL_161371,too short
+EPI_ISL_161372,too short
+EPI_ISL_161373,too short
+EPI_ISL_161374,too short
+EPI_ISL_161375,too short
+EPI_ISL_161376,too short
+EPI_ISL_161369,too short
+EPI_ISL_162660,too short
+EPI_ISL_163207,too short
+EPI_ISL_163208,too short
+EPI_ISL_163209,too short
+EPI_ISL_163210,too short
+EPI_ISL_163211,too short
+EPI_ISL_163212,too short
+EPI_ISL_163213,too short
+EPI_ISL_163214,too short
+EPI_ISL_163215,too short
+EPI_ISL_163216,too short
+EPI_ISL_163217,too short
+EPI_ISL_163218,too short
+EPI_ISL_163219,too short
+EPI_ISL_163220,too short
+EPI_ISL_163221,too short
+EPI_ISL_163222,too short
+EPI_ISL_163223,too short
+EPI_ISL_163224,too short
+EPI_ISL_163225,too short
+EPI_ISL_164162,too short
+EPI_ISL_166345,too short
+EPI_ISL_166366,too many ambiguous nucleotides
+EPI_ISL_166384,too short
+EPI_ISL_166385,too short
+EPI_ISL_166615,too short
+EPI_ISL_166616,too short
+EPI_ISL_166851,too short
+EPI_ISL_167233,too short
+EPI_ISL_167234,too short
+EPI_ISL_167311,too short
+EPI_ISL_167228,too short
+EPI_ISL_167229,too short
+EPI_ISL_167232,too short
+EPI_ISL_168522,too short
+EPI_ISL_168523,too short
+EPI_ISL_168524,too short
+EPI_ISL_168525,too short
+EPI_ISL_168526,too short
+EPI_ISL_168527,too short
+EPI_ISL_168528,too short
+EPI_ISL_168529,too short
+EPI_ISL_168530,too short
+EPI_ISL_168531,too short
+EPI_ISL_168532,too short
+EPI_ISL_168533,too short
+EPI_ISL_168534,too short
+EPI_ISL_168535,too short
+EPI_ISL_168536,too short
+EPI_ISL_168537,too short
+EPI_ISL_168538,too short
+EPI_ISL_168539,too short
+EPI_ISL_168540,too short
+EPI_ISL_168541,too short
+EPI_ISL_168542,too short
+EPI_ISL_168543,too short
+EPI_ISL_168544,too short
+EPI_ISL_168545,too short
+EPI_ISL_168546,too short
+EPI_ISL_168547,too short
+EPI_ISL_168548,too short
+EPI_ISL_168549,too short
+EPI_ISL_168550,too short
+EPI_ISL_168551,too short
+EPI_ISL_168552,too short
+EPI_ISL_168553,too short
+EPI_ISL_168554,too short
+EPI_ISL_168555,too short
+EPI_ISL_168556,too short
+EPI_ISL_168557,too short
+EPI_ISL_168558,too short
+EPI_ISL_168559,too short
+EPI_ISL_168560,too short
+EPI_ISL_168561,too short
+EPI_ISL_168562,too short
+EPI_ISL_168563,too short
+EPI_ISL_168564,too short
+EPI_ISL_168565,too short
+EPI_ISL_168566,too short
+EPI_ISL_168567,too short
+EPI_ISL_168568,too short
+EPI_ISL_168569,too short
+EPI_ISL_168570,too short
+EPI_ISL_168571,too short
+EPI_ISL_168572,too short
+EPI_ISL_168573,too short
+EPI_ISL_168574,too short
+EPI_ISL_168575,too short
+EPI_ISL_168576,too short
+EPI_ISL_169215,too short
+EPI_ISL_169443,too short
+EPI_ISL_169448,too short
+EPI_ISL_171113,too short
+EPI_ISL_171859,too short
+EPI_ISL_169227,too short
+EPI_ISL_169228,too short
+EPI_ISL_169230,too short
+EPI_ISL_169231,too short
+EPI_ISL_169232,too short
+EPI_ISL_169233,too short
+EPI_ISL_172694,too short
+EPI_ISL_172636,too short
+EPI_ISL_169817,too short
+EPI_ISL_169818,too short
+EPI_ISL_169819,too short
+EPI_ISL_169821,too short
+EPI_ISL_169822,too short
+EPI_ISL_169823,too short
+EPI_ISL_169824,too short
+EPI_ISL_169825,too short
+EPI_ISL_169826,too short
+EPI_ISL_169828,too short
+EPI_ISL_169829,too short
+EPI_ISL_169830,too short
+EPI_ISL_169831,too short
+EPI_ISL_169832,too short
+EPI_ISL_169833,too short
+EPI_ISL_169834,too short
+EPI_ISL_169852,too short
+EPI_ISL_169853,too short
+EPI_ISL_169854,too short
+EPI_ISL_169855,too short
+EPI_ISL_169857,too short
+EPI_ISL_169856,too short
+EPI_ISL_169858,too short
+EPI_ISL_169859,too short
+EPI_ISL_173114,too many ambiguous nucleotides
+EPI_ISL_177951,too short
+EPI_ISL_177952,too short
+EPI_ISL_177953,too short
+EPI_ISL_177954,too short
+EPI_ISL_177955,too short
+EPI_ISL_177956,too short
+EPI_ISL_182387,too short
+EPI_ISL_182388,too short
+EPI_ISL_182389,too short
+EPI_ISL_182390,too short
+EPI_ISL_182391,too short
+EPI_ISL_182392,too short
+EPI_ISL_182393,too short
+EPI_ISL_182394,too short
+EPI_ISL_182395,too short
+EPI_ISL_182396,too short
+EPI_ISL_182397,too short
+EPI_ISL_182398,too short
+EPI_ISL_182399,too short
+EPI_ISL_182400,too short
+EPI_ISL_182401,too short
+EPI_ISL_182402,too short
+EPI_ISL_182403,too short
+EPI_ISL_182404,too short
+EPI_ISL_182405,too short
+EPI_ISL_182837,too short
+EPI_ISL_195391,too short
+EPI_ISL_195393,too short
+EPI_ISL_205596,too short
+EPI_ISL_171097,too short
+EPI_ISL_171008,too short
+EPI_ISL_171009,too short
+EPI_ISL_171098,too short
+EPI_ISL_230621,too short
+EPI_ISL_230622,too short
+EPI_ISL_230623,too short
+EPI_ISL_230624,too short
+EPI_ISL_230625,too short
+EPI_ISL_230626,too short
+EPI_ISL_230627,too short
+EPI_ISL_230628,too short
+EPI_ISL_230629,too short
+EPI_ISL_230630,too short
+EPI_ISL_234730,too short
+EPI_ISL_234867,too short
+EPI_ISL_234868,too short
+EPI_ISL_234873,too short
+EPI_ISL_234874,too short
+EPI_ISL_234877,too short
+EPI_ISL_234878,too short
+EPI_ISL_234879,too short
+EPI_ISL_234884,too short
+EPI_ISL_235406,too short
+EPI_ISL_235407,too short
+EPI_ISL_235408,too short
+EPI_ISL_235410,too short
+EPI_ISL_235411,too short
+EPI_ISL_235412,too short
+EPI_ISL_235413,too short
+EPI_ISL_235414,too short
+EPI_ISL_235415,too short
+EPI_ISL_235416,too short
+EPI_ISL_235417,too short
+EPI_ISL_235418,too short
+EPI_ISL_235419,too short
+EPI_ISL_235420,too short
+EPI_ISL_235421,too short
+EPI_ISL_235422,too short
+EPI_ISL_235423,too short
+EPI_ISL_235424,too short
+EPI_ISL_235425,too short
+EPI_ISL_235426,too short
+EPI_ISL_235427,too short
+EPI_ISL_235428,too short
+EPI_ISL_235429,too short
+EPI_ISL_235430,too short
+EPI_ISL_235431,too short
+EPI_ISL_235432,too short
+EPI_ISL_235433,too short
+EPI_ISL_235434,too short
+EPI_ISL_235435,too short
+EPI_ISL_235436,too short
+EPI_ISL_235437,too short
+EPI_ISL_235438,too short
+EPI_ISL_235439,too short
+EPI_ISL_260954,too short
+EPI_ISL_260971,too short
+EPI_ISL_260958,too short
+EPI_ISL_264538,too short
+EPI_ISL_286022,too many ambiguous nucleotides
+EPI_ISL_286784,too many ambiguous nucleotides
+EPI_ISL_356906,too short
+EPI_ISL_356917,too short
+EPI_ISL_356934,too short
+EPI_ISL_356941,too short
+EPI_ISL_356962,too short
+EPI_ISL_356980,too short
+EPI_ISL_357018,too short
+EPI_ISL_357524,too short
+EPI_ISL_357529,too short
+EPI_ISL_357657,too short
+EPI_ISL_368540,too short
+EPI_ISL_369506,too many ambiguous nucleotides
+EPI_ISL_370277,too short
+EPI_ISL_5632566,too short
+EPI_ISL_6949720,too short
+EPI_ISL_6949726,too short
+EPI_ISL_7014420,too short
+EPI_ISL_336944,too short
+EPI_ISL_336945,too short
+EPI_ISL_336946,too short
+EPI_ISL_336950,too short
+EPI_ISL_336957,too short
+EPI_ISL_337180,too many ambiguous nucleotides
+EPI_ISL_337181,too many ambiguous nucleotides
+EPI_ISL_337182,too many ambiguous nucleotides
+EPI_ISL_337184,too many ambiguous nucleotides
+EPI_ISL_337186,too many ambiguous nucleotides
+EPI_ISL_337190,too many ambiguous nucleotides
+EPI_ISL_337193,too many ambiguous nucleotides
+EPI_ISL_337195,too many ambiguous nucleotides
+EPI_ISL_337198,too many ambiguous nucleotides
+EPI_ISL_337199,too many ambiguous nucleotides
+EPI_ISL_337200,too many ambiguous nucleotides
+EPI_ISL_337205,too many ambiguous nucleotides
+EPI_ISL_337214,too short
+EPI_ISL_337256,too short
+EPI_ISL_337257,too short
+EPI_ISL_337263,too short
+EPI_ISL_337267,too short
+EPI_ISL_337445,too short
+EPI_ISL_337446,too short
+EPI_ISL_337447,too short
+EPI_ISL_339523,too many ambiguous nucleotides
+EPI_ISL_339527,too many ambiguous nucleotides
+EPI_ISL_339536,too many ambiguous nucleotides
+EPI_ISL_339538,too many ambiguous nucleotides
+EPI_ISL_339539,too many ambiguous nucleotides
+EPI_ISL_339540,too many ambiguous nucleotides
+EPI_ISL_339545,too many ambiguous nucleotides
+EPI_ISL_339550,too many ambiguous nucleotides
+EPI_ISL_340154,too short
+EPI_ISL_340157,too short
+EPI_ISL_340159,too short
+EPI_ISL_340160,too short
+EPI_ISL_340161,too short
+EPI_ISL_340163,too short
+EPI_ISL_340165,too short
+EPI_ISL_340168,too short
+EPI_ISL_340170,too short
+EPI_ISL_340171,too short
+EPI_ISL_340172,too short
+EPI_ISL_342130,too many ambiguous nucleotides
+EPI_ISL_342131,too many ambiguous nucleotides
+EPI_ISL_342133,too many ambiguous nucleotides
+EPI_ISL_342135,too many ambiguous nucleotides
+EPI_ISL_342137,too many ambiguous nucleotides
+EPI_ISL_342138,too many ambiguous nucleotides
+EPI_ISL_342139,too many ambiguous nucleotides
+EPI_ISL_342140,too many ambiguous nucleotides
+EPI_ISL_342141,too many ambiguous nucleotides
+EPI_ISL_342143,too many ambiguous nucleotides
+EPI_ISL_342148,too many ambiguous nucleotides
+EPI_ISL_342152,too many ambiguous nucleotides
+EPI_ISL_342153,too many ambiguous nucleotides
+EPI_ISL_342154,too many ambiguous nucleotides
+EPI_ISL_342155,too many ambiguous nucleotides
+EPI_ISL_342156,too many ambiguous nucleotides
+EPI_ISL_342157,too many ambiguous nucleotides
+EPI_ISL_342158,too many ambiguous nucleotides
+EPI_ISL_342159,too many ambiguous nucleotides
+EPI_ISL_342160,too many ambiguous nucleotides
+EPI_ISL_342161,too many ambiguous nucleotides
+EPI_ISL_342162,too many ambiguous nucleotides
+EPI_ISL_342164,too many ambiguous nucleotides
+EPI_ISL_342166,too many ambiguous nucleotides
+EPI_ISL_342168,too many ambiguous nucleotides
+EPI_ISL_343416,too short
+EPI_ISL_343581,too short
+EPI_ISL_344585,too short
+EPI_ISL_344587,too short
+EPI_ISL_344589,too short
+EPI_ISL_344590,too short
+EPI_ISL_344591,too short
+EPI_ISL_344598,too short
+EPI_ISL_344599,too short
+EPI_ISL_344605,too short
+EPI_ISL_344606,too short
+EPI_ISL_344608,too short
+EPI_ISL_344609,too short
+EPI_ISL_344615,too short
+EPI_ISL_344616,too short
+EPI_ISL_345554,too short
+EPI_ISL_345728,too short
+EPI_ISL_345729,too short
+EPI_ISL_345730,too short
+EPI_ISL_345732,too short
+EPI_ISL_345733,too short
+EPI_ISL_348332,too short
+EPI_ISL_348335,too short
+EPI_ISL_348346,too short
+EPI_ISL_348353,too short
+EPI_ISL_348358,too short
+EPI_ISL_348360,too short
+EPI_ISL_348364,too short
+EPI_ISL_348365,too short
+EPI_ISL_348467,too short
+EPI_ISL_348469,too short
+EPI_ISL_351797,too short
+EPI_ISL_351802,too short
+EPI_ISL_351803,too short
+EPI_ISL_351805,too short
+EPI_ISL_351806,too short
+EPI_ISL_351807,too short
+EPI_ISL_351809,too short
+EPI_ISL_351810,too short
+EPI_ISL_351811,too short
+EPI_ISL_351814,too short
+EPI_ISL_351816,too short
+EPI_ISL_351817,too short
+EPI_ISL_351818,too short
+EPI_ISL_351821,too short
+EPI_ISL_351822,too short
+EPI_ISL_351823,too short
+EPI_ISL_348794,too short
+EPI_ISL_355898,too short
+EPI_ISL_355899,too short
+EPI_ISL_355901,too short
+EPI_ISL_355902,too short
+EPI_ISL_355903,too short
+EPI_ISL_355904,too short
+EPI_ISL_355905,too short
+EPI_ISL_355906,too short
+EPI_ISL_355907,too short
+EPI_ISL_355910,too short
+EPI_ISL_355911,too short
+EPI_ISL_355912,too short
+EPI_ISL_355913,too short
+EPI_ISL_355916,too short
+EPI_ISL_355917,too short
+EPI_ISL_356536,too many ambiguous nucleotides
+EPI_ISL_356696,too short
+EPI_ISL_337264,too short
+EPI_ISL_357407,too short
+EPI_ISL_367695,too short
+EPI_ISL_367696,too short
+EPI_ISL_367697,too short
+EPI_ISL_389456,too short
+EPI_ISL_389477,too short
+EPI_ISL_389478,too short
+EPI_ISL_389480,too short
+EPI_ISL_389481,too short
+EPI_ISL_389482,too short
+EPI_ISL_389483,too short
+EPI_ISL_389484,too short
+EPI_ISL_389485,too short
+EPI_ISL_389487,too short
+EPI_ISL_389488,too short
+EPI_ISL_389489,too short
+EPI_ISL_389490,too short
+EPI_ISL_389491,too short
+EPI_ISL_390306,too short
+EPI_ISL_395129,too many ambiguous nucleotides
+EPI_ISL_395130,too many ambiguous nucleotides
+EPI_ISL_395133,too many ambiguous nucleotides
+EPI_ISL_400594,too short
+EPI_ISL_401357,too short
+EPI_ISL_401358,too short
+EPI_ISL_401359,too short
+EPI_ISL_401364,too short
+EPI_ISL_401365,too short
+EPI_ISL_401367,too short
+EPI_ISL_401368,too short
+EPI_ISL_403439,too short
+EPI_ISL_403440,too short
+EPI_ISL_407814,too short
+EPI_ISL_407816,too short
+EPI_ISL_407817,too short
+EPI_ISL_407818,too short
+EPI_ISL_407819,too short
+EPI_ISL_407820,too short
+EPI_ISL_407821,too short
+EPI_ISL_407824,too short
+EPI_ISL_407825,too short
+EPI_ISL_407827,too short
+EPI_ISL_407828,too short
+EPI_ISL_407829,too short
+EPI_ISL_407830,too short
+EPI_ISL_407831,too short
+EPI_ISL_407832,too short
+EPI_ISL_407833,too short
+EPI_ISL_407834,too short
+EPI_ISL_407836,too short
+EPI_ISL_407837,too short
+EPI_ISL_407838,too short
+EPI_ISL_407839,too short
+EPI_ISL_407840,too short
+EPI_ISL_407841,too short
+EPI_ISL_407843,too short
+EPI_ISL_503627,too short
+EPI_ISL_525791,too short
+EPI_ISL_525792,too short
+EPI_ISL_525801,too short
+EPI_ISL_3375257,too short
+EPI_ISL_16096043,too short
+EPI_ISL_16096053,too short
+EPI_ISL_16096308,too many ambiguous nucleotides
+EPI_ISL_16096310,too many ambiguous nucleotides
+EPI_ISL_16096323,too short
+EPI_ISL_16096327,too many ambiguous nucleotides
+EPI_ISL_16096330,too many ambiguous nucleotides
+EPI_ISL_16097203,too short
+EPI_ISL_16097206,too short
+EPI_ISL_16098025,too short
+EPI_ISL_16098034,too many ambiguous nucleotides
+EPI_ISL_16098080,too many ambiguous nucleotides
+EPI_ISL_16098081,too many ambiguous nucleotides
+EPI_ISL_12850,molecular clock outlier
 EPI_ISL_302518,molecular clock outlier
-EPI_ISL_151106,molecular clock outlier
-EPI_ISL_357064,molecular clock outlier
-EPI_ISL_151100,molecular clock outlier
-EPI_ISL_153170,molecular clock outlier
-EPI_ISL_10656421,molecular clock outlier
-EPI_ISL_153165,molecular clock outlier
-EPI_ISL_270168,molecular clock outlier
-EPI_ISL_197854,molecular clock outlier
-EPI_ISL_191649,molecular clock outlier
-EPI_ISL_153169,molecular clock outlier
-EPI_ISL_129794,molecular clock outlier
-EPI_ISL_208796,molecular clock outlier
-EPI_ISL_153709,molecular clock outlier
-EPI_ISL_159621,molecular clock outlier
-EPI_ISL_10656613,molecular clock outlier
-EPI_ISL_148463,molecular clock outlier
-EPI_ISL_10656708,molecular clock outlier
-EPI_ISL_197954,molecular clock outlier
-EPI_ISL_128155,molecular clock outlier
-EPI_ISL_151103,molecular clock outlier
-EPI_ISL_266280,molecular clock outlier
-EPI_ISL_140329,molecular clock outlier
-EPI_ISL_153163,molecular clock outlier
-EPI_ISL_162151,molecular clock outlier
-EPI_ISL_197852,visual outlier
-EPI_ISL_15146398,visual outlier
-EPI_ISL_144204,visual outlier
-EPI_ISL_328124,visual outlier
-EPI_ISL_122668,visual outlier
-EPI_ISL_83281,visual outlier
-EPI_ISL_163974,visual outlier
-EPI_ISL_163985,visual outlier
-EPI_ISL_145076,visual outlier
-EPI_ISL_125869,visual outlier
-EPI_ISL_93875,visual outlier
-EPI_ISL_25958,visual outlier
-EPI_ISL_162480,visual outlier
-EPI_ISL_25976,visual outlier
-EPI_ISL_28218,visual outlier
-EPI_ISL_28217,visual outlier
-EPI_ISL_25974,visual outlier
-EPI_ISL_25983,visual outlier
-EPI_ISL_28219,visual outlier
-EPI_ISL_28528,visual outlier
-EPI_ISL_28455,visual outlier
-EPI_ISL_10656432,visual outlier
-EPI_ISL_278390,molecular clock outlier
-EPI_ISL_328063,molecular clock outlier
-EPI_ISL_107906,molecular clock outlier
-EPI_ISL_103628,molecular clock outlier
-EPI_ISL_328059,molecular clock outlier
-EPI_ISL_328068,molecular clock outlier
-EPI_ISL_278376,molecular clock outlier
-EPI_ISL_278395,molecular clock outlier
-EPI_ISL_83271,visual outlier
-EPI_ISL_328062,molecular clock outlier
-EPI_ISL_5632512,molecular clock outlier
-EPI_ISL_328067,molecular clock outlier
-EPI_ISL_278381,molecular clock outlier
-EPI_ISL_270167,molecular clock outlier
-EPI_ISL_302514,molecular clock outlier
-EPI_ISL_278378,molecular clock outlier
-EPI_ISL_360797,molecular clock outlier
-EPI_ISL_358399,molecular clock outlier
-EPI_ISL_140202,molecular clock outlier
-EPI_ISL_278387,molecular clock outlier
-EPI_ISL_328061,molecular clock outlier
-EPI_ISL_368865,molecular clock outlier
-EPI_ISL_105790,visual outlier
-EPI_ISL_155319,visual outlier
-EPI_ISL_155380,visual outlier
-EPI_ISL_5054233,visual outlier
-EPI_ISL_268260,molecular clock outlier
-EPI_ISL_274448,molecular clock outlier
-EPI_ISL_303223,molecular clock outlier
-EPI_ISL_272907,molecular clock outlier
-EPI_ISL_288874,molecular clock outlier
-EPI_ISL_299989,molecular clock outlier
-EPI_ISL_307860,molecular clock outlier
-EPI_ISL_275869,molecular clock outlier
-EPI_ISL_195623,molecular clock outlier
-EPI_ISL_273688,molecular clock outlier
-EPI_ISL_278379,molecular clock outlier
-EPI_ISL_272886,molecular clock outlier
-EPI_ISL_303062,molecular clock outlier
-EPI_ISL_275851,molecular clock outlier
 EPI_ISL_140172,molecular clock outlier
-EPI_ISL_274449,molecular clock outlier
-EPI_ISL_356959,molecular clock outlier
-EPI_ISL_274446,molecular clock outlier
-EPI_ISL_300752,molecular clock outlier
-EPI_ISL_281727,molecular clock outlier
-EPI_ISL_162479,visual outlier
+EPI_ISL_83271,molecular clock outlier
+EPI_ISL_11976284,molecular clock outlier
+EPI_ISL_135678,molecular clock outlier
+EPI_ISL_10656418,molecular clock outlier
+EPI_ISL_10656613,molecular clock outlier
+EPI_ISL_16749358,molecular clock outlier
+EPI_ISL_12851,molecular clock outlier
+EPI_ISL_357064,molecular clock outlier
+EPI_ISL_233238,molecular clock outlier
+EPI_ISL_10656421,molecular clock outlier
+EPI_ISL_105790,molecular clock outlier
+EPI_ISL_110694,molecular clock outlier
+EPI_ISL_302515,molecular clock outlier
+EPI_ISL_3931,molecular clock outlier
+EPI_ISL_302516,molecular clock outlier
+EPI_ISL_23582,molecular clock outlier
+EPI_ISL_151100,molecular clock outlier
+EPI_ISL_151103,molecular clock outlier
+EPI_ISL_151106,molecular clock outlier
+EPI_ISL_176912,molecular clock outlier
+EPI_ISL_151118,molecular clock outlier
+EPI_ISL_84852,molecular clock outlier
+EPI_ISL_278953,molecular clock outlier
+EPI_ISL_151115,molecular clock outlier
+EPI_ISL_127606,molecular clock outlier
+EPI_ISL_398269,molecular clock outlier
+EPI_ISL_14218862,molecular clock outlier
+EPI_ISL_278381,molecular clock outlier
+EPI_ISL_99213,molecular clock outlier
+EPI_ISL_99215,molecular clock outlier
+EPI_ISL_99793,molecular clock outlier
+EPI_ISL_99794,molecular clock outlier
+EPI_ISL_99795,molecular clock outlier
+EPI_ISL_100475,molecular clock outlier
+EPI_ISL_100476,molecular clock outlier
+EPI_ISL_278403,molecular clock outlier
+EPI_ISL_357046,molecular clock outlier
+EPI_ISL_10119,molecular clock outlier
+EPI_ISL_10116,molecular clock outlier
+EPI_ISL_6314529,molecular clock outlier
+EPI_ISL_10656408,molecular clock outlier
+EPI_ISL_11976303,molecular clock outlier
+EPI_ISL_140202,molecular clock outlier
+EPI_ISL_14418,molecular clock outlier
+EPI_ISL_10656614,molecular clock outlier
+EPI_ISL_9818,molecular clock outlier
+EPI_ISL_28455,molecular clock outlier
+EPI_ISL_10656669,molecular clock outlier
+EPI_ISL_13145,molecular clock outlier
+EPI_ISL_13146,molecular clock outlier
+EPI_ISL_20293,molecular clock outlier
+EPI_ISL_155319,molecular clock outlier
+EPI_ISL_155380,molecular clock outlier
+EPI_ISL_6173,molecular clock outlier
+EPI_ISL_5632524,molecular clock outlier
+EPI_ISL_5632520,molecular clock outlier
+EPI_ISL_10145,molecular clock outlier
+EPI_ISL_20301,molecular clock outlier
+EPI_ISL_20303,molecular clock outlier
+EPI_ISL_67004,molecular clock outlier
+EPI_ISL_63366,molecular clock outlier
+EPI_ISL_20285,molecular clock outlier
+EPI_ISL_12700550,molecular clock outlier
+EPI_ISL_166356,molecular clock outlier
+EPI_ISL_120081,molecular clock outlier
+EPI_ISL_120082,molecular clock outlier
+EPI_ISL_120396,molecular clock outlier
+EPI_ISL_20633,molecular clock outlier
+EPI_ISL_15934,molecular clock outlier
+EPI_ISL_23382,molecular clock outlier
+EPI_ISL_20699,molecular clock outlier
+EPI_ISL_127614,molecular clock outlier
+EPI_ISL_10656437,molecular clock outlier
+EPI_ISL_10656432,molecular clock outlier
+EPI_ISL_10656708,molecular clock outlier
+EPI_ISL_22755,molecular clock outlier
+EPI_ISL_5143,molecular clock outlier
+EPI_ISL_5537,molecular clock outlier
+EPI_ISL_6239,molecular clock outlier
+EPI_ISL_6464,molecular clock outlier
+EPI_ISL_6857,molecular clock outlier
+EPI_ISL_9297,molecular clock outlier
+EPI_ISL_9300,molecular clock outlier
+EPI_ISL_5054282,molecular clock outlier
+EPI_ISL_5054204,molecular clock outlier
+EPI_ISL_5210,molecular clock outlier
+EPI_ISL_5109,molecular clock outlier
+EPI_ISL_5110,molecular clock outlier
+EPI_ISL_5116,molecular clock outlier
+EPI_ISL_5118,molecular clock outlier
+EPI_ISL_5341,molecular clock outlier
+EPI_ISL_5454,molecular clock outlier
+EPI_ISL_5512,molecular clock outlier
+EPI_ISL_5536,molecular clock outlier
+EPI_ISL_5591,molecular clock outlier
+EPI_ISL_5631,molecular clock outlier
+EPI_ISL_5633,molecular clock outlier
+EPI_ISL_5696,molecular clock outlier
+EPI_ISL_6169,molecular clock outlier
+EPI_ISL_6170,molecular clock outlier
+EPI_ISL_6171,molecular clock outlier
+EPI_ISL_6345,molecular clock outlier
+EPI_ISL_6346,molecular clock outlier
+EPI_ISL_6441,molecular clock outlier
+EPI_ISL_6449,molecular clock outlier
+EPI_ISL_6450,molecular clock outlier
+EPI_ISL_6451,molecular clock outlier
+EPI_ISL_6452,molecular clock outlier
+EPI_ISL_6467,molecular clock outlier
+EPI_ISL_6468,molecular clock outlier
+EPI_ISL_7113,molecular clock outlier
+EPI_ISL_7144,molecular clock outlier
+EPI_ISL_7146,molecular clock outlier
+EPI_ISL_7276,molecular clock outlier
+EPI_ISL_7279,molecular clock outlier
+EPI_ISL_7280,molecular clock outlier
+EPI_ISL_7282,molecular clock outlier
+EPI_ISL_7542,molecular clock outlier
+EPI_ISL_9210,molecular clock outlier
+EPI_ISL_9211,molecular clock outlier
+EPI_ISL_9253,molecular clock outlier
+EPI_ISL_9254,molecular clock outlier
+EPI_ISL_9255,molecular clock outlier
+EPI_ISL_9256,molecular clock outlier
+EPI_ISL_9257,molecular clock outlier
+EPI_ISL_9287,molecular clock outlier
+EPI_ISL_9288,molecular clock outlier
+EPI_ISL_9289,molecular clock outlier
+EPI_ISL_9290,molecular clock outlier
+EPI_ISL_9294,molecular clock outlier
+EPI_ISL_9296,molecular clock outlier
+EPI_ISL_9298,molecular clock outlier
+EPI_ISL_9299,molecular clock outlier
+EPI_ISL_5082,molecular clock outlier
+EPI_ISL_5054208,molecular clock outlier
+EPI_ISL_5054205,molecular clock outlier
+EPI_ISL_5632532,molecular clock outlier
+EPI_ISL_5632722,molecular clock outlier
+EPI_ISL_5632724,molecular clock outlier
+EPI_ISL_5054193,molecular clock outlier
+EPI_ISL_5054197,molecular clock outlier
+EPI_ISL_5054271,molecular clock outlier
+EPI_ISL_5054261,molecular clock outlier
+EPI_ISL_9291,molecular clock outlier
+EPI_ISL_9292,molecular clock outlier
+EPI_ISL_9293,molecular clock outlier
+EPI_ISL_14259,molecular clock outlier
+EPI_ISL_14256,molecular clock outlier
+EPI_ISL_5589,molecular clock outlier
+EPI_ISL_5054206,molecular clock outlier
+EPI_ISL_14257,molecular clock outlier
+EPI_ISL_5054279,molecular clock outlier
+EPI_ISL_6172,molecular clock outlier
+EPI_ISL_5054283,molecular clock outlier
+EPI_ISL_5054284,molecular clock outlier
+EPI_ISL_5054194,molecular clock outlier
+EPI_ISL_5111,molecular clock outlier
+EPI_ISL_6442,molecular clock outlier
+EPI_ISL_6465,molecular clock outlier
+EPI_ISL_6518,molecular clock outlier
+EPI_ISL_6466,molecular clock outlier
+EPI_ISL_162476,molecular clock outlier
+EPI_ISL_60149,molecular clock outlier
+EPI_ISL_77753,molecular clock outlier
+EPI_ISL_14283,molecular clock outlier
+EPI_ISL_3928,molecular clock outlier
+EPI_ISL_155305,molecular clock outlier
+EPI_ISL_10656758,molecular clock outlier
+EPI_ISL_93792,molecular clock outlier
+EPI_ISL_77893,molecular clock outlier
+EPI_ISL_20521,molecular clock outlier
+EPI_ISL_20437,molecular clock outlier
+EPI_ISL_98948,molecular clock outlier
+EPI_ISL_83273,molecular clock outlier
+EPI_ISL_83277,molecular clock outlier
+EPI_ISL_83278,molecular clock outlier
+EPI_ISL_100478,molecular clock outlier
+EPI_ISL_128159,molecular clock outlier
+EPI_ISL_128626,molecular clock outlier
+EPI_ISL_129624,molecular clock outlier
+EPI_ISL_129625,molecular clock outlier
+EPI_ISL_129654,molecular clock outlier
+EPI_ISL_126252,molecular clock outlier
+EPI_ISL_128146,molecular clock outlier
+EPI_ISL_128148,molecular clock outlier
+EPI_ISL_128149,molecular clock outlier
+EPI_ISL_126257,molecular clock outlier
+EPI_ISL_128228,molecular clock outlier
+EPI_ISL_128147,molecular clock outlier
+EPI_ISL_126256,molecular clock outlier
+EPI_ISL_128352,molecular clock outlier
+EPI_ISL_128158,molecular clock outlier
+EPI_ISL_128622,molecular clock outlier
+EPI_ISL_129170,molecular clock outlier
+EPI_ISL_129410,molecular clock outlier
+EPI_ISL_129414,molecular clock outlier
+EPI_ISL_129430,molecular clock outlier
+EPI_ISL_129420,molecular clock outlier
+EPI_ISL_129616,molecular clock outlier
+EPI_ISL_129619,molecular clock outlier
+EPI_ISL_129645,molecular clock outlier
+EPI_ISL_129416,molecular clock outlier
+EPI_ISL_129756,molecular clock outlier
+EPI_ISL_128152,molecular clock outlier
+EPI_ISL_128153,molecular clock outlier
+EPI_ISL_128155,molecular clock outlier
+EPI_ISL_128624,molecular clock outlier
+EPI_ISL_129417,molecular clock outlier
+EPI_ISL_129418,molecular clock outlier
+EPI_ISL_129421,molecular clock outlier
+EPI_ISL_129552,molecular clock outlier
+EPI_ISL_129617,molecular clock outlier
+EPI_ISL_128157,molecular clock outlier
+EPI_ISL_128625,molecular clock outlier
+EPI_ISL_129173,molecular clock outlier
+EPI_ISL_129184,molecular clock outlier
+EPI_ISL_165317,molecular clock outlier
+EPI_ISL_166393,molecular clock outlier
+EPI_ISL_129187,molecular clock outlier
+EPI_ISL_129709,molecular clock outlier
+EPI_ISL_128156,molecular clock outlier
+EPI_ISL_129620,molecular clock outlier
+EPI_ISL_83281,molecular clock outlier
+EPI_ISL_83282,molecular clock outlier
+EPI_ISL_88934,molecular clock outlier
+EPI_ISL_114711,molecular clock outlier
+EPI_ISL_143974,molecular clock outlier
+EPI_ISL_145068,molecular clock outlier
+EPI_ISL_145632,molecular clock outlier
+EPI_ISL_149438,molecular clock outlier
+EPI_ISL_149439,molecular clock outlier
+EPI_ISL_97361,molecular clock outlier
+EPI_ISL_149440,molecular clock outlier
+EPI_ISL_159598,molecular clock outlier
+EPI_ISL_95264,molecular clock outlier
+EPI_ISL_96013,molecular clock outlier
+EPI_ISL_96015,molecular clock outlier
+EPI_ISL_99419,molecular clock outlier
+EPI_ISL_83276,molecular clock outlier
+EPI_ISL_170376,molecular clock outlier
+EPI_ISL_170377,molecular clock outlier
+EPI_ISL_170378,molecular clock outlier
+EPI_ISL_129426,molecular clock outlier
+EPI_ISL_129758,molecular clock outlier
+EPI_ISL_129797,molecular clock outlier
+EPI_ISL_129415,molecular clock outlier
+EPI_ISL_129646,molecular clock outlier
+EPI_ISL_129188,molecular clock outlier
+EPI_ISL_129621,molecular clock outlier
+EPI_ISL_129408,molecular clock outlier
+EPI_ISL_129798,molecular clock outlier
+EPI_ISL_144698,molecular clock outlier
+EPI_ISL_145073,molecular clock outlier
+EPI_ISL_145074,molecular clock outlier
+EPI_ISL_99809,molecular clock outlier
+EPI_ISL_129181,molecular clock outlier
+EPI_ISL_129182,molecular clock outlier
+EPI_ISL_99214,molecular clock outlier
+EPI_ISL_129754,molecular clock outlier
+EPI_ISL_122344,molecular clock outlier
+EPI_ISL_122345,molecular clock outlier
+EPI_ISL_122346,molecular clock outlier
+EPI_ISL_123206,molecular clock outlier
+EPI_ISL_123207,molecular clock outlier
+EPI_ISL_123210,molecular clock outlier
+EPI_ISL_123211,molecular clock outlier
+EPI_ISL_126243,molecular clock outlier
+EPI_ISL_126244,molecular clock outlier
+EPI_ISL_126245,molecular clock outlier
+EPI_ISL_126246,molecular clock outlier
+EPI_ISL_126247,molecular clock outlier
+EPI_ISL_126248,molecular clock outlier
+EPI_ISL_126249,molecular clock outlier
+EPI_ISL_126251,molecular clock outlier
+EPI_ISL_126253,molecular clock outlier
+EPI_ISL_126254,molecular clock outlier
+EPI_ISL_126259,molecular clock outlier
+EPI_ISL_126258,molecular clock outlier
+EPI_ISL_128143,molecular clock outlier
+EPI_ISL_128151,molecular clock outlier
+EPI_ISL_128229,molecular clock outlier
+EPI_ISL_128145,molecular clock outlier
+EPI_ISL_128309,molecular clock outlier
+EPI_ISL_128310,molecular clock outlier
+EPI_ISL_128311,molecular clock outlier
+EPI_ISL_128351,molecular clock outlier
+EPI_ISL_128389,molecular clock outlier
+EPI_ISL_128390,molecular clock outlier
+EPI_ISL_128391,molecular clock outlier
+EPI_ISL_128392,molecular clock outlier
+EPI_ISL_128393,molecular clock outlier
+EPI_ISL_126255,molecular clock outlier
+EPI_ISL_128394,molecular clock outlier
+EPI_ISL_128405,molecular clock outlier
+EPI_ISL_128623,molecular clock outlier
+EPI_ISL_128388,molecular clock outlier
+EPI_ISL_129019,molecular clock outlier
+EPI_ISL_129020,molecular clock outlier
+EPI_ISL_129021,molecular clock outlier
+EPI_ISL_129022,molecular clock outlier
+EPI_ISL_129023,molecular clock outlier
+EPI_ISL_129171,molecular clock outlier
+EPI_ISL_129172,molecular clock outlier
+EPI_ISL_129185,molecular clock outlier
+EPI_ISL_129411,molecular clock outlier
+EPI_ISL_129419,molecular clock outlier
+EPI_ISL_129422,molecular clock outlier
+EPI_ISL_129423,molecular clock outlier
+EPI_ISL_129424,molecular clock outlier
+EPI_ISL_129425,molecular clock outlier
+EPI_ISL_129551,molecular clock outlier
+EPI_ISL_129412,molecular clock outlier
+EPI_ISL_129610,molecular clock outlier
+EPI_ISL_129611,molecular clock outlier
+EPI_ISL_129615,molecular clock outlier
+EPI_ISL_129618,molecular clock outlier
+EPI_ISL_129622,molecular clock outlier
+EPI_ISL_129623,molecular clock outlier
+EPI_ISL_129647,molecular clock outlier
+EPI_ISL_129648,molecular clock outlier
+EPI_ISL_129649,molecular clock outlier
+EPI_ISL_129650,molecular clock outlier
+EPI_ISL_129651,molecular clock outlier
+EPI_ISL_129653,molecular clock outlier
+EPI_ISL_129176,molecular clock outlier
+EPI_ISL_129413,molecular clock outlier
+EPI_ISL_129409,molecular clock outlier
+EPI_ISL_129427,molecular clock outlier
+EPI_ISL_129428,molecular clock outlier
+EPI_ISL_129429,molecular clock outlier
+EPI_ISL_129683,molecular clock outlier
+EPI_ISL_129708,molecular clock outlier
+EPI_ISL_129609,molecular clock outlier
+EPI_ISL_128142,molecular clock outlier
+EPI_ISL_129755,molecular clock outlier
+EPI_ISL_129652,molecular clock outlier
+EPI_ISL_129024,molecular clock outlier
+EPI_ISL_129794,molecular clock outlier
+EPI_ISL_129799,molecular clock outlier
+EPI_ISL_131689,molecular clock outlier
+EPI_ISL_131801,molecular clock outlier
+EPI_ISL_96012,molecular clock outlier
+EPI_ISL_98659,molecular clock outlier
+EPI_ISL_99417,molecular clock outlier
+EPI_ISL_99418,molecular clock outlier
+EPI_ISL_129189,molecular clock outlier
+EPI_ISL_132656,molecular clock outlier
+EPI_ISL_132657,molecular clock outlier
+EPI_ISL_83701,molecular clock outlier
+EPI_ISL_145077,molecular clock outlier
+EPI_ISL_143655,molecular clock outlier
+EPI_ISL_143660,molecular clock outlier
+EPI_ISL_143661,molecular clock outlier
+EPI_ISL_143973,molecular clock outlier
+EPI_ISL_143975,molecular clock outlier
+EPI_ISL_144199,molecular clock outlier
+EPI_ISL_144200,molecular clock outlier
+EPI_ISL_144201,molecular clock outlier
+EPI_ISL_144202,molecular clock outlier
+EPI_ISL_144203,molecular clock outlier
+EPI_ISL_144204,molecular clock outlier
+EPI_ISL_144696,molecular clock outlier
+EPI_ISL_144697,molecular clock outlier
+EPI_ISL_144893,molecular clock outlier
+EPI_ISL_145067,molecular clock outlier
+EPI_ISL_145069,molecular clock outlier
+EPI_ISL_145070,molecular clock outlier
+EPI_ISL_145071,molecular clock outlier
+EPI_ISL_145072,molecular clock outlier
+EPI_ISL_145075,molecular clock outlier
+EPI_ISL_145082,molecular clock outlier
+EPI_ISL_145083,molecular clock outlier
+EPI_ISL_145476,molecular clock outlier
+EPI_ISL_126250,molecular clock outlier
+EPI_ISL_3932,molecular clock outlier
+EPI_ISL_2688,molecular clock outlier
+EPI_ISL_70476,molecular clock outlier
+EPI_ISL_145076,molecular clock outlier
+EPI_ISL_274838,molecular clock outlier
+EPI_ISL_288256,molecular clock outlier
+EPI_ISL_79666,molecular clock outlier
+EPI_ISL_84048,molecular clock outlier
+EPI_ISL_85576,molecular clock outlier
+EPI_ISL_85579,molecular clock outlier
+EPI_ISL_85618,molecular clock outlier
+EPI_ISL_86057,molecular clock outlier
+EPI_ISL_86081,molecular clock outlier
+EPI_ISL_86087,molecular clock outlier
+EPI_ISL_86101,molecular clock outlier
+EPI_ISL_86104,molecular clock outlier
+EPI_ISL_86106,molecular clock outlier
+EPI_ISL_87913,molecular clock outlier
+EPI_ISL_87916,molecular clock outlier
+EPI_ISL_87927,molecular clock outlier
+EPI_ISL_87933,molecular clock outlier
+EPI_ISL_87940,molecular clock outlier
+EPI_ISL_87943,molecular clock outlier
+EPI_ISL_87953,molecular clock outlier
+EPI_ISL_89776,molecular clock outlier
+EPI_ISL_89806,molecular clock outlier
+EPI_ISL_89808,molecular clock outlier
+EPI_ISL_89818,molecular clock outlier
+EPI_ISL_89831,molecular clock outlier
+EPI_ISL_89833,molecular clock outlier
+EPI_ISL_89838,molecular clock outlier
+EPI_ISL_90552,molecular clock outlier
+EPI_ISL_90846,molecular clock outlier
+EPI_ISL_93026,molecular clock outlier
+EPI_ISL_87906,molecular clock outlier
+EPI_ISL_94818,molecular clock outlier
+EPI_ISL_94841,molecular clock outlier
+EPI_ISL_94848,molecular clock outlier
+EPI_ISL_94858,molecular clock outlier
+EPI_ISL_95079,molecular clock outlier
+EPI_ISL_99011,molecular clock outlier
+EPI_ISL_99012,molecular clock outlier
+EPI_ISL_99027,molecular clock outlier
+EPI_ISL_99028,molecular clock outlier
+EPI_ISL_99032,molecular clock outlier
+EPI_ISL_99033,molecular clock outlier
+EPI_ISL_99034,molecular clock outlier
+EPI_ISL_99631,molecular clock outlier
+EPI_ISL_89822,molecular clock outlier
+EPI_ISL_108176,molecular clock outlier
+EPI_ISL_108179,molecular clock outlier
+EPI_ISL_108182,molecular clock outlier
+EPI_ISL_108194,molecular clock outlier
+EPI_ISL_108213,molecular clock outlier
+EPI_ISL_108235,molecular clock outlier
+EPI_ISL_108238,molecular clock outlier
+EPI_ISL_108069,molecular clock outlier
+EPI_ISL_108070,molecular clock outlier
+EPI_ISL_108089,molecular clock outlier
+EPI_ISL_108117,molecular clock outlier
+EPI_ISL_108141,molecular clock outlier
+EPI_ISL_122917,molecular clock outlier
+EPI_ISL_122968,molecular clock outlier
+EPI_ISL_128238,molecular clock outlier
+EPI_ISL_135251,molecular clock outlier
+EPI_ISL_135256,molecular clock outlier
+EPI_ISL_135262,molecular clock outlier
+EPI_ISL_135263,molecular clock outlier
+EPI_ISL_135264,molecular clock outlier
+EPI_ISL_136640,molecular clock outlier
+EPI_ISL_137871,molecular clock outlier
+EPI_ISL_138251,molecular clock outlier
+EPI_ISL_138252,molecular clock outlier
+EPI_ISL_142986,molecular clock outlier
+EPI_ISL_164059,molecular clock outlier
+EPI_ISL_234688,molecular clock outlier
+EPI_ISL_234690,molecular clock outlier
+EPI_ISL_234728,molecular clock outlier
+EPI_ISL_234729,molecular clock outlier
+EPI_ISL_234865,molecular clock outlier
+EPI_ISL_234866,molecular clock outlier
+EPI_ISL_234869,molecular clock outlier
+EPI_ISL_234870,molecular clock outlier
+EPI_ISL_234871,molecular clock outlier
+EPI_ISL_234872,molecular clock outlier
+EPI_ISL_234889,molecular clock outlier
+EPI_ISL_234890,molecular clock outlier
+EPI_ISL_234891,molecular clock outlier
+EPI_ISL_234892,molecular clock outlier
+EPI_ISL_244573,molecular clock outlier
+EPI_ISL_369508,molecular clock outlier
+EPI_ISL_369509,molecular clock outlier
+EPI_ISL_369511,molecular clock outlier
+EPI_ISL_369514,molecular clock outlier
+EPI_ISL_369515,molecular clock outlier
+EPI_ISL_369518,molecular clock outlier
+EPI_ISL_369519,molecular clock outlier
+EPI_ISL_369521,molecular clock outlier
+EPI_ISL_369530,molecular clock outlier
+EPI_ISL_327994,molecular clock outlier
+EPI_ISL_328003,molecular clock outlier
+EPI_ISL_327999,molecular clock outlier
+EPI_ISL_278389,molecular clock outlier
+EPI_ISL_327986,molecular clock outlier
+EPI_ISL_328078,molecular clock outlier
+EPI_ISL_327995,molecular clock outlier
+EPI_ISL_328079,molecular clock outlier
+EPI_ISL_278387,molecular clock outlier
+EPI_ISL_328077,molecular clock outlier
+EPI_ISL_327988,molecular clock outlier
+EPI_ISL_499026,molecular clock outlier
+EPI_ISL_327989,molecular clock outlier
+EPI_ISL_327990,molecular clock outlier
+EPI_ISL_328007,molecular clock outlier
+EPI_ISL_197907,molecular clock outlier
+EPI_ISL_278395,molecular clock outlier
+EPI_ISL_328082,molecular clock outlier
+EPI_ISL_163974,molecular clock outlier
+EPI_ISL_169229,molecular clock outlier
+EPI_ISL_327991,molecular clock outlier
+EPI_ISL_197914,molecular clock outlier
+EPI_ISL_499027,molecular clock outlier
+EPI_ISL_328011,molecular clock outlier
+EPI_ISL_327993,molecular clock outlier
+EPI_ISL_327974,molecular clock outlier
+EPI_ISL_327957,molecular clock outlier
+EPI_ISL_327972,molecular clock outlier
+EPI_ISL_327940,molecular clock outlier
+EPI_ISL_327970,molecular clock outlier
+EPI_ISL_327896,molecular clock outlier
+EPI_ISL_327973,molecular clock outlier
+EPI_ISL_327886,molecular clock outlier
+EPI_ISL_327947,molecular clock outlier
+EPI_ISL_327944,molecular clock outlier
+EPI_ISL_327939,molecular clock outlier
+EPI_ISL_327950,molecular clock outlier
+EPI_ISL_327892,molecular clock outlier
+EPI_ISL_327884,molecular clock outlier
+EPI_ISL_327978,molecular clock outlier
+EPI_ISL_202584,molecular clock outlier
+EPI_ISL_327935,molecular clock outlier
+EPI_ISL_327959,molecular clock outlier
+EPI_ISL_327938,molecular clock outlier
+EPI_ISL_327883,molecular clock outlier
+EPI_ISL_327888,molecular clock outlier
+EPI_ISL_327937,molecular clock outlier
+EPI_ISL_202678,molecular clock outlier
+EPI_ISL_327955,molecular clock outlier
+EPI_ISL_327895,molecular clock outlier
+EPI_ISL_327899,molecular clock outlier
+EPI_ISL_327891,molecular clock outlier
+EPI_ISL_327942,molecular clock outlier
+EPI_ISL_327975,molecular clock outlier
+EPI_ISL_327941,molecular clock outlier
+EPI_ISL_327898,molecular clock outlier
+EPI_ISL_327893,molecular clock outlier
+EPI_ISL_327897,molecular clock outlier
+EPI_ISL_327964,molecular clock outlier
+EPI_ISL_327885,molecular clock outlier
+EPI_ISL_205586,molecular clock outlier
+EPI_ISL_341299,molecular clock outlier
+EPI_ISL_396574,molecular clock outlier
+EPI_ISL_327953,molecular clock outlier
+EPI_ISL_327943,molecular clock outlier
+EPI_ISL_327966,molecular clock outlier
+EPI_ISL_327969,molecular clock outlier
+EPI_ISL_327945,molecular clock outlier
+EPI_ISL_327882,molecular clock outlier
+EPI_ISL_327977,molecular clock outlier
+EPI_ISL_327956,molecular clock outlier
+EPI_ISL_327954,molecular clock outlier
+EPI_ISL_327946,molecular clock outlier
+EPI_ISL_327968,molecular clock outlier
+EPI_ISL_327951,molecular clock outlier
+EPI_ISL_327982,molecular clock outlier
+EPI_ISL_327958,molecular clock outlier
+EPI_ISL_327952,molecular clock outlier
+EPI_ISL_327967,molecular clock outlier
+EPI_ISL_327949,molecular clock outlier
+EPI_ISL_327887,molecular clock outlier
+EPI_ISL_327960,molecular clock outlier
+EPI_ISL_327890,molecular clock outlier
+EPI_ISL_327979,molecular clock outlier
+EPI_ISL_327894,molecular clock outlier
+EPI_ISL_327981,molecular clock outlier
+EPI_ISL_327980,molecular clock outlier
+EPI_ISL_327889,molecular clock outlier
+EPI_ISL_327936,molecular clock outlier
+EPI_ISL_327962,molecular clock outlier
+EPI_ISL_327948,molecular clock outlier
+EPI_ISL_327963,molecular clock outlier
+EPI_ISL_327971,molecular clock outlier
+EPI_ISL_327965,molecular clock outlier
+EPI_ISL_327961,molecular clock outlier
+EPI_ISL_499029,molecular clock outlier
+EPI_ISL_498990,molecular clock outlier
+EPI_ISL_4061577,molecular clock outlier
+EPI_ISL_4061589,molecular clock outlier
+EPI_ISL_4061595,molecular clock outlier
+EPI_ISL_4061627,molecular clock outlier
+EPI_ISL_393707,molecular clock outlier
+EPI_ISL_242514,molecular clock outlier
+EPI_ISL_223530,molecular clock outlier
+EPI_ISL_207687,molecular clock outlier
+EPI_ISL_207783,molecular clock outlier
+EPI_ISL_278569,molecular clock outlier
+EPI_ISL_394052,molecular clock outlier
+EPI_ISL_367063,molecular clock outlier
+EPI_ISL_215972,molecular clock outlier
+EPI_ISL_4061571,molecular clock outlier
+EPI_ISL_4061601,molecular clock outlier
+EPI_ISL_4061653,molecular clock outlier
+EPI_ISL_4061676,molecular clock outlier
+EPI_ISL_366477,molecular clock outlier
+EPI_ISL_344428,molecular clock outlier
+EPI_ISL_207685,molecular clock outlier
+EPI_ISL_270745,molecular clock outlier
+EPI_ISL_278719,molecular clock outlier
+EPI_ISL_499021,molecular clock outlier
+EPI_ISL_337243,molecular clock outlier
+EPI_ISL_278634,molecular clock outlier
+EPI_ISL_223527,molecular clock outlier
+EPI_ISL_223588,molecular clock outlier
+EPI_ISL_225316,molecular clock outlier
+EPI_ISL_256031,molecular clock outlier
+EPI_ISL_267705,molecular clock outlier
+EPI_ISL_267706,molecular clock outlier
+EPI_ISL_275129,molecular clock outlier
+EPI_ISL_275167,molecular clock outlier
+EPI_ISL_275156,molecular clock outlier
+EPI_ISL_198064,molecular clock outlier
+EPI_ISL_197998,molecular clock outlier
+EPI_ISL_264060,molecular clock outlier
+EPI_ISL_267692,molecular clock outlier
+EPI_ISL_275171,molecular clock outlier
+EPI_ISL_327976,molecular clock outlier
+EPI_ISL_233829,molecular clock outlier
+EPI_ISL_275163,molecular clock outlier
+EPI_ISL_198047,molecular clock outlier
+EPI_ISL_198056,molecular clock outlier
+EPI_ISL_202631,molecular clock outlier
+EPI_ISL_275130,molecular clock outlier
+EPI_ISL_275158,molecular clock outlier
+EPI_ISL_202610,molecular clock outlier
+EPI_ISL_198008,molecular clock outlier
+EPI_ISL_202595,molecular clock outlier
+EPI_ISL_202597,molecular clock outlier
+EPI_ISL_366123,molecular clock outlier
+EPI_ISL_273211,molecular clock outlier
+EPI_ISL_273214,molecular clock outlier
+EPI_ISL_161476,molecular clock outlier
+EPI_ISL_161477,molecular clock outlier
+EPI_ISL_327992,molecular clock outlier
+EPI_ISL_328005,molecular clock outlier
+EPI_ISL_15146398,molecular clock outlier
+EPI_ISL_394051,molecular clock outlier
+EPI_ISL_328081,molecular clock outlier
+EPI_ISL_134827,molecular clock outlier
+EPI_ISL_107835,molecular clock outlier
+EPI_ISL_106771,molecular clock outlier
+EPI_ISL_124154,molecular clock outlier
+EPI_ISL_278941,molecular clock outlier
+EPI_ISL_122650,molecular clock outlier
+EPI_ISL_122651,molecular clock outlier
+EPI_ISL_122653,molecular clock outlier
+EPI_ISL_122659,molecular clock outlier
+EPI_ISL_132011,molecular clock outlier
+EPI_ISL_132012,molecular clock outlier
+EPI_ISL_132013,molecular clock outlier
+EPI_ISL_132014,molecular clock outlier
+EPI_ISL_132017,molecular clock outlier
+EPI_ISL_132019,molecular clock outlier
+EPI_ISL_132027,molecular clock outlier
+EPI_ISL_132028,molecular clock outlier
+EPI_ISL_132029,molecular clock outlier
+EPI_ISL_263247,molecular clock outlier
+EPI_ISL_94720,molecular clock outlier
+EPI_ISL_95507,molecular clock outlier
+EPI_ISL_96077,molecular clock outlier
+EPI_ISL_100435,molecular clock outlier
+EPI_ISL_100436,molecular clock outlier
+EPI_ISL_105776,molecular clock outlier
+EPI_ISL_103760,molecular clock outlier
+EPI_ISL_108355,molecular clock outlier
+EPI_ISL_109757,molecular clock outlier
+EPI_ISL_119880,molecular clock outlier
+EPI_ISL_120850,molecular clock outlier
+EPI_ISL_93778,molecular clock outlier
+EPI_ISL_152750,molecular clock outlier
+EPI_ISL_100796,molecular clock outlier
+EPI_ISL_189147,molecular clock outlier
+EPI_ISL_189140,molecular clock outlier
+EPI_ISL_189108,molecular clock outlier
+EPI_ISL_189103,molecular clock outlier
+EPI_ISL_188982,molecular clock outlier
+EPI_ISL_188984,molecular clock outlier
+EPI_ISL_272703,molecular clock outlier
+EPI_ISL_168732,molecular clock outlier
+EPI_ISL_134459,molecular clock outlier
+EPI_ISL_192789,molecular clock outlier
+EPI_ISL_174231,molecular clock outlier
+EPI_ISL_174232,molecular clock outlier
+EPI_ISL_189148,molecular clock outlier
+EPI_ISL_189145,molecular clock outlier
+EPI_ISL_189139,molecular clock outlier
+EPI_ISL_189142,molecular clock outlier
+EPI_ISL_189143,molecular clock outlier
+EPI_ISL_189144,molecular clock outlier
+EPI_ISL_189106,molecular clock outlier
+EPI_ISL_189107,molecular clock outlier
+EPI_ISL_189109,molecular clock outlier
+EPI_ISL_189137,molecular clock outlier
+EPI_ISL_189162,molecular clock outlier
+EPI_ISL_189138,molecular clock outlier
+EPI_ISL_189102,molecular clock outlier
+EPI_ISL_189104,molecular clock outlier
+EPI_ISL_189105,molecular clock outlier
+EPI_ISL_189090,molecular clock outlier
+EPI_ISL_188980,molecular clock outlier
+EPI_ISL_189000,molecular clock outlier
+EPI_ISL_188985,molecular clock outlier
+EPI_ISL_188987,molecular clock outlier
+EPI_ISL_188988,molecular clock outlier
+EPI_ISL_188983,molecular clock outlier
+EPI_ISL_188986,molecular clock outlier
+EPI_ISL_188989,molecular clock outlier
+EPI_ISL_188991,molecular clock outlier
+EPI_ISL_188992,molecular clock outlier
+EPI_ISL_188993,molecular clock outlier
+EPI_ISL_188994,molecular clock outlier
+EPI_ISL_188995,molecular clock outlier
+EPI_ISL_188996,molecular clock outlier
+EPI_ISL_188997,molecular clock outlier
+EPI_ISL_99786,molecular clock outlier
+EPI_ISL_100470,molecular clock outlier
+EPI_ISL_100471,molecular clock outlier
+EPI_ISL_102449,molecular clock outlier
+EPI_ISL_102453,molecular clock outlier
+EPI_ISL_102488,molecular clock outlier
+EPI_ISL_103288,molecular clock outlier
+EPI_ISL_103318,molecular clock outlier
+EPI_ISL_104019,molecular clock outlier
+EPI_ISL_104143,molecular clock outlier
+EPI_ISL_104863,molecular clock outlier
+EPI_ISL_106394,molecular clock outlier
+EPI_ISL_106416,molecular clock outlier
+EPI_ISL_106651,molecular clock outlier
+EPI_ISL_107887,molecular clock outlier
+EPI_ISL_107890,molecular clock outlier
+EPI_ISL_107949,molecular clock outlier
+EPI_ISL_107952,molecular clock outlier
+EPI_ISL_111411,molecular clock outlier
+EPI_ISL_116087,molecular clock outlier
+EPI_ISL_117058,molecular clock outlier
+EPI_ISL_117435,molecular clock outlier
+EPI_ISL_117486,molecular clock outlier
+EPI_ISL_119704,molecular clock outlier
+EPI_ISL_119714,molecular clock outlier
+EPI_ISL_120226,molecular clock outlier
+EPI_ISL_120229,molecular clock outlier
+EPI_ISL_120845,molecular clock outlier
+EPI_ISL_120860,molecular clock outlier
+EPI_ISL_120864,molecular clock outlier
+EPI_ISL_121461,molecular clock outlier
+EPI_ISL_121922,molecular clock outlier
+EPI_ISL_121923,molecular clock outlier
+EPI_ISL_121945,molecular clock outlier
+EPI_ISL_122235,molecular clock outlier
+EPI_ISL_122541,molecular clock outlier
+EPI_ISL_122868,molecular clock outlier
+EPI_ISL_128023,molecular clock outlier
+EPI_ISL_149712,molecular clock outlier
+EPI_ISL_152245,molecular clock outlier
+EPI_ISL_152345,molecular clock outlier
+EPI_ISL_136523,molecular clock outlier
+EPI_ISL_235321,molecular clock outlier
+EPI_ISL_278946,molecular clock outlier
+EPI_ISL_288808,molecular clock outlier
+EPI_ISL_369549,molecular clock outlier
+EPI_ISL_369555,molecular clock outlier
+EPI_ISL_128998,molecular clock outlier
+EPI_ISL_122012,molecular clock outlier
+EPI_ISL_134773,molecular clock outlier
+EPI_ISL_152815,molecular clock outlier
+EPI_ISL_132018,molecular clock outlier
+EPI_ISL_132020,molecular clock outlier
+EPI_ISL_153280,molecular clock outlier
+EPI_ISL_153288,molecular clock outlier
+EPI_ISL_164586,molecular clock outlier
+EPI_ISL_106847,molecular clock outlier
+EPI_ISL_98637,molecular clock outlier
+EPI_ISL_197922,molecular clock outlier
+EPI_ISL_327985,molecular clock outlier
+EPI_ISL_328001,molecular clock outlier
+EPI_ISL_328070,molecular clock outlier
+EPI_ISL_197852,molecular clock outlier
+EPI_ISL_327984,molecular clock outlier
+EPI_ISL_328002,molecular clock outlier
+EPI_ISL_327997,molecular clock outlier
+EPI_ISL_15146399,molecular clock outlier
+EPI_ISL_327996,molecular clock outlier
+EPI_ISL_328004,molecular clock outlier
+EPI_ISL_197941,molecular clock outlier
+EPI_ISL_161475,molecular clock outlier
+EPI_ISL_327983,molecular clock outlier
+EPI_ISL_140883,molecular clock outlier
+EPI_ISL_328000,molecular clock outlier
+EPI_ISL_327998,molecular clock outlier
+EPI_ISL_197899,molecular clock outlier
+EPI_ISL_197901,molecular clock outlier
+EPI_ISL_197954,molecular clock outlier
+EPI_ISL_197956,molecular clock outlier
+EPI_ISL_328010,molecular clock outlier
+EPI_ISL_328012,molecular clock outlier
+EPI_ISL_328080,molecular clock outlier
+EPI_ISL_328013,molecular clock outlier
+EPI_ISL_138004,molecular clock outlier
+EPI_ISL_328009,molecular clock outlier
+EPI_ISL_328014,molecular clock outlier
+EPI_ISL_328015,molecular clock outlier
+EPI_ISL_198084,molecular clock outlier
+EPI_ISL_206572,molecular clock outlier
+EPI_ISL_123043,molecular clock outlier
+EPI_ISL_202642,molecular clock outlier
+EPI_ISL_198053,molecular clock outlier
+EPI_ISL_198023,molecular clock outlier
+EPI_ISL_367163,molecular clock outlier
+EPI_ISL_378747,molecular clock outlier
+EPI_ISL_198039,molecular clock outlier
+EPI_ISL_198046,molecular clock outlier
+EPI_ISL_198082,molecular clock outlier
+EPI_ISL_202605,molecular clock outlier
+EPI_ISL_202680,molecular clock outlier
+EPI_ISL_202730,molecular clock outlier
+EPI_ISL_220121,molecular clock outlier
+EPI_ISL_15146417,molecular clock outlier
+EPI_ISL_202608,molecular clock outlier
+EPI_ISL_275155,molecular clock outlier
+EPI_ISL_282638,molecular clock outlier
+EPI_ISL_198031,molecular clock outlier
+EPI_ISL_198042,molecular clock outlier
+EPI_ISL_198040,molecular clock outlier
+EPI_ISL_198045,molecular clock outlier
+EPI_ISL_198049,molecular clock outlier
+EPI_ISL_198050,molecular clock outlier
+EPI_ISL_202670,molecular clock outlier
+EPI_ISL_197981,molecular clock outlier
+EPI_ISL_198002,molecular clock outlier
+EPI_ISL_197966,molecular clock outlier
+EPI_ISL_202581,molecular clock outlier
+EPI_ISL_198017,molecular clock outlier
+EPI_ISL_197973,molecular clock outlier
+EPI_ISL_198041,molecular clock outlier
+EPI_ISL_198051,molecular clock outlier
+EPI_ISL_198052,molecular clock outlier
+EPI_ISL_202667,molecular clock outlier
+EPI_ISL_202668,molecular clock outlier
+EPI_ISL_338326,molecular clock outlier
+EPI_ISL_202676,molecular clock outlier
+EPI_ISL_198010,molecular clock outlier
+EPI_ISL_198092,molecular clock outlier
+EPI_ISL_309766,molecular clock outlier
+EPI_ISL_334629,molecular clock outlier
+EPI_ISL_232044,molecular clock outlier
+EPI_ISL_232045,molecular clock outlier
+EPI_ISL_232046,molecular clock outlier
+EPI_ISL_232048,molecular clock outlier
+EPI_ISL_234469,molecular clock outlier
+EPI_ISL_234470,molecular clock outlier
+EPI_ISL_234471,molecular clock outlier
+EPI_ISL_234473,molecular clock outlier
+EPI_ISL_234475,molecular clock outlier
+EPI_ISL_234476,molecular clock outlier
+EPI_ISL_234478,molecular clock outlier
+EPI_ISL_234479,molecular clock outlier
+EPI_ISL_234480,molecular clock outlier
+EPI_ISL_234481,molecular clock outlier
+EPI_ISL_241846,molecular clock outlier
+EPI_ISL_193190,molecular clock outlier
+EPI_ISL_193243,molecular clock outlier
+EPI_ISL_207681,molecular clock outlier
+EPI_ISL_211679,molecular clock outlier
+EPI_ISL_223556,molecular clock outlier
+EPI_ISL_334627,molecular clock outlier
+EPI_ISL_344280,molecular clock outlier
+EPI_ISL_343245,molecular clock outlier
+EPI_ISL_351340,molecular clock outlier
+EPI_ISL_4062164,molecular clock outlier
+EPI_ISL_223535,molecular clock outlier
+EPI_ISL_233371,molecular clock outlier
+EPI_ISL_223541,molecular clock outlier
+EPI_ISL_234681,molecular clock outlier
+EPI_ISL_168981,molecular clock outlier
+EPI_ISL_104017,molecular clock outlier
+EPI_ISL_197895,molecular clock outlier
+EPI_ISL_197902,molecular clock outlier
+EPI_ISL_234680,molecular clock outlier
+EPI_ISL_98462,molecular clock outlier
+EPI_ISL_328008,molecular clock outlier
+EPI_ISL_328113,molecular clock outlier
+EPI_ISL_328137,molecular clock outlier
+EPI_ISL_191649,molecular clock outlier
+EPI_ISL_255459,molecular clock outlier
+EPI_ISL_197906,molecular clock outlier
+EPI_ISL_197972,molecular clock outlier
+EPI_ISL_328063,molecular clock outlier
+EPI_ISL_278404,molecular clock outlier
+EPI_ISL_328059,molecular clock outlier
+EPI_ISL_2443863,molecular clock outlier
+EPI_ISL_2454696,molecular clock outlier
+EPI_ISL_328068,molecular clock outlier
+EPI_ISL_198090,molecular clock outlier
+EPI_ISL_171370,molecular clock outlier
+EPI_ISL_198086,molecular clock outlier
+EPI_ISL_197910,molecular clock outlier
+EPI_ISL_232047,molecular clock outlier
+EPI_ISL_234477,molecular clock outlier
+EPI_ISL_239893,molecular clock outlier
+EPI_ISL_320979,molecular clock outlier
+EPI_ISL_195645,molecular clock outlier
+EPI_ISL_294259,molecular clock outlier
+EPI_ISL_294260,molecular clock outlier
+EPI_ISL_294261,molecular clock outlier
+EPI_ISL_294262,molecular clock outlier
+EPI_ISL_294263,molecular clock outlier
+EPI_ISL_294264,molecular clock outlier
+EPI_ISL_294265,molecular clock outlier
+EPI_ISL_294266,molecular clock outlier
+EPI_ISL_294268,molecular clock outlier
+EPI_ISL_294269,molecular clock outlier
+EPI_ISL_294271,molecular clock outlier
+EPI_ISL_294272,molecular clock outlier
+EPI_ISL_294273,molecular clock outlier
+EPI_ISL_294274,molecular clock outlier
+EPI_ISL_294275,molecular clock outlier
+EPI_ISL_294276,molecular clock outlier
+EPI_ISL_294277,molecular clock outlier
+EPI_ISL_294278,molecular clock outlier
+EPI_ISL_294279,molecular clock outlier
+EPI_ISL_294280,molecular clock outlier
+EPI_ISL_294281,molecular clock outlier
+EPI_ISL_294282,molecular clock outlier
+EPI_ISL_294283,molecular clock outlier
+EPI_ISL_294284,molecular clock outlier
+EPI_ISL_294285,molecular clock outlier
+EPI_ISL_294286,molecular clock outlier
+EPI_ISL_294287,molecular clock outlier
+EPI_ISL_294288,molecular clock outlier
+EPI_ISL_294289,molecular clock outlier
+EPI_ISL_294291,molecular clock outlier
+EPI_ISL_294296,molecular clock outlier
+EPI_ISL_304787,molecular clock outlier
+EPI_ISL_329978,molecular clock outlier
+EPI_ISL_329979,molecular clock outlier
+EPI_ISL_329974,molecular clock outlier
+EPI_ISL_329981,molecular clock outlier
+EPI_ISL_277234,molecular clock outlier
+EPI_ISL_277235,molecular clock outlier
+EPI_ISL_277236,molecular clock outlier
+EPI_ISL_277237,molecular clock outlier
+EPI_ISL_277238,molecular clock outlier
+EPI_ISL_277239,molecular clock outlier
+EPI_ISL_277240,molecular clock outlier
+EPI_ISL_277241,molecular clock outlier
+EPI_ISL_277242,molecular clock outlier
+EPI_ISL_294294,molecular clock outlier
+EPI_ISL_329973,molecular clock outlier
+EPI_ISL_329975,molecular clock outlier
+EPI_ISL_329976,molecular clock outlier
+EPI_ISL_329977,molecular clock outlier
+EPI_ISL_329980,molecular clock outlier
+EPI_ISL_367161,molecular clock outlier
+EPI_ISL_329971,molecular clock outlier
+EPI_ISL_192075,molecular clock outlier
+EPI_ISL_192076,molecular clock outlier
+EPI_ISL_267075,molecular clock outlier
+EPI_ISL_294267,molecular clock outlier
+EPI_ISL_198058,molecular clock outlier
+EPI_ISL_252574,molecular clock outlier
+EPI_ISL_280468,molecular clock outlier
+EPI_ISL_277867,molecular clock outlier
+EPI_ISL_233869,molecular clock outlier
+EPI_ISL_255531,molecular clock outlier
+EPI_ISL_499036,molecular clock outlier
+EPI_ISL_276295,molecular clock outlier
+EPI_ISL_266679,molecular clock outlier
+EPI_ISL_270154,molecular clock outlier
+EPI_ISL_314686,molecular clock outlier
+EPI_ISL_255504,molecular clock outlier
+EPI_ISL_255697,molecular clock outlier
+EPI_ISL_197957,molecular clock outlier
+EPI_ISL_352877,molecular clock outlier
+EPI_ISL_275117,molecular clock outlier
+EPI_ISL_13046456,molecular clock outlier
+EPI_ISL_256085,molecular clock outlier
+EPI_ISL_252570,molecular clock outlier
+EPI_ISL_197979,molecular clock outlier
+EPI_ISL_198024,molecular clock outlier
+EPI_ISL_202677,molecular clock outlier
+EPI_ISL_299062,molecular clock outlier
+EPI_ISL_233233,molecular clock outlier
+EPI_ISL_233255,molecular clock outlier
+EPI_ISL_395207,molecular clock outlier
+EPI_ISL_197968,molecular clock outlier
+EPI_ISL_233867,molecular clock outlier
+EPI_ISL_212137,molecular clock outlier
+EPI_ISL_276310,molecular clock outlier
+EPI_ISL_202693,molecular clock outlier
+EPI_ISL_277168,molecular clock outlier
+EPI_ISL_277173,molecular clock outlier
+EPI_ISL_281487,molecular clock outlier
+EPI_ISL_281488,molecular clock outlier
+EPI_ISL_255696,molecular clock outlier
+EPI_ISL_255926,molecular clock outlier
+EPI_ISL_256420,molecular clock outlier
+EPI_ISL_281715,molecular clock outlier
+EPI_ISL_283346,molecular clock outlier
+EPI_ISL_202583,molecular clock outlier
+EPI_ISL_393577,molecular clock outlier
+EPI_ISL_212974,molecular clock outlier
+EPI_ISL_220090,molecular clock outlier
+EPI_ISL_299902,molecular clock outlier
+EPI_ISL_300753,molecular clock outlier
+EPI_ISL_311683,molecular clock outlier
+EPI_ISL_327906,molecular clock outlier
+EPI_ISL_197977,molecular clock outlier
+EPI_ISL_202739,molecular clock outlier
+EPI_ISL_15146367,molecular clock outlier
+EPI_ISL_233803,molecular clock outlier
+EPI_ISL_202706,molecular clock outlier
+EPI_ISL_198061,molecular clock outlier
+EPI_ISL_198068,molecular clock outlier
+EPI_ISL_198091,molecular clock outlier
+EPI_ISL_198059,molecular clock outlier
+EPI_ISL_344093,molecular clock outlier
+EPI_ISL_336568,molecular clock outlier
+EPI_ISL_339742,molecular clock outlier
+EPI_ISL_198079,molecular clock outlier
+EPI_ISL_198096,molecular clock outlier
+EPI_ISL_202641,molecular clock outlier
+EPI_ISL_198088,molecular clock outlier
+EPI_ISL_291642,molecular clock outlier
+EPI_ISL_291676,molecular clock outlier
+EPI_ISL_299892,molecular clock outlier
+EPI_ISL_339241,molecular clock outlier
+EPI_ISL_273703,molecular clock outlier
+EPI_ISL_198000,molecular clock outlier
+EPI_ISL_198089,molecular clock outlier
+EPI_ISL_255693,molecular clock outlier
+EPI_ISL_202603,molecular clock outlier
+EPI_ISL_198033,molecular clock outlier
+EPI_ISL_15146371,molecular clock outlier
+EPI_ISL_275868,molecular clock outlier
+EPI_ISL_202590,molecular clock outlier
+EPI_ISL_202653,molecular clock outlier
+EPI_ISL_291315,molecular clock outlier
+EPI_ISL_275313,molecular clock outlier
+EPI_ISL_275871,molecular clock outlier
+EPI_ISL_283326,molecular clock outlier
+EPI_ISL_394110,molecular clock outlier
+EPI_ISL_202703,molecular clock outlier
+EPI_ISL_202732,molecular clock outlier
+EPI_ISL_202734,molecular clock outlier
+EPI_ISL_198087,molecular clock outlier
+EPI_ISL_202639,molecular clock outlier
+EPI_ISL_276033,molecular clock outlier
+EPI_ISL_299753,molecular clock outlier
+EPI_ISL_198048,molecular clock outlier
+EPI_ISL_202579,molecular clock outlier
+EPI_ISL_202623,molecular clock outlier
+EPI_ISL_202694,molecular clock outlier
+EPI_ISL_309968,molecular clock outlier
+EPI_ISL_395204,molecular clock outlier
+EPI_ISL_277851,molecular clock outlier
+EPI_ISL_282885,molecular clock outlier
+EPI_ISL_197950,molecular clock outlier
+EPI_ISL_198034,molecular clock outlier
+EPI_ISL_198054,molecular clock outlier
+EPI_ISL_198055,molecular clock outlier
+EPI_ISL_202577,molecular clock outlier
+EPI_ISL_202640,molecular clock outlier
+EPI_ISL_268738,molecular clock outlier
+EPI_ISL_379439,molecular clock outlier
+EPI_ISL_198083,molecular clock outlier
+EPI_ISL_202656,molecular clock outlier
+EPI_ISL_293103,molecular clock outlier
+EPI_ISL_262251,molecular clock outlier
+EPI_ISL_383489,molecular clock outlier
+EPI_ISL_273187,molecular clock outlier
+EPI_ISL_316099,molecular clock outlier
+EPI_ISL_340493,molecular clock outlier
+EPI_ISL_340494,molecular clock outlier
+EPI_ISL_233228,molecular clock outlier
+EPI_ISL_198097,molecular clock outlier
+EPI_ISL_274703,molecular clock outlier
+EPI_ISL_275820,molecular clock outlier
+EPI_ISL_275822,molecular clock outlier
+EPI_ISL_277508,molecular clock outlier
+EPI_ISL_286837,molecular clock outlier
+EPI_ISL_286838,molecular clock outlier
+EPI_ISL_286839,molecular clock outlier
+EPI_ISL_286908,molecular clock outlier
+EPI_ISL_396534,molecular clock outlier
+EPI_ISL_396535,molecular clock outlier
+EPI_ISL_314037,molecular clock outlier
+EPI_ISL_321239,molecular clock outlier
+EPI_ISL_197986,molecular clock outlier
+EPI_ISL_198007,molecular clock outlier
+EPI_ISL_198044,molecular clock outlier
+EPI_ISL_198060,molecular clock outlier
+EPI_ISL_198093,molecular clock outlier
+EPI_ISL_198094,molecular clock outlier
+EPI_ISL_202588,molecular clock outlier
+EPI_ISL_202614,molecular clock outlier
+EPI_ISL_202622,molecular clock outlier
+EPI_ISL_202624,molecular clock outlier
+EPI_ISL_202629,molecular clock outlier
+EPI_ISL_202646,molecular clock outlier
+EPI_ISL_202655,molecular clock outlier
+EPI_ISL_202658,molecular clock outlier
+EPI_ISL_202689,molecular clock outlier
+EPI_ISL_202708,molecular clock outlier
+EPI_ISL_220066,molecular clock outlier
+EPI_ISL_220075,molecular clock outlier
+EPI_ISL_220092,molecular clock outlier
+EPI_ISL_220112,molecular clock outlier
+EPI_ISL_220123,molecular clock outlier
+EPI_ISL_293367,molecular clock outlier
+EPI_ISL_275493,molecular clock outlier
+EPI_ISL_255502,molecular clock outlier
+EPI_ISL_198012,molecular clock outlier
+EPI_ISL_299853,molecular clock outlier
+EPI_ISL_259243,molecular clock outlier
+EPI_ISL_198028,molecular clock outlier
+EPI_ISL_15146440,molecular clock outlier
+EPI_ISL_257400,molecular clock outlier
+EPI_ISL_299068,molecular clock outlier
+EPI_ISL_300405,molecular clock outlier
+EPI_ISL_300428,molecular clock outlier
+EPI_ISL_302488,molecular clock outlier
+EPI_ISL_202314,molecular clock outlier
+EPI_ISL_202728,molecular clock outlier
+EPI_ISL_363434,molecular clock outlier
+EPI_ISL_340919,molecular clock outlier
+EPI_ISL_359492,molecular clock outlier
+EPI_ISL_17054481,molecular clock outlier
+EPI_ISL_346309,molecular clock outlier
+EPI_ISL_359483,molecular clock outlier
+EPI_ISL_207641,molecular clock outlier
+EPI_ISL_207649,molecular clock outlier
+EPI_ISL_207650,molecular clock outlier
+EPI_ISL_196612,molecular clock outlier
+EPI_ISL_200720,molecular clock outlier
+EPI_ISL_202747,molecular clock outlier
+EPI_ISL_205158,molecular clock outlier
+EPI_ISL_205159,molecular clock outlier
+EPI_ISL_216008,molecular clock outlier
+EPI_ISL_287885,molecular clock outlier
+EPI_ISL_287991,molecular clock outlier
+EPI_ISL_288056,molecular clock outlier
+EPI_ISL_194517,molecular clock outlier
+EPI_ISL_218462,molecular clock outlier
+EPI_ISL_235513,molecular clock outlier
+EPI_ISL_242555,molecular clock outlier
+EPI_ISL_239631,molecular clock outlier
+EPI_ISL_231816,molecular clock outlier
+EPI_ISL_231820,molecular clock outlier
+EPI_ISL_225354,molecular clock outlier
+EPI_ISL_219060,molecular clock outlier
+EPI_ISL_197259,molecular clock outlier
+EPI_ISL_197518,molecular clock outlier
+EPI_ISL_203411,molecular clock outlier
+EPI_ISL_203417,molecular clock outlier
+EPI_ISL_205622,molecular clock outlier
+EPI_ISL_206148,molecular clock outlier
+EPI_ISL_208594,molecular clock outlier
+EPI_ISL_210374,molecular clock outlier
+EPI_ISL_211698,molecular clock outlier
+EPI_ISL_211899,molecular clock outlier
+EPI_ISL_212049,molecular clock outlier
+EPI_ISL_212145,molecular clock outlier
+EPI_ISL_219072,molecular clock outlier
+EPI_ISL_255431,molecular clock outlier
+EPI_ISL_252448,molecular clock outlier
+EPI_ISL_288041,molecular clock outlier
+EPI_ISL_13046477,molecular clock outlier
+EPI_ISL_13059546,molecular clock outlier
+EPI_ISL_215973,molecular clock outlier
+EPI_ISL_215974,molecular clock outlier
+EPI_ISL_218060,molecular clock outlier
+EPI_ISL_232543,molecular clock outlier
+EPI_ISL_238608,molecular clock outlier
+EPI_ISL_201267,molecular clock outlier
+EPI_ISL_201268,molecular clock outlier
+EPI_ISL_202083,molecular clock outlier
+EPI_ISL_203579,molecular clock outlier
+EPI_ISL_207611,molecular clock outlier
+EPI_ISL_208200,molecular clock outlier
+EPI_ISL_208575,molecular clock outlier
+EPI_ISL_208595,molecular clock outlier
+EPI_ISL_213073,molecular clock outlier
+EPI_ISL_213091,molecular clock outlier
+EPI_ISL_213096,molecular clock outlier
+EPI_ISL_213097,molecular clock outlier
+EPI_ISL_215261,molecular clock outlier
+EPI_ISL_215871,molecular clock outlier
+EPI_ISL_215873,molecular clock outlier
+EPI_ISL_215874,molecular clock outlier
+EPI_ISL_219086,molecular clock outlier
+EPI_ISL_223205,molecular clock outlier
+EPI_ISL_223650,molecular clock outlier
+EPI_ISL_223657,molecular clock outlier
+EPI_ISL_223665,molecular clock outlier
+EPI_ISL_223666,molecular clock outlier
+EPI_ISL_223667,molecular clock outlier
+EPI_ISL_224561,molecular clock outlier
+EPI_ISL_224567,molecular clock outlier
+EPI_ISL_230360,molecular clock outlier
+EPI_ISL_241294,molecular clock outlier
+EPI_ISL_288051,molecular clock outlier
+EPI_ISL_13046457,molecular clock outlier
+EPI_ISL_337309,molecular clock outlier
+EPI_ISL_376967,molecular clock outlier
+EPI_ISL_4061583,molecular clock outlier
+EPI_ISL_4061606,molecular clock outlier
+EPI_ISL_15146459,molecular clock outlier
+EPI_ISL_233302,molecular clock outlier
+EPI_ISL_233303,molecular clock outlier
+EPI_ISL_198066,molecular clock outlier
+EPI_ISL_202683,molecular clock outlier
+EPI_ISL_192967,molecular clock outlier
+EPI_ISL_196607,molecular clock outlier
+EPI_ISL_197951,molecular clock outlier
+EPI_ISL_213976,molecular clock outlier
+EPI_ISL_215614,molecular clock outlier
+EPI_ISL_215616,molecular clock outlier
+EPI_ISL_215617,molecular clock outlier
+EPI_ISL_215618,molecular clock outlier
+EPI_ISL_215619,molecular clock outlier
+EPI_ISL_220282,molecular clock outlier
+EPI_ISL_220283,molecular clock outlier
+EPI_ISL_223634,molecular clock outlier
+EPI_ISL_220122,molecular clock outlier
+EPI_ISL_287829,molecular clock outlier
+EPI_ISL_198016,molecular clock outlier
+EPI_ISL_278549,molecular clock outlier
+EPI_ISL_278538,molecular clock outlier
+EPI_ISL_278570,molecular clock outlier
+EPI_ISL_290598,molecular clock outlier
+EPI_ISL_242425,molecular clock outlier
+EPI_ISL_270747,molecular clock outlier
+EPI_ISL_278578,molecular clock outlier
+EPI_ISL_334512,molecular clock outlier
+EPI_ISL_67918,molecular clock outlier
+EPI_ISL_5054233,molecular clock outlier
