@@ -6,8 +6,8 @@ from time import gmtime, strftime
 from utils import *
 
 ############### VARS ####################
-#molecular clock rates used for treetime determined for sequences from 2015/01/01 to 2022/11/28
-clock_rates = {"H3N2":{'PB2':0.00219, 'PB1':0.00202, 'PA':0.00115, 'HA':0.00449, 'NP':0.00177, 'NA':0.00244, 'M':0.00190, 'NS':0.00167},
+#molecular clock rates used for treetime determined for sequences from 2000 to 2019
+clock_rates = {"H3N2":{'PB2':0.00227, 'PB1':0.00202, 'PA':0.00192, 'HA':0.00449, 'NP':0.00177, 'NA':0.00266, 'M':0.00190, 'NS':0.00167},
                 "H1N1pdm":{'PB2':0.00277, 'PB1':0.00205, 'PA':0.00217, 'HA':0.00329, 'NP':0.00221, 'NA':0.00326, }}
 
 ############### WILDCARDS ####################
