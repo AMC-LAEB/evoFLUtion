@@ -392,7 +392,7 @@ rule TreeTime:
         mol_clock = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_molecular_clock.txt"),
         #dates_estimate = f"{config['output']}/treetime/{{segment}}/dates.tsv",
     message: "Constructing time tree for {wildcards.subtype} {wildcards.segment} {wildcards.period}"
-    threads: workflow.cores if workflow.cores < 3 else 3
+    threads: 1 #no multi threading possible for treetime
     run: 
         #get the correct metadata file(s) and load metadata as pandas df
         #print (wildcards.period)
