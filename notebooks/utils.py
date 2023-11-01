@@ -21,7 +21,7 @@ def get_sequence_files(file_dir):
     for f in os.listdir(file_dir):
         if f.endswith(".fasta"):
             #assuming season in on index 1
-            season = f.split(".")[0].split("_")[1]
+            season = f.split(".")[0].split("_")[2]
             sequences[season] = list(SeqIO.parse(os.path.join(file_dir,f),"fasta"))
     return sequences
 
@@ -37,23 +37,23 @@ def get_tree_files_per_season(file_dir):
     for f in os.listdir(file_dir):
         #assuming season in on index 1
         if f.endswith(".nexus"):
-            season = f.split(".")[0].split("_")[1]
+            season = f.split(".")[0].split("_")[2]
             trees[season] = dendropy.Tree.get(path=os.path.join(file_dir,f), schema="nexus")
     return trees
 
-def get_mature_HA_sequences(sequences):
+def get_mature_sequences(sequences,start_codon=17):
     """
-    get the mature HA sequence for each sequence in the input sequences 
+    get the mature sequence for each sequence in the input sequences 
     assuming that seqeunces are complete AA CDS 
     input:
         -sequences: list SeqIO sequences records 
+        -start_codon: start_codon of the mature sequences
     output:
         -mature_sequences: list SeqIO sequences records with mature proteins only
     """
     mature_sequences = sequences.copy()
-    codon_mature_protein_start = 17 #mature protein starts at codon 17
     for rec in mature_sequences:
-        rec.seq = Seq("".join(rec.seq[17-1:])) #-1 to account for indexing
+        rec.seq = Seq("".join(rec.seq[start_codon-1:])) #-1 to account for indexing
     return mature_sequences
 
 def get_time_frames(seasons, time_frame_size=5, step=1):
