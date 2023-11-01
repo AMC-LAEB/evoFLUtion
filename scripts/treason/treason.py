@@ -9,8 +9,8 @@ from utils import get_time_interval
 
 cwd = os.getcwd()
 filedir = os.path.abspath(os.path.dirname(__file__))
-refdir = os.path.join(filedir,"..","data","reference")
-dropdir = os.path.join(filedir, "..","data","to_drop") #gisaid ID of isolates that should not be included
+refdir = os.path.join(filedir,"..", "..","data","reference")
+dropdir = os.path.join(filedir, "..", "..","data","to_drop") #gisaid ID of isolates that should not be included
 
 def ArgumentParser():
     """Argument parser"""
@@ -247,22 +247,12 @@ def main():
     quite_mode = args.verbose
     
     redo = True if args.redo or args.redo_all else False
-
-    treachery_rules = [ "RedoMSA","RedoPhyloTree","RedoTreeTime"]
-    if args.force_rule is not None:
-        if type(args.force_rule) == str:
-            args.force_rule = [args.force_rule]
-        force_rule_now = [rule for rule in args.force_rule if rule not in treachery_rules]
-        force_rule_later = [rule for rule in args.force_rule if rule in treachery_rules]
-    else:
-        force_rule_now = []
-        force_rule_later = []
-    config["force_rule_later"] = force_rule_later
-
+    
+    force_rule= args.force_rule 
 
     #start snakemake
-    if len(force_rule_now) > 0:
-        snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, forcerun=force_rule_now, config=config, cores=threads, lock=False, latency_wait=15,
+    if force_rule is not None and len(force_rule) > 0:
+        snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, forcerun=force_rule, config=config, cores=threads, lock=False, latency_wait=15,
                             quiet=quite_mode)
     else:
         snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, config=config, cores=threads, lock=False, latency_wait=15,
