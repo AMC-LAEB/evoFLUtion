@@ -6,8 +6,9 @@ from time import gmtime, strftime
 from utils import *
 
 ############### VARS ####################
-#molecular clock rates used for treetime determined for sequences from 2015/01/01 to 2022/11/28
-clock_rates = {'PB2':0.00219, 'PB1':0.00202, 'PA':0.00115, 'HA':0.00449, 'NP':0.00177, 'NA':0.00244, 'M':0.00190, 'NS':0.00167}
+#molecular clock rates used for treetime determined for sequences from 2000 to 2019
+clock_rates = {"H3N2":{'PB2':0.00227, 'PB1':0.00202, 'PA':0.00192, 'HA':0.00415, 'NP':0.00177, 'NA':0.00266, 'M':0.00190, 'NS':0.00167},
+                "H1N1pdm":{'PB2':0.00277, 'PB1':.00230, 'PA':0.00279, 'HA':0.00357, 'NP':0.00221, 'NA':0.00326, }}
 
 ############### WILDCARDS ####################
 wildcard_constraints:
@@ -18,44 +19,45 @@ wildcard_constraints:
 if config["translate"]:
     rule all:
         input:
-            prot = expand(f"{config['output']}/protein/{{segment}}_{{period}}_proteins.fasta", segment=config['segments'], period=config['full_seasons']),
-            final = expand(f"{config['output']}/protein/{{segment}}_{{period}}.nexus", segment=config['segments'], period=config['full_seasons'])
+            prot = expand(f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}_proteins.fasta", subtype=config['subtype'], segment=config['segments'], period=config['full_seasons']),
+            final = expand(f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}.nexus",subtype=config['subtype'], segment=config['segments'], period=config['full_seasons'])
 else:
     rule all:
         input:
-            LBI = expand(f"{config['output']}/lbi/{{segment}}/{{segment}}_{{period}}_LBI.nexus", segment=config['segments'], period=config['full_seasons'])
+            LBI = expand(f"{config['output']}/lbi/{{subtype}}_{{segment}}_{{period}}_LBI.nexus", subtype=config['subtype'], segment=config['segments'], period=config['full_seasons'])
 
 ############### RULES ####################
 ###### Nucleotides ######
 rule FilterClinical:
     #also editing the header of the clinical sequence here for se
     input:
-        fastas = expand(f"{config['output']}/raw/{{segment}}_gisaid_raw.fasta", segment=config['segments']),
-        metadata = f"{config['output']}/raw/metadata_gisaid_raw.csv"
+        fastas = expand(f"{config['output']}/raw/{{subtype}}_{{segment}}_gisaid_raw.fasta", subtype=config['subtype'], segment=config['segments']),
+        metadata = expand(f"{config['output']}/raw/{{subtype}}_metadata_gisaid_raw.csv", subtype=config['subtype'])
     params:
         icb = config["icb"],
-        cell_based_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_cell_based.fasta", segment=config['segments']),
-        cell_based = f"{config['output']}/sequences/metadata_gisaid_cell_based.csv",
+        cell_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_cell_based.fasta",subtype=config['subtype'], segment=config['segments']),
+        cell_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_cell_based.csv",subtype=config['subtype']),
         ieb = config["ieb"],
+        subtype = config["subtype"],
         complete_subset = config["complete_subset"],
-        egg_based_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_egg_based.fasta", segment=config['segments']),
-        egg_based = f"{config['output']}/sequences/metadata_gisaid_egg_based.csv",
-        remaining_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_remaining.fasta", segment=config['segments']),
-        remaining = f"{config['output']}/sequences/metadata_gisaid_remaining.csv",
+        egg_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_egg_based.fasta",subtype=config['subtype'], segment=config['segments']),
+        egg_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_egg_based.csv", subtype=config['subtype']),
+        remaining_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_remaining.fasta",subtype=config['subtype'], segment=config['segments']),
+        remaining = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_remaining.csv", subtype=config['subtype']),
         segments = config['segments'],
         mnlp = config['mnlp'], #min length of the reference
         mxa = config['mxa'], #max % of ambiguous nucleotides allowed
         output_dir = f"{config['output']}/sequences",
         to_drop_files = config['to_drop_files'], #file for each segment with GISAID IDs that need to be removed 
     output:
-        sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_clinical.fasta", segment=config['segments']),
-        clinical = f"{config['output']}/sequences/metadata_gisaid_clinical.csv"
+        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_clinical.fasta",subtype=config['subtype'], segment=config['segments']),
+        clinical = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_clinical.csv", subtype=config['subtype'])
     threads: workflow.cores if workflow.cores < len(config['segments']) else len(config['segments'])
     message: "removing non-clinical isolates and previously reported outliers"
     priority: 1
     run:
         #read metadata and remove potential duplicates
-        metadata = pd.read_csv(input.metadata).drop_duplicates()
+        metadata = pd.read_csv(str(input.metadata)).drop_duplicates()
 
         #filter clinical sequences
         clinical, clinical_sequences = filter_clinical(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp)
@@ -77,11 +79,11 @@ rule FilterClinical:
 
         #write output fastas for all clinical sequences
         for segment, records in clinical_sequences.items():
-            with open(f"{params.output_dir}/{segment}_gisaid_clinical.fasta", "w") as fw:
+            with open(f"{params.output_dir}/{params.subtype}_{segment}_gisaid_clinical.fasta", "w") as fw:
                 SeqIO.write(records, fw, "fasta")
     
         #write output clinical metadata file
-        clinical.to_csv(output.clinical, index=False)
+        clinical.to_csv(str(output.clinical), index=False)
 
         #if cell based is requested repeat the process for cell based isolates
         if params.icb or params.complete_subset:
@@ -98,12 +100,12 @@ rule FilterClinical:
 
             #write output fastas for all cell based sequences
             for segment, records in cell_based_sequences.items():
-                fname = f"{params.output_dir}/{segment}_gisaid_cell_based.fasta"
+                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_cell_based.fasta"
                 with open(fname, "w") as fw:
                     SeqIO.write(records, fw, "fasta")
     
             #write output clinical metadata file
-            cell_based.to_csv(params.cell_based, index=False)
+            cell_based.to_csv(params.cell_based[0], index=False)
 
         #if egg based is requested repeat the process for egg based isolates
         if params.ieb or params.complete_subset:
@@ -120,12 +122,12 @@ rule FilterClinical:
             
             #write output fastsas for all egg based sequences
             for segment, records in egg_based_sequences.items():
-                fname = f"{params.output_dir}/{segment}_gisaid_egg_based.fasta"
+                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_egg_based.fasta"
                 with open(fname, "w") as fw:
                     SeqIO.write(records, fw, "fasta")
     
             #write output clinical metadata file
-            egg_based.to_csv(params.egg_based, index=False)
+            egg_based.to_csv(params.egg_based[0], index=False)
         
         if params.complete_subset:
             remaining, remaining_sequences = filter_remaining(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp)
@@ -141,17 +143,17 @@ rule FilterClinical:
             
             #write output fastsas for all egg based sequences
             for segment, records in remaining_sequences.items():
-                fname = f"{params.output_dir}/{segment}_gisaid_remaining.fasta"
+                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_remaining.fasta"
                 with open(fname, "w") as fw:
                     SeqIO.write(records, fw, "fasta")
     
             #write output clinical metadata file
-            remaining.to_csv(params.remaining, index=False)
+            remaining.to_csv(params.remaining[0], index=False)
 
 rule GetSeason:
     input:
-        sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_clinical.fasta", segment=config['segments']),
-        metadata = f"{config['output']}/sequences/metadata_gisaid_clinical.csv"
+        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_clinical.fasta", subtype=config['subtype'], segment=config['segments']),
+        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_clinical.csv",subtype=config['subtype']),
     params:
         output_dir = f"{config['output']}/sequences",
         seed = config['seed'], #in case seed is used
@@ -165,18 +167,19 @@ rule GetSeason:
         ieb = config['ieb'],
         complete_subset = config['complete_subset'],
         icb_cutoff = 500, 
-        cell_based_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_cell_based.fasta", segment=config['segments']),
-        cell_based = f"{config['output']}/sequences/metadata_gisaid_cell_based.csv",
-        egg_based_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_egg_based.fasta", segment=config['segments']),
-        egg_based = f"{config['output']}/sequences/metadata_gisaid_egg_based.csv",
-        remaining_sequences = expand(f"{config['output']}/sequences/{{segment}}_gisaid_remaining.fasta", segment=config['segments']),
-        remaining = f"{config['output']}/sequences/metadata_gisaid_remaining.csv",
+        subtype = config["subtype"],
+        cell_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_cell_based.fasta", subtype=config['subtype'], segment=config['segments']),
+        cell_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_cell_based.csv",subtype=config['subtype']),
+        egg_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_egg_based.fasta", subtype=config['subtype'], segment=config['segments']),
+        egg_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_egg_based.csv",subtype=config['subtype']),
+        remaining_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_remaining.fasta", subtype=config['subtype'], segment=config['segments']),
+        remaining = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_remaining.csv", subtype=config['subtype'])
     output:
-        sequences = temp(expand(f"{config['output']}/sequences/{{segment}}_{{period}}_temp.fasta", segment=config['segments'], period=config['full_seasons'])),
-        metadata = temp(expand(f"{config['output']}/sequences/metadata_{{season}}_temp.csv", season=config['seasons']))
+        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta",subtype=config['subtype'],  segment=config['segments'], period=config['full_seasons']),
+        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_{{season}}.csv", subtype=config['subtype'], season=config['seasons'])
     run:
         #read clinical data
-        clinical = pd.read_csv(input.metadata)
+        clinical = pd.read_csv(str(input.metadata))
 
         #get the full time intervals
         full_time_intervals = get_time_interval(params.timeframe, params.sm)
@@ -193,7 +196,7 @@ rule GetSeason:
         #check if include cell based is specified > if so check if select per interval is smaller than the cufoff
         if params.icb or params.complete_subset:
             #read cell based metadata
-            cell_based = pd.read_csv(params.cell_based)
+            cell_based = pd.read_csv(params.cell_based[0])
             for i, to_select in to_select_per_interval.items():
                 idx = list(to_select_per_interval.keys()).index(i)
                 #if len(to_select) < params.icb_cutoff:
@@ -205,7 +208,7 @@ rule GetSeason:
         
         #check if include egg based is specified > if so check if select per interal is smaller than the cutoff 
         if params.ieb or params.complete_subset:
-            egg_based = pd.read_csv(params.egg_based)
+            egg_based = pd.read_csv(params.egg_based[0])
             for i, to_select in to_select_per_interval.items():
                 idx = list(to_select_per_interval.keys()).index(i)
                 #check wheter or not include cell based is specified
@@ -225,7 +228,7 @@ rule GetSeason:
 
         #check if subset needs to be completed 
         if params.complete_subset:
-            remaining = pd.read_csv(params.remaining)
+            remaining = pd.read_csv(params.remaining[0])
             for i, to_select in to_select_per_interval.items():
                 idx = list(to_select_per_interval.keys()).index(i)
 
@@ -258,7 +261,8 @@ rule GetSeason:
                 icp_to_select = []
 
             for seqfile in input.sequences:
-                segment = seqfile.split("/")[-1].split("_")[0]
+                subtype = seqfile.split("/")[-1].split("_")[0]
+                segment = seqfile.split("/")[-1].split("_")[1]
                 selected_records = []
                 icp_records = []
                 for record in SeqIO.parse(seqfile, "fasta"):
@@ -294,12 +298,12 @@ rule GetSeason:
                 if params.icp:
                     if season != first_season:
                         prev = "".join(list(list(to_select_per_interval.keys())[indx-1].split("-")[0])[2:])
-                        with open(f"{params.output_dir}/{segment}_{prev+season}_temp.fasta", "w")as fw:
+                        with open(f"{params.output_dir}/{subtype}_{segment}_{prev+season}.fasta", "w")as fw:
                             SeqIO.write(icp_records, fw, "fasta")
-                    with open(f"{params.output_dir}/{segment}_{season}_temp.fasta", "w")as fw:
+                    with open(f"{params.output_dir}/{subtype}_{segment}_{season}.fasta", "w")as fw:
                         SeqIO.write(selected_records, fw, "fasta")
                 else:
-                    with open(f"{params.output_dir}/{segment}_{season}_temp.fasta", "w")as fw:
+                    with open(f"{params.output_dir}/{subtype}_{segment}_{season}.fasta", "w")as fw:
                         SeqIO.write(selected_records, fw, "fasta")
                     
             subset = clinical[clinical["Isolate_Id"].isin(to_select)].reset_index(drop=True)
@@ -311,21 +315,21 @@ rule GetSeason:
                 subset = pd.concat([subset, egg_subset])
             if params.complete_subset:
                 remaining_subset = remaining[remaining["Isolate_Id"].isin(to_select)].reset_index(drop=True)
-            subset.to_csv(f"{params.output_dir}/metadata_{season}_temp.csv", index=False)
+            subset.to_csv(f"{params.output_dir}/{subtype}_metadata_{season}.csv", index=False)
 
 rule MSA:
     input:
-        sequences =  f"{config['output']}/sequences/{{segment}}_{{period}}_temp.fasta"
+        sequences =  f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta"
     params:
         refdir = config["refdir"]
     output:
-        msa = temp(f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA_temp.fasta")
+        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta"
     threads:  workflow.cores if workflow.cores < 3 else 3
-    message: "Performing multiple sequence alignment for {wildcards.segment} {wildcards.period} sequences"
+    message: "Performing multiple sequence alignment for{wildcards.subtype} {wildcards.segment} {wildcards.period} sequences"
     run: 
         #get reference
         for f in os.listdir(params.refdir):
-            if wildcards.segment in f:
+            if wildcards.segment in f and wildcards.subtype in f:
                 reference = os.path.join(params.refdir, f)
 
         #run mafft
@@ -344,10 +348,10 @@ rule PhyloTree:
         model = "GTR",
         seed = config['seed'],
         no_seed = config['no_seed'],
-        treefile = temp(f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA_temp.fasta.treefile"),
+        treefile = temp(f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta.treefile"),
     output:
-        tree = temp(f"{config['output']}/tree/{{segment}}/{{segment}}_{{period}}_temp.treefile"),
-    message: "Constructing phylogenetic maximum likelihood tree for {wildcards.segment} {wildcards.period}"
+        tree = f"{config['output']}/tree/{{subtype}}_{{segment}}_{{period}}.treefile",
+    message: "Constructing phylogenetic maximum likelihood tree for  {wildcards.subtype} {wildcards.segment} {wildcards.period}"
     threads: workflow.cores if workflow.cores < 3 else 3
     run:
         #run IQTREE 
@@ -371,27 +375,27 @@ rule PhyloTree:
 
 rule TreeTime:
     input:
-        metadata = expand(f"{config['output']}/sequences/metadata_{{season}}_temp.csv", season=config['seasons']),
+        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_{{season}}.csv",subtype=config['subtype'], season=config['seasons']),
         msa = rules.MSA.output.msa, 
         tree = rules.PhyloTree.output.tree,
     params: 
         molclock_rates = clock_rates,
-        treetime_folder = temp(f"{config['output']}/treetime/{{segment}}_{{period}}_tt"),
-        timetree = temp(f"{config['output']}/treetime/{{segment}}_{{period}}_tt/timetree.nexus"),
-        divergence_tree = temp(f"{config['output']}/treetime/{{segment}}_{{period}}_tt/divergence_tree.nexus"),
-        mol_clock = temp(f"{config['output']}/treetime/{{segment}}_{{period}}_tt/molecular_clock.txt"),
+        treetime_folder = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt"),
+        timetree = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/timetree.nexus"),
+        divergence_tree = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/divergence_tree.nexus"),
+        mol_clock = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/molecular_clock.txt"),
     output:
-        dates = temp(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_inputdates.csv"),
-        timetree = temp(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_timetree_temp.nexus"),
-        divergence_tree = temp(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_divergence_temp.nexus"),
-        treelog = temp(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_treetime.txt"),
-        mol_clock = temp(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_molecular_clock.txt"),
+        dates = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_inputdates.csv",
+        timetree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_timetree.nexus",
+        divergence_tree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_divergence.nexus",
+        treelog = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_treetime.txt",
+        mol_clock = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_molecular_clock.txt"),
         #dates_estimate = f"{config['output']}/treetime/{{segment}}/dates.tsv",
-    message: "Constructing time tree for {wildcards.segment} {wildcards.period}"
-    threads: workflow.cores if workflow.cores < 3 else 3
+    message: "Constructing time tree for {wildcards.subtype} {wildcards.segment} {wildcards.period}"
+    threads: 1 #no multi threading possible for treetime
     run: 
         #get the correct metadata file(s) and load metadata as pandas df
-        print (wildcards.period)
+        #print (wildcards.period)
         if len(wildcards.period) > 4:
             season = "".join(list(wildcards.period)[2:])
             prevs = "".join(list(wildcards.period)[:4])
@@ -410,7 +414,7 @@ rule TreeTime:
         get_dates(wildcards.segment, metadata, output.dates) 
 
         #get clock rates 
-        clock_rate = params.molclock_rates[wildcards.segment]
+        clock_rate = params.molclock_rates[wildcards.subtype][wildcards.segment]
         clock_stdev = clock_rate*0.2
 
         #run treetime 
@@ -425,177 +429,18 @@ rule TreeTime:
         shell(f"mv {params.divergence_tree} {output.divergence_tree}")
         shell(f"mv {params.mol_clock} {output.mol_clock}")
         shell(f"rm -r -d {params.treetime_folder}")       
-
-rule FilterMolecularClockOutliers:
-    #this function is far from time efficient
-    input:
-        treelogs = expand(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_treetime.txt", segment=config['segments'], period=config['full_seasons']),
-        metadatas = expand(f"{config['output']}/sequences/metadata_{{season}}_temp.csv",season=config['seasons']),
-        sequences = expand(f"{config['output']}/sequences/{{segment}}_{{period}}_temp.fasta", segment=config['segments'], period=config['full_seasons']),
-        msas = expand(f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA_temp.fasta", segment=config['segments'], period=config['full_seasons']),
-        trees = expand(f"{config['output']}/tree/{{segment}}/{{segment}}_{{period}}_temp.treefile", segment=config['segments'], period=config['full_seasons']),
-        timetrees = expand(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_timetree_temp.nexus", segment=config['segments'], period=config['full_seasons']),
-        divergence_trees = expand(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_divergence_temp.nexus",segment=config['segments'], period=config['full_seasons']),
-        snakefile = os.path.join(workflow.current_basedir,"treachery.smk"),
-    params:
-        seasons = config['seasons'],
-        periods=config['full_seasons'],
-        segments = config['segments'],
-        to_drop_files = config['to_drop_files'],
-        clin_dir = f"{config['output']}/sequences/",
-        refdir = config["refdir"],
-        no_seed = config["no_seed"],
-        seed = config["seed"],
-        outdir = config["output"],
-        force_rules = config["force_rule_later"],
-    output:
-        metadatas = expand(f"{config['output']}/sequences/metadata_{{season}}.csv", season=config["seasons"]),
-        sequences = expand(f"{config['output']}/sequences/{{segment}}_{{season}}.fasta", segment=config['segments'], season=config['full_seasons']),
-        msas = expand(f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA.fasta", segment=config['segments'], period=config['full_seasons']),
-        trees = expand(f"{config['output']}/tree/{{segment}}/{{segment}}_{{period}}.treefile", segment=config['segments'], period=config['full_seasons']),
-        timetrees = expand(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_timetree.nexus", segment=config['segments'], period=config['full_seasons']),
-        divergence_trees = expand(f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_divergence.nexus",segment=config['segments'], period=config['full_seasons']),
-    threads: workflow.cores 
-    #threads: workflow.cores
-    run:
-        bad_isolates_per_season = {}
-        bad_isolates_per_segment = {}
-        for season in params.seasons:
-            
-            season_logs = []
-            for treelog in list(input.treelogs):
-                if season in treelog and len(treelog.split("/")[-1].split("_")[1]) <=4:
-                    season_logs.append(treelog)
-
-            bad_isolates_dict = get_treetime_outliers(season_logs)
-            bad_isolates = set()
-            for segment, l in bad_isolates_dict.items():
-                bad_isolates.update(l)
-                try:
-                    bad_isolates_per_segment[segment].update(l)
-                except:
-                    bad_isolates_per_segment[segment] = l
-            
-            bad_isolates_per_season[season] = bad_isolates
-
-        #write bad isolates to to drop filprint (bad_isolates_per_segment)
-        for segment, l in bad_isolates_per_segment.items():
-            for f in params.to_drop_files:
-                if segment in f:
-                    with open(f,"r") as fr:
-                        known_isolates = [l.split(",")[0] for l in fr][1:]
-                    to_add = [i for i in l if i not in known_isolates]
-                    with open(f, "a") as fa:
-                        for i in to_add:
-                            fa.write(f"{i},molecular clock outlier\n")
-
-        if len(params.seasons) < len(params.periods):
-            for i, season in enumerate(sorted(params.seasons)):
-                if i !=0: #skip first season
-                    bi = bad_isolates_per_season[season]
-                    prev_season = list(sorted(bad_isolates_per_season.keys()))[i-1]
-                    prev_bi = bad_isolates_per_season[prev_season]
-                    period = [p for p in params.periods if p.endswith(season) and len(p)==6][0]
-                    
-
-                    if period not in bad_isolates_per_season.keys():
-                        bad_isolates_per_season[period] = bi
-                        bad_isolates_per_season[period].update(prev_bi)
-        
-        periods_to_redo = []
-        for p, bi in bad_isolates_per_season.items():
-            
-            if len(bi) == 0: #if no isolates need to be removed rename the files and move of to the next
-                #metadata only goes per season so 
-                if len(p) == 4:
-                    for metadata in input.metadatas:
-                        if p == metadata.split("/")[-1].split("_")[-2] and not os.path.exists(''.join(metadata.split('_temp'))):
-                            shell(f"mv {metadata} {''.join(metadata.split('_temp'))}")
-                for sequences in input.sequences:
-                    if p == sequences.split("/")[-1].split("_")[-2] and not os.path.exists(''.join(sequences.split('_temp'))):
-                        shell(f"mv {sequences} {''.join(sequences.split('_temp'))}")
-                for msa in input.msas:
-                    if p == msa.split("/")[-1].split("_")[1] and not os.path.exists(''.join(msa.split('_temp'))):
-                        shell(f"mv {msa} {''.join(msa.split('_temp'))}")
-                for tree in input.trees:
-                    if p == tree.split("/")[-1].split("_")[-2] and not os.path.exists(''.join(tree.split('_temp'))):
-                        shell(f"mv {tree} {''.join(tree.split('_temp'))}")
-                for timetree in input.timetrees:
-                    if p == timetree.split("/")[-1].split("_")[1] and not os.path.exists(''.join(timetree.split('_temp'))):
-                        shell(f"mv {timetree} {''.join(timetree.split('_temp'))}")
-                for dtree in input.divergence_trees:
-                    if p == dtree.split("/")[-1].split("_")[1] and not os.path.exists(''.join(dtree.split('_temp'))):
-                        shell(f"mv {dtree} {''.join(dtree.split('_temp'))}")    
-
-            else:
-                periods_to_redo.append(p)
-                #filter metadata
-                if p in params.seasons:
-                    for metadata in input.metadatas:
-                        if p == metadata.split("/")[-1].split("_")[-2].split(".")[0]:
-                            md = pd.read_csv(metadata)
-                            md = md[~md["Isolate_Id"].isin(bad_isolates)]
-                        
-                            outfile = "".join(metadata.split("_temp"))
-                            md.to_csv(outfile, index=False)
-
-                #filter input sequences
-                group_sequences = []
-                for fasta in input.sequences:
-                    if p == fasta.split("/")[-1].split("_")[-2].split(".")[0]:
-                        group_sequences.append(fasta)
-                
-                if len(group_sequences) > 0:
-                    if len(group_sequences) < threads:
-                        ncpu = len(group_sequences)
-                    else:
-                        ncpu = threads
-                    filter_molecular_clock_sequences(group_sequences, bi, params.clin_dir, ncpu=ncpu) #USING THREADS HERE 
-            
-        #run second snakefile
-        if len(periods_to_redo) > 0:
-
-            if type(periods_to_redo) == list:
-                seasons_to_redo = []
-                for season in params.seasons:
-                    for period in periods_to_redo:
-                        if period.startswith(season) or period.endswith(season):
-                            seasons_to_redo.append(season)
-                if len(seasons_to_redo) > 1:
-                    seasons_to_redo = f"{','.join([s for s in seasons_to_redo])}"
-                else:
-                    season_to_redo = ''.join([s for s in seasons_to_redo])
-            else:
-                seasons_to_redo = f"{','.join([s for s in params.seasons if periods_to_redo.startswith(s) or periods_to_redo.endswith(s)])}"
-            periods_to_redo = f"{','.join(periods_to_redo)}" if len(periods_to_redo) > 1 else periods_to_redo
-            segments = f"{','.join(params.segments)}" if len(params.segments) > 1 else params.segments
-            force_rules = f"[{','.join(params.force_rules)}]" if len(params.force_rules) > 1 else params.force_rules
-
-            shell("snakemake --nolock --snakefile {input.snakefile} "
-                        "--config "
-                        "output={params.outdir} "
-                        "refdir={params.refdir} "
-                        "segments={segments} "
-                        "periods={periods_to_redo} "
-                        "seasons={seasons_to_redo} "
-                        "seed={params.seed} "
-                        "no_seed={params.no_seed} "
-                        "--forcerun {force_rules} "
-                        "--cores {threads} ")
-            
-
   
 rule LBI:
     input:
-        timetree = f"{config['output']}/treetime/{{segment}}/{{segment}}_{{period}}_timetree.nexus"
+        timetree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_timetree.nexus"
     params:
         treeformat = "nexus",
         outputformat = "nexus",
         tau = 0.3, #might make these command line options
         normalize = True, #might make these command line options
     output:
-        lbi_tree = f"{config['output']}/lbi/{{segment}}/{{segment}}_{{period}}_LBI.nexus"
-    message: "constructing LBI tree for {wildcards.segment} {wildcards.period}"
+        lbi_tree = f"{config['output']}/lbi/{{subtype}}_{{segment}}_{{period}}_LBI.nexus"
+    message: "constructing LBI tree for  {wildcards.subtype} {wildcards.segment} {wildcards.period}"
     run:
         #read tree
         tree = dendropy.Tree.get(path=input.timetree, schema=params.treeformat)
@@ -612,13 +457,13 @@ rule LBI:
 ###### Proteins ######
 rule Translate:
     input:
-        sequences = f"{config['output']}/sequences/{{segment}}_{{period}}.fasta",
-        msa = f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA.fasta",
+        sequences = f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta",
+        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta",
     params:
         refdir = config["refdir"],
     output:
-        proteins = f"{config['output']}/protein/{{segment}}_{{period}}_proteins.fasta",
-    message: "translating mcc sequences for {wildcards.segment} {wildcards.period} into proteins"
+        proteins = f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}_proteins.fasta",
+    message: "translating mcc sequences for  {wildcards.subtype} {wildcards.segment} {wildcards.period} into proteins"
     run:
         #get length of reference sequence
         for f in os.listdir(params.refdir):
@@ -648,7 +493,7 @@ rule Translate:
 rule TranslateMutations:
     input:
         #sequences = f"{config['output']}/clinical/{{segment}}_{{period}}_mcc.fasta",
-        msa = f"{config['output']}/alignment/{{segment}}/{{segment}}_{{period}}_MSA.fasta",
+        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta",
         tree = rules.LBI.output.lbi_tree,
     params:
         seed = config['seed'],
@@ -656,8 +501,8 @@ rule TranslateMutations:
         o_nonsyn = config['o_nonsyn'], 
         treeformat = "nexus", #lbi output format should not change
     output:
-        tree = f"{config['output']}/protein/{{segment}}_{{period}}.nexus",
-    message: "translating the mutations within the phylogenetic tree for {wildcards.segment} {wildcards.period}"
+        tree = f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}.nexus",
+    message: "translating the mutations within the phylogenetic tree for {wildcards.subtype} {wildcards.segment} {wildcards.period}"
     run:
         #making a dict of the isolates with the sequences > using MSA 
         isolates = {}

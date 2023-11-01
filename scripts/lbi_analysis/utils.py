@@ -56,89 +56,19 @@ def get_mature_sequences(sequences,start_codon=17):
         rec.seq = Seq("".join(rec.seq[start_codon-1:])) #-1 to account for indexing
     return mature_sequences
 
-def get_time_frames(seasons, time_frame_size=5, step=1):
+def get_leaf_nodes(node):
     """
-    get time_frames of size n with step m given list of input seasons
+    get all leaf nodes for a given node
     input:
-        - seasons: list of seasons to generate time frames for
-        - time_frame_size: size of time frame (default 5)
-        - step: step of season to move for next time frame (default 1)
+        - node: node for which leaf nodes need to be generated (dendropy node object)
     output:
-        - timeframe: list  of time frames (time frame is a list of seasons)
+        - leaf: list of all edge node for the input node (list)
     """
-    seasons = sorted(seasons) #just in case
-
-    if len(seasons) <= time_frame_size:
-        return [seasons]
-    
-    timeframes = []
-    for i in range(0,len(seasons)-1,step):
-        tf = [seasons[i]]
-        if i+time_frame_size < len(seasons): #if full time can be made
-            for j in range(1,time_frame_size):
-                tf.append(seasons[i+j])
-            timeframes.append(tf)
-    return timeframes
-
-def determine_season(dates, start_month="05"):
-    """
-    determine the season of a sample given the input date
-    ASSUMING SEASON STARTS IN MAY
-    incomplete date > only year will be label to the start year of the season (2015 > season: 1516)
-    input:
-        - dates: list of date string > yyyy-mm-d
-    output:
-
-        - seasons: pd dataframe columns with seasons > same length as input column
-    """
-
-    if type(dates) == np.ndarray:
-        dates = [d for dl in dates.tolist() for d in dl]
-        array = True
-
-        
-    seasons = []
-    for date in dates:
-
-        year, month = date.split("-")[0:2] if "-" in date else [date, None]
-        s1 =  "".join(list(year[2:]))
-        if month is None:
-            s2 = "0"+str(int(s1)+1) if len(str(int(s1)+1))==1 else str(int(s1)+1)
-        else:
-            if int(month) < int(start_month):
-                s2 = s1
-                s1 = "0"+str(int(s1)-1) if len(str(int(s1)-1))==1 else str(int(s1)-1)
-                if s1 == "-1":
-                    s1 = str(100+int(s1))
-            else:
-                s2 = "0"+str(int(s1)+1) if len(str(int(s1)+1))==1 else str(int(s1)+1)
-        seasons.append(s1+s2)
-    
-    seasons = pd.DataFrame.from_dict({"seasons":seasons})
-    return seasons
-
-def seqs_per_season_from_metadata(metadata_file, seasons, seq_type=""):
-    """
-    count the number of sequence per season from GISAID metadata file
-    input:
-        - metadata_file: file path to metadata file of interest
-        - seasons: list of season of interest
-        - seq_type: type of sequences from column naming, e.g. 'clinical' (default: '')
-    output:
-        - seq_count: pandas dataframe with the number of sequences per season
-    """
-    #load metadata
-    metadata = pd.read_csv(metadata_file)
-    if "index" in metadata.columns:
-        metadata = metadata.drop(["index"], axis=1)
-
-    #infer season
-    metadata[["season"]] = determine_season(metadata[["Collection_Date"]].values)
-
-    seq_count = pd.DataFrame.from_dict({season:len(metadata[metadata["season"]==season]) for season in seasons}, orient="index")
-    seq_count = seq_count.reset_index(level=0).rename(columns={"index":"season", 0:f"number of {seq_type} sequences".replace("  ", " ")})
-
-    return seq_count
+    leafs = []
+    for child in node.postorder_iter():
+        if child.is_leaf():
+            leafs.append(child)
+    return leafs
 
 def annotate_aa_position(sequence, numbering_dict=None):
     """
@@ -190,6 +120,499 @@ def get_variants(sequences):
         variants.extend(varlist)
     return variants
 
+def get_sequence_ids_per_variant(variant,sequences):
+    """
+    get the sequence IDs of the sequences that carry the AAP (certain amino acid at certain position)
+    input:
+        - aap: amino acid and its position (example: 311H)
+        - seqeunces: list of SeqIO records
+    output:
+        - ids: list of the sequence IDs of the sequence that carry the AAP
+    """
+    pos = int("".join(variant[:-1]))
+    aa= variant[-1]
+
+    ids = []
+    for rec in sequences:
+        if rec.seq[pos-1] == aa:#-1 to account for indexing
+            ids.append(rec.id)
+    return ids
+
+def add_vline(ax, xpos, ypos, lent=1):
+    line = plt.Line2D([ypos,ypos], [xpos+0.02, (xpos+lent)-0.02], color='#808080', transform=ax.transAxes)
+    line.set_clip_on(False)
+    ax.add_line(line)
+
+def add_hline(ax,xpos, ypos,lent=1):
+    line = plt.Line2D([xpos+0.01, (xpos+lent)-0.01],[ypos,ypos], color='#808080', transform=ax.transAxes)
+    line.set_clip_on(False)
+    ax.add_line(line)
+
+#returns seasons, mature_sequences, trees
+def get_sequences_trees_seasons(file_dir, start_pos):
+    """
+    get the mature sequences and trees per season from the subset files in the input directory
+    input:
+        - file_dir: directory where analysis files per season are stored
+        - start_pos: starting position of the mature protein
+    output:
+        - seasons: list of all seasons in the data set, chronologically sorted
+        - mature_sequences: dict with mature sequences per season (list with Bio records)
+        - trees: dict with phylogenetic trees per season (dendropy tree objects)
+    """
+    sequences = get_sequence_files(file_dir)
+    sequences = dict(OrderedDict(sorted(sequences.items())))
+    trees = get_tree_files_per_season(file_dir) 
+
+    mature_sequences = {} #only interested in the mature HA protein 
+    sequence_ids = {} #and some times even only in the ID only
+    for season, seqs in sequences.items():
+        mature  = get_mature_sequences(seqs, start_pos)
+        mature_sequences[season] = mature
+        sequence_ids[season] = [r.id for r in seqs]
+
+    seasons = list(mature_sequences.keys())
+    return seasons, mature_sequences, trees
+
+#returns mutation_freqs
+def get_mutation_frequency_trajectories(mature_sequences, minor_cutoff=0.05, analysis=None):
+    """
+    get the frequency trajectories of all mutations in mature_sequences
+    input:
+        - mature_sequences: dict with mature sequences per season (list with Bio records)
+    output:
+        - matutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
+    """
+    #determine all the potential variants and get the frequencies of these variants over the seasons
+    variants = get_variants(mature_sequences)
+    seasons = list(mature_sequences.keys())
+
+    var_frequencies = {} #get the frequencies per variant per season
+    pos_var = {} #get variants per positions 
+    for var in variants:
+        var_frequencies[var] = {}
+        for season, seqs in mature_sequences.items():
+            var_frequencies[var][season] = round(float(determine_var_frequency(var,seqs)),3)
+        pos = int("".join(var[:-1]))
+        try:
+            pos_var[pos].append(var)
+        except:
+            pos_var[pos] = [var]
+
+    #make a DataFrame of variant frequencies 
+    variant_freqs = pd.DataFrame.from_dict(var_frequencies, orient="index").reset_index(level=0).rename(columns={"index":"variant"})
+
+    #translate variants into mutations 
+    var_mut = {}
+    for pos, v in pos_var.items():
+        if len(v) > 1:
+            posdf = variant_freqs[variant_freqs["variant"].isin(v)]
+            #get variant with the highest frequency the first season
+            leading_variant = posdf[posdf[seasons[0]]==max(posdf[seasons[0]])]["variant"].values[0]
+            original_aa = leading_variant[-1]
+
+            #get the mutations assuming that the leading variants is the initial AA
+            for variant in posdf["variant"]:
+                if variant != leading_variant:
+                    var_mut[variant] = original_aa + variant
+
+    mutation_freqs = variant_freqs[variant_freqs['variant'].isin(var_mut.keys())].copy().reset_index(drop=True)
+    #add mutation as a column to the DataFrame
+    mutation_freqs["mutation"] = ""
+    for i, row in mutation_freqs.iterrows():
+        mutation_freqs.iloc[i, mutation_freqs.columns.get_loc("mutation")] = var_mut[row["variant"]]
+
+    mutation_freqs = mutation_freqs[["variant", "mutation"]+seasons]
+
+    #remove the minor mutations from the analysis > don't reach frequencies higher than 5% over all seasons
+    to_drop = []
+    for mutation in mutation_freqs["mutation"].unique():
+        freqs = {s:v[0] for s,v in mutation_freqs[mutation_freqs["mutation"]==mutation][seasons].to_dict(orient="list").items()}
+
+        if all(freq < minor_cutoff for freq in freqs.values()):
+            to_drop.append(mutation)
+        
+    mutation_freqs = mutation_freqs[~mutation_freqs["mutation"].isin(to_drop)].reset_index(drop=True).drop(["variant"], axis=1)
+    if analysis is not None:
+        mutation_freqs["analysis"] = analysis
+
+    return mutation_freqs
+
+#returns mutation_timepoints, mutation_groups
+def time_point_assignment(mutation_freqs, f0, seasons, minor_cutoff=0.05, fixed_cutoff=0.95):
+    """
+    get the timepoints in which mutations exceed f0 and at which they first appear
+    differentiating between mutation reach/exceed f0 in their first season
+    also assign mutations to groups 
+    input:
+        - mutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
+        - f0: float with separation frequency
+        - seasons: list of all seasons in the data set, chronologically sorted
+    output:
+        - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
+        - mutation_group: dict {mutation_group:[mutations]}
+    """
+    #create new data frame with group, and time point columns
+    mutation_timepoints = pd.DataFrame({"mutation":mutation_freqs["mutation"].copy()})
+    mutation_timepoints[["group", "t0", "tf0", "tfmax"]] = ""
+
+    #determine group, and time points for all mutations
+    mutation_groups = {"A":[], "B":[], "C":[]}
+    for i, row in mutation_timepoints.iterrows():
+        mutation = row["mutation"]
+
+        #get the frequencies per season from mutation_freqs
+        freqs = {season:mutation_freqs[mutation_freqs["mutation"]==mutation][season].values[0] for season in seasons}
+        #determine if the mutation reaches or exceeds f0
+        if any(freq >= f0 for freq in freqs.values()):
+
+            #determine the season in which f0 is reached/exceeded
+            for season, freq in freqs.items():
+                if freq >= f0:
+                    tf0 = season 
+                    break
+            
+            #determine the season preceeding tf0 during which the mutation made it's first appearance (above minor cutoff), continuously
+            for season in reversed(seasons[:seasons.index(tf0)+1]):
+                if freqs[season] >= minor_cutoff:
+                    t0 = season
+                else:
+                    break
+            
+            #only assigning t0 is if t0 != tf0 > else pop-up
+            if t0 == tf0:
+                t0 = "pop-up"
+
+            #determine if the mutation eventually fixes and assign groups 
+            if any(freqs[season]>=fixed_cutoff for season in seasons[seasons.index(tf0):]):
+                group = "A"
+            else:
+                group = "B"
+            
+            tfmax = "not relevant"
+            
+        else: #mutation never reaches f0
+            tf0 = "never"
+            group = "C"
+
+            #determine t0 which is the season preceeding tfmax > the season maximum frequency is reached
+            tfmax = seasons[list(freqs.values()).index(max(freqs.values()))]
+            for season in reversed(seasons[:seasons.index(tfmax)+1]):
+                if freqs[season] >= minor_cutoff:
+                    t0 = season
+                else:
+                    break
+
+        mutation_groups[group].append(mutation)
+
+        #assign values to dataframe
+        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("group")] = group
+        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("t0")] = t0
+        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("tf0")] = tf0
+        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("tfmax")] = tfmax
+
+    return mutation_timepoints, mutation_groups
+
+#return mutation_info
+def get_additional_info(mutation_freqs, epitope_positions):
+    """
+    determine whether mutation is located in epitope sites, or rbs:
+    input:
+        - mutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
+    output:
+        - mutation_info: Pandas dataframe with the mutations from mutation freqs and the additonal info
+    """
+    #create dataframe with additional information
+    mutation_info = pd.DataFrame({"mutation":mutation_freqs["mutation"].copy()})
+    mutation_info[['epitope site']] = bool()
+    #mutation_info[['epitope']] = ''
+
+    for i, row in mutation_info.iterrows():
+        mutation = row["mutation"]
+        position = int("".join(mutation[1:-1]))
+
+        #check if mutation is located in epitope site, if so in which
+        if position in epitope_positions:
+            mutation_info.iloc[i, mutation_info.columns.get_loc("epitope site")] = True
+    
+    return mutation_info
+
+#return mutation_season_seqs
+def get_mutation_seqs_season(mutation_freqs, mature_sequences):
+    """
+    get the sequences that carry the mutation per season
+    input:
+        - mutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
+        - mature_sequences: dict with mature sequences per season (list with Bio records)
+    output:
+        - mutation_season_seqs: dict with seqs per seasons per mutation {mutation:{season:[seqs]}}
+    """
+    #get for each mutation a list of sequences that contain that mutation per season
+    mutation_season_seqs = {}
+    for mutation in mutation_freqs["mutation"].unique():
+        mutation_season_seqs[mutation] = {}
+        variant = "".join(mutation[1:])
+        for season in mature_sequences.keys():
+            mutation_season_seqs[mutation][season] = get_sequence_ids_per_variant(variant, mature_sequences[season])   
+
+    return mutation_season_seqs 
+
+#returns mutation_timeframes
+def get_mutation_timeframes(mutation_timepoints, seasons):
+    """
+    based on timepoints get seasons between t0 and tf0 for every mutation
+    input:
+        - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
+        - seasons: list of all seasons in the data set, chronologically sorted
+    output:
+        - mutation_timeframes: dict {mutation:[seasons]}
+    """
+    #for each mutation get the season from which nodes need to be extracted from the phylogenetic tree
+    mutation_timeframes = {}
+    for i, row in mutation_timepoints.iterrows():
+        if row["t0"] == "pop-up":
+            mutation_timeframes[row['mutation']] = [seasons[seasons.index(row['tf0'])]]
+        elif row["tf0"] == "never":
+            mutation_timeframes[row['mutation']] = [seasons[seasons.index(row['t0'])]]
+        else:
+            mutation_timeframes[row['mutation']] = seasons[seasons.index(row['t0']):seasons.index(row['tf0'])+1]
+    return mutation_timeframes
+
+#returns mutation_nodes
+def get_mutation_nodes(mutation_timeframes, mutation_season_seqs, trees):
+    """
+    get the nodes for each mutation from season's tree for each season in the mutation time frame
+    tracing nodes in tree pure clusters only
+    input:
+        - mutation_timeframes: dict {mutation:[seasons]}
+        - mutation_season_seqs: dict with seqs per seasons per mutation {mutation:{season:[seqs]}}
+        - trees: dict with phylogenetic trees per season (dendropy tree objects)
+    output:
+        - mutation_nodes: dict with nodes per season per mutation {mutation:{season:{node_type:[nodes]}}}
+    """
+    #for each mutation collect the pure cluster, cherry, in singleton nodes that 'carry' the mutaiton per season
+    mutation_nodes = {}
+
+    for mutation, timeframe in mutation_timeframes.items():
+        mutation_nodes[mutation] = {}
+        #get of unique seasons in timeframes
+        for season in timeframe:
+            #get tre and sequences carrying the mutation
+            tree = trees[season]
+            seqs = mutation_season_seqs[mutation][season]
+
+            #get all leaf nodes that carry the mutation
+            tip_nodes = []
+            for leaf_node in tree.leaf_node_iter():
+                if leaf_node.taxon.label.replace(" ", "_") in seqs:
+                    tip_nodes.append(leaf_node)
+
+            #find all the internal nodes that carry the mutation > pure cluster
+            internal_nodes = {}
+            for internal_node in tree.preorder_internal_node_iter():
+                child_leafs = get_leaf_nodes(internal_node)
+                if all(leaf in tip_nodes for leaf in child_leafs) \
+                and not any(leaf in [node for leaf_nodes in internal_nodes.values() for node in leaf_nodes] for leaf in child_leafs):
+                    internal_nodes[internal_node] = child_leafs
+            
+            #divide internal nodes in clusters (n>2) and in cherries (n=2)
+            clusters, cherries = [], []
+            for internal_node, child_leafs in internal_nodes.items():
+                if len(child_leafs) > 2:
+                    clusters.append(internal_node)
+                else:
+                    cherries.append(internal_node)
+
+            #get all the singletons
+            singletons = [leaf for leaf in tip_nodes if leaf not in [node for leaf_nodes in internal_nodes.values() for node in leaf_nodes]]
+
+            mutation_nodes[mutation][season] = {"clusters":clusters, "cherries":cherries, "singletons":singletons}
+    return mutation_nodes
+
+#returns mutation_lbis
+def collect_mutation_lbis(mutation_nodes, mutation_timepoints, mutation_info=None):
+    """
+    get the LBI for the mutation nodes for each mutation per season in the mutation timeframe and create a df
+    input:
+        - mutation_nodes: dict with nodes per season per mutation {mutation:{season:{node_type:[nodes]}}}
+        - mutation_timeframes: dict {mutation:[seasons]}
+        - mutation_group: dict {mutation_group:[mutations]}
+        - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
+    output:
+        - mutation_lbis: Pandas dataframe with the LBI per mutation per season and other additional info
+    """
+    #create dataframne with all raw LBIs
+    mutation_lbis = []
+
+    for mutation, sn in mutation_nodes.items():
+        for season, nodes in sn.items():
+            for node_type, node_list in nodes.items():
+                for node in node_list:
+                    if node.is_leaf():
+                        lbi = round(float(node.annotations.get_value("lbi")),3)
+
+                        #determine if the mutation is in groups and assign timeframe
+                        mutation_lbis.append([mutation, season,node_type.rstrip("s").replace("ie","y"), lbi])
+                    else:
+                        for child in get_leaf_nodes(node):
+                            lbi = round(float(child.annotations.get_value("lbi")),3)
+                            mutation_lbis.append([mutation, season,node_type.rstrip("s").replace("ie","y"), lbi])
+
+
+    mutation_lbis = pd.DataFrame.from_records(mutation_lbis, columns=["mutation", "season", "node type", "LBI"])
+    #add mutation additional info to the data frame
+    mutation_lbis = mutation_lbis.set_index(["mutation", "season"]).join(mutation_timepoints.set_index("mutation")) #.reset_index()
+    if mutation_info is not None:
+        mutation_lbis = mutation_lbis.join(mutation_info.set_index("mutation"))
+    return mutation_lbis.reset_index()
+
+def determine_f0(mutation_freqs, seasons, f0_freq_range, full_range=False):
+    """
+    determine f0 with specified range from input mutation frequencies
+    input:
+        - mutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
+        - seasons: list of all seasons in the data set, chronologically sorted
+        - f0_freq_range: float range within which f0 must fall
+        - full_range: breakpoints for f0 calculation can be within the entire range
+    output:
+        - f0: float
+        - f1: corresponding min frequency f0 ensure next season (float)
+    """
+    #let's get all upwards trajectory pairs
+    upward_pairs = []
+    for i, row in mutation_freqs.iterrows():
+        #get the frequencies of the mutation
+        mutation = row["mutation"]
+        freqs = {season:row[season] for season in seasons}
+        
+        #iterate of frequencys per season and see what happens the next season
+        for i,season in enumerate(seasons[1:-1], start=1): #excluding final season as there is no last season
+            sf = round(freqs[season],2)
+            nsf = round(freqs[seasons[i+1]],2)
+            psf =  round(freqs[seasons[i-1]],2)
+            if nsf > sf and sf>psf: #if there is an increase and if the mutation is already in an upward trajectory
+                upward_pairs.append([sf, nsf])
+    
+    #get the minimum increase at each observed frequency from the frequency pairs
+    min_increases = {}
+    for f0_freq, f1_freq in upward_pairs:
+        if f0_freq not in min_increases.keys():
+            min_increases[f0_freq] = f1_freq
+        elif f1_freq < min_increases[f0_freq]:
+            min_increases[f0_freq] = f1_freq
+
+    min_increases = dict(OrderedDict(sorted(min_increases.items())))   
+
+    #find the breakpoints
+    breakpoints = {}
+    f0s_found = list(reversed(list(min_increases.keys())))
+    for i, f in enumerate(f0s_found):
+        if not full_range and f not in f0_freq_range:
+            continue
+        fmin = min_increases[f]
+        for j, pf in enumerate(f0s_found[i+1:],start=i+1):
+            pfmin = min_increases[pf]
+            if fmin > pfmin and all(bf>fmin for bf in breakpoints.values()):
+                breakpoints[f] = fmin 
+
+    #find the breakpoint within the range of interest
+    f0_breakpoints = {f0:f1 for f0,f1 in breakpoints.items() if f0 in f0_freq_range}# and f1 in f1_freq_range}
+    #and find the breakpoint with the biggest increase
+    differences = {f1-f0:f0 for f0,f1 in f0_breakpoints.items() }
+    max_increase_f0 = differences[max(differences.keys())]
+    
+    return max_increase_f0, f0_breakpoints[max_increase_f0]
+
+######## UNUSED FUNCTIONS ###############
+# a.k.a old functions I'm too scared to delete
+#unused
+def get_time_frames(seasons, time_frame_size=5, step=1):
+    """
+    get time_frames of size n with step m given list of input seasons
+    input:
+        - seasons: list of seasons to generate time frames for
+        - time_frame_size: size of time frame (default 5)
+        - step: step of season to move for next time frame (default 1)
+    output:
+        - timeframe: list  of time frames (time frame is a list of seasons)
+    """
+    seasons = sorted(seasons) #just in case
+
+    if len(seasons) <= time_frame_size:
+        return [seasons]
+    
+    timeframes = []
+    for i in range(0,len(seasons)-1,step):
+        tf = [seasons[i]]
+        if i+time_frame_size < len(seasons): #if full time can be made
+            for j in range(1,time_frame_size):
+                tf.append(seasons[i+j])
+            timeframes.append(tf)
+    return timeframes
+
+#unused
+def determine_season(dates, start_month="05"):
+    """
+    determine the season of a sample given the input date
+    ASSUMING SEASON STARTS IN MAY
+    incomplete date > only year will be label to the start year of the season (2015 > season: 1516)
+    input:
+        - dates: list of date string > yyyy-mm-d
+    output:
+
+        - seasons: pd dataframe columns with seasons > same length as input column
+    """
+
+    if type(dates) == np.ndarray:
+        dates = [d for dl in dates.tolist() for d in dl]
+        array = True
+
+        
+    seasons = []
+    for date in dates:
+
+        year, month = date.split("-")[0:2] if "-" in date else [date, None]
+        s1 =  "".join(list(year[2:]))
+        if month is None:
+            s2 = "0"+str(int(s1)+1) if len(str(int(s1)+1))==1 else str(int(s1)+1)
+        else:
+            if int(month) < int(start_month):
+                s2 = s1
+                s1 = "0"+str(int(s1)-1) if len(str(int(s1)-1))==1 else str(int(s1)-1)
+                if s1 == "-1":
+                    s1 = str(100+int(s1))
+            else:
+                s2 = "0"+str(int(s1)+1) if len(str(int(s1)+1))==1 else str(int(s1)+1)
+        seasons.append(s1+s2)
+    
+    seasons = pd.DataFrame.from_dict({"seasons":seasons})
+    return seasons
+
+#unused
+def seqs_per_season_from_metadata(metadata_file, seasons, seq_type=""):
+    """
+    count the number of sequence per season from GISAID metadata file
+    input:
+        - metadata_file: file path to metadata file of interest
+        - seasons: list of season of interest
+        - seq_type: type of sequences from column naming, e.g. 'clinical' (default: '')
+    output:
+        - seq_count: pandas dataframe with the number of sequences per season
+    """
+    #load metadata
+    metadata = pd.read_csv(metadata_file)
+    if "index" in metadata.columns:
+        metadata = metadata.drop(["index"], axis=1)
+
+    #infer season
+    metadata[["season"]] = determine_season(metadata[["Collection_Date"]].values)
+
+    seq_count = pd.DataFrame.from_dict({season:len(metadata[metadata["season"]==season]) for season in seasons}, orient="index")
+    seq_count = seq_count.reset_index(level=0).rename(columns={"index":"season", 0:f"number of {seq_type} sequences".replace("  ", " ")})
+
+    return seq_count
+
+#unused
 def determine_var_frequency(var, sequences,numbering_dict=None):
     """
     count the occurence of the input mutation in a certain sequence set
@@ -222,6 +645,7 @@ def determine_var_frequency(var, sequences,numbering_dict=None):
     #if original is observed at least once return frequency else return 0
     return frequency#return 0.0
 
+#unused
 def determine_frequency_pattern(freqs, minf=0.05, maxf=0.95):
     """
     determine frequency pattern for every mutation
@@ -322,6 +746,7 @@ def determine_frequency_pattern(freqs, minf=0.05, maxf=0.95):
             freqs[mut]["status"] = "normal"             
     return freqs
 
+#unused
 def determine_frequency_pattern_general(var_freqs, fixed_freq=0.8, transient_freq=0.4, minor_freq=0.05):
     """
     determine frequency pattern of mutations but a more general labeling
@@ -356,24 +781,7 @@ def determine_frequency_pattern_general(var_freqs, fixed_freq=0.8, transient_fre
     
     return freq_pattern
 
-def get_sequence_ids_per_variant(variant,sequences):
-    """
-    get the sequence IDs of the sequences that carry the AAP (certain amino acid at certain position)
-    input:
-        - aap: amino acid and its position (example: 311H)
-        - seqeunces: list of SeqIO records
-    output:
-        - ids: list of the sequence IDs of the sequence that carry the AAP
-    """
-    pos = int("".join(variant[:-1]))
-    aa= variant[-1]
-
-    ids = []
-    for rec in sequences:
-        if rec.seq[pos-1] == aa:#-1 to account for indexing
-            ids.append(rec.id)
-    return ids
-
+#unused
 def get_background(sequence, positions):
     """
     get the mutation background of input sequences for the positions of interest
@@ -389,6 +797,7 @@ def get_background(sequence, positions):
         background.append(str(pos)+aa)
     return background
 
+#unused
 def sort_mutations_by_position(mutations):
     """
     given an input list of mutations sort the mutation by position
@@ -401,20 +810,7 @@ def sort_mutations_by_position(mutations):
     pos_mut_sorted = dict(OrderedDict(sorted(pos_mut.items())))
     return [mut for mut in pos_mut_sorted.values()]
 
-def get_leaf_nodes(node):
-    """
-    get all leaf nodes for a given node
-    input:
-        - node: node for which leaf nodes need to be generated (dendropy node object)
-    output:
-        - leaf: list of all edge node for the input node (list)
-    """
-    leafs = []
-    for child in node.postorder_iter():
-        if child.is_leaf():
-            leafs.append(child)
-    return leafs
-
+#unused
 def get_lbi_from_sequence_node(tree, id_list):
     """
     get the LBI from node in the input tree if there is a node that only carries leafs with ids in the id_list
@@ -438,6 +834,7 @@ def get_lbi_from_sequence_node(tree, id_list):
 
         return None #no node that matches
 
+#unused
 def find_cluster_nodes(tree,seqs,cluster_definitions):
     """
     find the internal nodes that make up clusters as defines in the cluster definitions in the tree
@@ -500,6 +897,7 @@ def find_cluster_nodes(tree,seqs,cluster_definitions):
 
     return cluster_nodes, singletons
 
+#unused
 def calculate_weighted_lbi(cluster_nodes, singletons):
     """
     calculate the weighted average LBI based on the cluster nodes and the number of leaves for each cluster node
@@ -528,6 +926,7 @@ def calculate_weighted_lbi(cluster_nodes, singletons):
         
     return round(sum([k*v for k,v in lbi_weights.items()])/sum(list(lbi_weights.values())),3)
 
+#unused
 def get_branch_length(parent, child, tree):
     """
     get the branch length between the parent node and the child node > child must be a direct descendant
@@ -543,6 +942,7 @@ def get_branch_length(parent, child, tree):
         if edge._get_tail_node() == parent and edge._get_head_node() == child:
             return edge.length
 
+#unused
 def get_total_branch_length(mrca, leaf, tree):
     """
     get the total branch length from MRCA to child nodes 
@@ -560,6 +960,7 @@ def get_total_branch_length(mrca, leaf, tree):
         parent= leaf.parent_node
     return total_branch_length
 
+#unused
 def get_nodes_from_labels(isolates, tree):
     """
     get the node that belongs to isolate in the input isolates from the tree
@@ -576,6 +977,7 @@ def get_nodes_from_labels(isolates, tree):
                 nodes[isolates.index(node.taxon.label.replace(" ", "_"))] = node
     return nodes
 
+#unused
 def get_mrca(nodes, tree):
     """
     get the Most Recent Common Ancestor of the two input nodes given the tree
@@ -590,6 +992,7 @@ def get_mrca(nodes, tree):
         if all([node in children for node in nodes]):
             return internal_node
 
+#unused
 def get_depths(nodes, tree):
     """
     get the depths from the nodes in the input list to their mrca
@@ -607,6 +1010,7 @@ def get_depths(nodes, tree):
         depths.append(get_total_branch_length(mrca,node,tree))
     return depths
 
+#unused
 def get_node_depth(node):
     """
     determine depth of node in tree > number of splits
@@ -630,6 +1034,7 @@ def get_node_depth(node):
             max_depth = depth
     return max_depth
 
+#unused
 def count_branches(parent, child):
     """
     count the number of branch between parent node and child node
@@ -646,6 +1051,7 @@ def count_branches(parent, child):
         p = p.parent_node
     return n_branches
  
+#unused 
 def calculate_wiener_index(distance_matrix):
     """
     Calculate the wiener index from the input matrix
@@ -668,6 +1074,7 @@ def calculate_wiener_index(distance_matrix):
 
     return wiener
 
+#unused
 def get_pairwise_distance_matrix(isolates, tree):
     """
     get the pair wise distance between all isolates in the input list from the phylogenetic tree 
@@ -703,6 +1110,7 @@ def get_pairwise_distance_matrix(isolates, tree):
                 pwd_matrix[j,i] = t1_t2
     return pwd_matrix
 
+#unused
 def determine_n_cherries(nodes): 
     """
     determine the number of cherry nodes 
@@ -721,6 +1129,7 @@ def determine_n_cherries(nodes):
                         n_cherries +=1   
     return n_cherries
 
+#unused
 def determine_n_pitchforks(nodes, pitchfork_size=3):
     """
     determine the number of pitchforks found the phylogenetic tree
@@ -748,16 +1157,7 @@ def determine_n_pitchforks(nodes, pitchfork_size=3):
 
     return  n_pitchforks
 
-def add_vline(ax, xpos, ypos, lent=1):
-    line = plt.Line2D([ypos,ypos], [xpos+0.02, (xpos+lent)-0.02], color='#808080', transform=ax.transAxes)
-    line.set_clip_on(False)
-    ax.add_line(line)
-
-def add_hline(ax,xpos, ypos,lent=1):
-    line = plt.Line2D([xpos+0.01, (xpos+lent)-0.01],[ypos,ypos], color='#808080', transform=ax.transAxes)
-    line.set_clip_on(False)
-    ax.add_line(line)
-
+#unused
 def edit_timelabels_for_plot(dataframe):
     if "time point" in dataframe.columns:
         for i, row in dataframe.iterrows():
@@ -772,6 +1172,7 @@ def edit_timelabels_for_plot(dataframe):
         print ("no 'time point' column found in dataframe > dataframe stays unchanged")
     return dataframe
 
+#unused
 def generate_p_value_annotation(dataframe):
     """change pvalue to string for input dataframe and return a copy"""
     df_annot = dataframe.copy()
@@ -783,6 +1184,7 @@ def generate_p_value_annotation(dataframe):
         print ("no 'p-value' column found dataframe remains unchanged")
     return df_annot
 
+#unused
 def change_width(ax, new_value):
     for patch in ax.patches:
         current_width = patch.get_width()
@@ -790,6 +1192,7 @@ def change_width(ax, new_value):
         patch.set_width(new_value)
         patch.set_x(patch.get_x() + diff * .5)
 
+#unused
 def date_to_float_date(d):
     """convert date string (yyyy-mm-dd) to float date"""
     d = "-".join(d.split("-")[::-1])

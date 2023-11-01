@@ -115,7 +115,7 @@ def filter_fasta(clinical,fasta,rh=True, adth=True, mxa=0.01, mnlp=0.95, message
     to_drop = set() #isolates that did not pass QC
         
     #get segment 
-    segment = fasta.split("/")[-1].split("_")[0]
+    segment = fasta.split("/")[-1].split("_")[1]
     print (f"filtering {message} sequences for {segment}")
         
     clinical_records = []

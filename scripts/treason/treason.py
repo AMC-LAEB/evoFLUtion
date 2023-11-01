@@ -9,8 +9,8 @@ from utils import get_time_interval
 
 cwd = os.getcwd()
 filedir = os.path.abspath(os.path.dirname(__file__))
-refdir = os.path.join(filedir,"..","data","reference")
-dropdir = os.path.join(filedir, "..","data","to_drop") #gisaid ID of isolates that should not be included
+refdir = os.path.join(filedir,"..", "..","data","reference")
+dropdir = os.path.join(filedir, "..", "..","data","to_drop") #gisaid ID of isolates that should not be included
 
 def ArgumentParser():
     """Argument parser"""
@@ -22,6 +22,7 @@ def ArgumentParser():
     parser.add_argument('-d','--data-folder', required=True, action="store", type=str, help="data folder where raw GISAID sequence and metadata are stored")
     parser.add_argument('-o','--output', required=False, action="store", type=str, help="output directory to store all generated output file (default: ./)")
     parser.add_argument('-s','--segments', required=False, nargs='+', action="store", type=str, help="segment abbreviations that will be analyzed")
+    parser.add_argument('-st','--subtype', required=False, action="store", type=str, default="H3N2", choices=["H3N2", "H1N1pdm"], help="subtype to be analyzed (default: A/H3N2)")
 
     parser.add_argument('-p','--protein', required=False, action="store_true", help="if sequences need be translated into protein sequences (coding region only) and if mutations in final LBI need to be translated")
     parser.add_argument('-on','--only-nonsyn', required=False, action="store_true", help="if '-p' flag is specified, only report non-synonymous mutations in tree files")
@@ -112,6 +113,9 @@ def main():
         sys.stderr.write(f"Error: specified segments are not recognized. Choose from {', '.join(all_segments)}")#\nCheck if installed properly")
         sys.exit(-1)
 
+    #get subtype
+    subtype = args.subtype
+
     #get data folder
     datafolder = os.path.join(cwd, args.data_folder)
     if not os.path.isdir (datafolder):
@@ -121,7 +125,7 @@ def main():
     #get to drop files
     to_drop_files = []
     for f in os.listdir(dropdir):
-        if f.split("_")[0] in segments:
+        if f.split("_")[1] in segments and f.split("_")[0] == subtype:
             to_drop_files.append(os.path.join(dropdir,f))
 
     #get the output directory
@@ -147,7 +151,7 @@ def main():
     metcols = ["Isolate_Id", "PB2 Segment_Id", "PB1 Segment_Id", "PA Segment_Id", "HA Segment_Id", "NP Segment_Id",
                "NA Segment_Id", "MP Segment_Id", "NS Segment_Id", "Isolate_Name", "Passage_History", "Location", "Collection_Date"]
 
-    if not os.path.isfile(f"{output}/raw/metadata_gisaid_raw.csv") or args.redo_all:
+    if not os.path.isfile(f"{output}/raw/{subtype}_metadata_gisaid_raw.csv") or args.redo_all:
         print ("Merging Raw GISAID sequences into a single file per segment")
         print (strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         segment_records= {}
@@ -192,7 +196,7 @@ def main():
                     unique.append(record)
 
             #write output 
-            merge_file = os.path.join(rawdir, f"{segment}_gisaid_raw.fasta")
+            merge_file = os.path.join(rawdir, f"{subtype}_{segment}_gisaid_raw.fasta")
             with open(merge_file, 'w') as fw:
                 SeqIO.write(unique, fw, "fasta")
             print (f"finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
@@ -201,7 +205,7 @@ def main():
         print ("creating merge file for metadata")
         print (strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         try:
-            metadf.to_csv(os.path.join(rawdir, "metadata_gisaid_raw.csv"), index=False)
+            metadf.to_csv(os.path.join(rawdir, f"{subtype}_metadata_gisaid_raw.csv"), index=False)
         except:
             sys.stderr.write(f"Could not find metadata file(s) in {datafolder}. Check if metadata is in correct directory and in correct format")
             sys.exit(-1)
@@ -217,6 +221,7 @@ def main():
     #setup snakemake config
     config = {
         "segments":segments,
+        "subtype":subtype,
         "output":output,
         "refdir":refdir,
         "translate":args.protein,
@@ -242,22 +247,12 @@ def main():
     quite_mode = args.verbose
     
     redo = True if args.redo or args.redo_all else False
-
-    treachery_rules = [ "RedoMSA","RedoPhyloTree","RedoTreeTime"]
-    if args.force_rule is not None:
-        if type(args.force_rule) == str:
-            args.force_rule = [args.force_rule]
-        force_rule_now = [rule for rule in args.force_rule if rule not in treachery_rules]
-        force_rule_later = [rule for rule in args.force_rule if rule in treachery_rules]
-    else:
-        force_rule_now = []
-        force_rule_later = []
-    config["force_rule_later"] = force_rule_later
-
+    
+    force_rule= args.force_rule 
 
     #start snakemake
-    if len(force_rule_now) > 0:
-        snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, forcerun=force_rule_now, config=config, cores=threads, lock=False, latency_wait=15,
+    if force_rule is not None and len(force_rule) > 0:
+        snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, forcerun=force_rule, config=config, cores=threads, lock=False, latency_wait=15,
                             quiet=quite_mode)
     else:
         snakemake.snakemake(snakefile, printshellcmds=True, forceall=redo, config=config, cores=threads, lock=False, latency_wait=15,
