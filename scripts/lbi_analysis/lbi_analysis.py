@@ -75,9 +75,6 @@ def ArgumentParser():
     
     parser.add_argument('-mc','--minor-cutoff', required=False, action="store", type=float, default=0.05, help="minimum frequency cut-off for macroscopic detection of mutations (default:0.05)")
     parser.add_argument('-fc','--fixed-cutoff', required=False, action="store", type=float, default=0.95, help="frequency cut-off for fixation of mutations")
-    parser.add_argument('-fr','--freq-range', required=False, action="store", type=str, default="0.1-0.25", help="frequency range for f0 calculation; i.e. f0 must fall within specified range (default: 0.1-0.25)")
-    parser.add_argument('--step', required=False, action="store", type=float, default=0.01, help="step of frequency range for f0 calculation (default: 0.01)")
-    parser.add_argument('--full-range', required=False, action="store_true", help="identify breakpoints in the entire frequency range for f0 calculation (by default: only breakpoints within the specified f0 range will be usedå)")
 
     parser.add_argument('-p', '--plot', required=False, action="store_true", help="make plots")
 
@@ -100,27 +97,25 @@ def get_frequency(fdir, analysis, minor_cutoff, start_pos):
     return mut_freqs
     
 #analysis function for pooling
-def run_lbi_analysis(analysis, fdir, mut_freqs, f0_range, full_range, start_pos, minor_cutoff=0.05, fixed_cutoff=0.95, epitope_positions=None):
+def run_lbi_analysis(analysis, fdir, mut_freqs, start_pos, minor_cutoff=0.05, fixed_cutoff=0.95, epitope_positions=None, lf_cutoff=None):
     seasons, mature_seqs, trees = get_sequences_trees_seasons(fdir, start_pos)
-    f0, f1 = determine_f0(mut_freqs, seasons, f0_range, full_range)
-    mutation_timepoints, mutation_groups = time_point_assignment(mut_freqs, f0, seasons, minor_cutoff, fixed_cutoff)
+    mutation_timepoints_groups = get_mutation_groups_timepoints(mut_freqs, seasons, lf_cutoff=lf_cutoff)
     mutation_season_seqs = get_mutation_seqs_season(mut_freqs, mature_seqs)
-    mutation_timeframes = get_mutation_timeframes(mutation_timepoints, seasons)
-    mutation_nodes = get_mutation_nodes(mutation_timeframes, mutation_season_seqs, trees)
+    mutation_nodes = get_mutation_nodes(mutation_timepoints_groups, mutation_season_seqs, trees)
 
     if epitope_positions is not None:
         mutation_info = get_additional_info(mut_freqs, epitope_positions)
-        mutation_lbis = collect_mutation_lbis(mutation_nodes, mutation_timepoints,mutation_info)
+        mutation_lbis = collect_mutation_lbis(mutation_nodes,  mutation_timepoints_groups ,mutation_info)
     else:
-        mutation_lbis = collect_mutation_lbis(mutation_nodes, mutation_timepoints)
+        mutation_lbis = collect_mutation_lbis(mutation_nodes,  mutation_timepoints_groups)
 
     #add columns with analysis number
     mutation_lbis["analysis"] = analysis
     return mutation_lbis
   
-def statistical_lbi_analysis(a, lbi_frame, epitope=False, timepoints=["t0", "tf0"]):
+def statistical_lbi_analysis(a, lbi_frame, epitope=False, timepoints=["t_0", "t_onset"]):
     """
-    statistical mann-whitney U analysis of the different mutation groups at t0 and tf0
+    statistical mann-whitney U analysis of the different mutation groups at t_0 and t_onset
     """
     if epitope:
         mutation_types = ["epitope", "non-epitope", "all"]
@@ -129,12 +124,12 @@ def statistical_lbi_analysis(a, lbi_frame, epitope=False, timepoints=["t0", "tf0
     stat_results = []
     #for a in lbi_frame["analysis"].unique():
     for t in timepoints:
-        tp = "$t_{0}$" if t=="t0" else "$t_{f_{0}}$"
+        tp = "$t_{0}$" if t=="t_0" else "$t_{onset}$"
         df = lbi_frame.query(f"season=={t}")
         for mt in mutation_types:
             subdf = df.copy() if mt=="all" else df[df["epitope site"]==True] if mt=="epitope" else df[df["epitope site"]==False]
             
-            if t =="t0": #a vs b& c and c vs a&b only at t0
+            if t =="t_0": #a vs b& c and c vs a&b only at t0
                 try:
                     uvalue, pvalue = stats.mannwhitneyu(subdf[subdf["group"]=="A"]["LBI"], subdf[subdf["group"]!="A"]["LBI"])
                     stat_results.append([a, mt,tp, "A vs. \nB & C", pvalue])
@@ -238,7 +233,6 @@ def frequency_trajectory_plot(plot_freqs, AB_freqs, f0, seasons):
 
     return fig
 
-
 def get_f0s(analysis, mutation_freqs, f0_range, full_range):
     df = mutation_freqs[mutation_freqs["analysis"]==analysis]
     seasons = [s for s in df.columns if s not in ["mutation", "analysis"]]
@@ -308,8 +302,6 @@ def epitope_LBI_heatmap_plot(stat_plot, support_values):
                     if label.startswith("t"):
                         label = label.replace("t","$t_{") + "}$"
                         
-                        if "f" in label:
-                            label = label.replace("}$", "}}$").replace("f", "f_{")
                     ax.text(lypos,xpos, label, ha='center', transform=ax.transAxes, size=10)
 
                 elif level==1:
@@ -360,7 +352,7 @@ def epitope_LBI_heatmap_plot(stat_plot, support_values):
     fig.ax_heatmap.set(xlabel=None, ylabel=None)
     plt.subplots_adjust(left=0.2)
 
-    space_before = [('$t_{0}$', 'epitope', 'A vs. \nB & C'), ('$t_{0}$', 'non-epitope', 'A vs. \nB & C'),('$t_{f_{0}}$', 'all', 'A vs. B')]
+    space_before = [('$t_{0}$', 'epitope', 'A vs. \nB & C'), ('$t_{0}$', 'non-epitope', 'A vs. \nB & C'),('$t_{onset}$', 'all', 'A vs. B')]
     for i,col in enumerate(stat_plot.columns):
 
         if col in space_before:
@@ -578,29 +570,19 @@ def main():
         mutation_freqs = mutation_freqs[~mutation_freqs["mutation"].isin(egg_adaptive_mutations)]
 
 
-    #get frequency range for f0 calculation
-    try:
-        step = args.step
-        f0_range = [float(i) for i in args.freq_range.split("-")]
-        f0_range = np.arange(f0_range[0], f0_range[1]+step, step)
-    except:
-        sys.stderr.write(f"Error: f0 range not properly specified. See manual and try again.")
-        sys.exit(-1)
-    #determine if full range in specified
-    full_range = args.full_range
 
     #get LBI distributions per mutation per analysis
     if not os.path.isfile(lbi_file) or args.redo:
         print (f"running LBI analysis for {len(analyses)} replicates")
         with mp.Pool(processes=threads) as p:
             if epitope_analysis:
-                for result in [p.apply_async(run_lbi_analysis, args=(a,fdir, mutation_freqs[mutation_freqs["analysis"]==a].reset_index(), f0_range, full_range, start_pos, minor_cutoff, fixed_cutoff, epitope_positions)) for a,fdir in analyses.items()]:
+                for result in [p.apply_async(run_lbi_analysis, args=(a,fdir, mutation_freqs[mutation_freqs["analysis"]==a].reset_index(), start_pos, minor_cutoff, fixed_cutoff, epitope_positions)) for a,fdir in analyses.items()]:
                     try:
                         mutation_lbis = pd.concat([mutation_lbis, result.get()])
                     except:
                         mutation_lbis = result.get()
             else:
-                for result in [p.apply_async(run_lbi_analysis, args=(a,fdir, mutation_freqs[mutation_freqs["analysis"]==a].reset_index(), f0_range, full_range, start_pos, minor_cutoff, fixed_cutoff )) for a,fdir in analyses.items()]:
+                for result in [p.apply_async(run_lbi_analysis, args=(a,fdir, mutation_freqs[mutation_freqs["analysis"]==a].reset_index(), start_pos, minor_cutoff, fixed_cutoff )) for a,fdir in analyses.items()]:
                     try:
                         mutation_lbis = pd.concat([mutation_lbis, result.get()])
                     except:
@@ -608,7 +590,7 @@ def main():
         mutation_lbis.to_csv(lbi_file)
         print ("finished LBI analysis")
     else:
-        mutation_lbis = pd.read_csv(lbi_file,dtype={'season': str, 't0':str, 'tf0':str, 'tfmax':str}).drop(["Unnamed: 0"], axis=1)
+        mutation_lbis = pd.read_csv(lbi_file,dtype={'season': str, 't_0':str, 't_onset':str}).drop(["Unnamed: 0"], axis=1)
         #quick check if load file matches input file
         if len([a for a in mutation_lbis["analysis"].unique() if a not in analyses.keys()]) > 0 or \
             len([a for a in analyses.keys() if a not in mutation_lbis["analysis"].unique()]) >0 :
@@ -644,50 +626,50 @@ def main():
     if args.plot:
 
         ####### random frequency trajectory plot (1/100)
-        ra = random.choice(list(analyses.keys()))
-        ra_freqs = mutation_freqs[mutation_freqs["analysis"]==ra].reset_index(drop=True).drop(columns=["analysis"])
-        seasons = [s for s in ra_freqs.columns if s not in ["mutation", "analysis"]]
-        ra_f0, _ = determine_f0(ra_freqs, seasons, f0_range, full_range)
-        ra_timepoints, ra_groups = time_point_assignment(ra_freqs, ra_f0, seasons)
-        ra_AB_freqs = get_AB_time_points(ra_freqs, ra_timepoints, seasons)
+        # ra = random.choice(list(analyses.keys()))
+        # ra_freqs = mutation_freqs[mutation_freqs["analysis"]==ra].reset_index(drop=True).drop(columns=["analysis"])
+        # seasons = [s for s in ra_freqs.columns if s not in ["mutation", "analysis"]]
+        # ra_f0, _ = determine_f0(ra_freqs, seasons, f0_range, full_range)
+        # ra_timepoints, ra_groups = time_point_assignment(ra_freqs, ra_f0, seasons)
+        # ra_AB_freqs = get_AB_time_points(ra_freqs, ra_timepoints, seasons)
 
-        ra_plot_freqs = ra_freqs.melt(id_vars="mutation", var_name="season", value_name="frequency").set_index(["mutation"]).join(ra_timepoints.set_index("mutation")["group"]).reset_index()
-        #make plot
-        plot_file  = os.path.join(output,"frequency_trajectory_plot.png")
-        fig = frequency_trajectory_plot(ra_plot_freqs, ra_AB_freqs, ra_f0, seasons)
-        fig.savefig(plot_file,  dpi=600)
+        # ra_plot_freqs = ra_freqs.melt(id_vars="mutation", var_name="season", value_name="frequency").set_index(["mutation"]).join(ra_timepoints.set_index("mutation")["group"]).reset_index()
+        # #make plot
+        # plot_file  = os.path.join(output,"frequency_trajectory_plot.png")
+        # fig = frequency_trajectory_plot(ra_plot_freqs, ra_AB_freqs, ra_f0, seasons)
+        # fig.savefig(plot_file,  dpi=600)
 
-        ###### f0 and number of mutations per group per analysis plot
-        #get f0s
-        with mp.Pool(processes=threads) as p:
-            for result in [p.apply_async(get_f0s, args=(a, mutation_freqs, f0_range, full_range)) for a in analyses.keys()]:
-                try:
-                    f0s = pd.concat([f0s, result.get()])
-                except:
-                    f0s = result.get()
-        plot_f0s = f0s.melt(id_vars="analysis", var_name="point", value_name="frequency")
+        # ###### f0 and number of mutations per group per analysis plot
+        # #get f0s
+        # with mp.Pool(processes=threads) as p:
+        #     for result in [p.apply_async(get_f0s, args=(a, mutation_freqs, f0_range, full_range)) for a in analyses.keys()]:
+        #         try:
+        #             f0s = pd.concat([f0s, result.get()])
+        #         except:
+        #             f0s = result.get()
+        # plot_f0s = f0s.melt(id_vars="analysis", var_name="point", value_name="frequency")
 
-        #get group distributions 
-        group_dist = mutation_lbis.groupby(["analysis", "mutation"])["group"].agg(pd.Series.mode).to_frame().reset_index().groupby(["analysis", "group"]).count().reset_index()
+        # #get group distributions 
+        # group_dist = mutation_lbis.groupby(["analysis", "mutation"])["group"].agg(pd.Series.mode).to_frame().reset_index().groupby(["analysis", "group"]).count().reset_index()
 
-        #make plot
-        plot_file  = os.path.join(output,"group_distribution_f0s.png")
-        fig = group_dist_f0_plot(group_dist, plot_f0s)
-        fig.savefig(plot_file,  dpi=600)
+        # #make plot
+        # plot_file  = os.path.join(output,"group_distribution_f0s.png")
+        # fig = group_dist_f0_plot(group_dist, plot_f0s)
+        # fig.savefig(plot_file,  dpi=600)
 
         ###### LBI heat map
         #get support values
         support_values = calculate_support_values(stat_results)
 
         #get support values ready for plotting
-        support_values["time point"] = pd.Categorical(support_values["time point"], categories=["$t_{0}$", "$t_{f_{0}}$"])
+        support_values["time point"] = pd.Categorical(support_values["time point"], categories=["$t_{0}$", "$t_{onset}$"])
         support_values["mutation type"] = pd.Categorical(support_values["mutation type"], categories=["all", "epitope", "non-epitope"])
         support_values["groups compared"] = pd.Categorical(support_values["groups compared"], categories=["A vs. \nB & C", "B vs. \nA & C", "C vs. \nA & B", "A vs. B"])
         support_values = support_values.sort_values(["time point", "mutation type", "groups compared"]).set_index(["time point", "mutation type", "groups compared"])
 
         #get stat_results ready for plotting 
         stat_plot = stat_results.copy()
-        stat_plot["time point"] = pd.Categorical(stat_plot["time point"], categories=["$t_{0}$", "$t_{f_{0}}$"])
+        stat_plot["time point"] = pd.Categorical(stat_plot["time point"], categories=["$t_{0}$", "$t_{onset}$"])
         stat_plot["groups compared"] = pd.Categorical(stat_plot["groups compared"], categories=["A vs. \nB & C", "B vs. \nA & C",  "C vs. \nA & B", "A vs. B"])
         stat_plot = stat_plot.pivot(index=["analysis"], columns=["time point", "mutation type", "groups compared"], values="p-value").sort_values(by=["time point", "mutation type", "groups compared" ], axis=1)
 

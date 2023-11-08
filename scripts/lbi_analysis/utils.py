@@ -238,80 +238,77 @@ def get_mutation_frequency_trajectories(mature_sequences, minor_cutoff=0.05, ana
 
     return mutation_freqs
 
-#returns mutation_timepoints, mutation_groups
-def time_point_assignment(mutation_freqs, f0, seasons, minor_cutoff=0.05, fixed_cutoff=0.95):
+#returns mutation timepoints
+def get_mutation_groups_timepoints(mutation_freqs, seasons, minor_cutoff=0.05, fixed_cutoff=0.95, lf_cutoff=None):
     """
-    get the timepoints in which mutations exceed f0 and at which they first appear
-    differentiating between mutation reach/exceed f0 in their first season
-    also assign mutations to groups 
+    determine mutation groups based on whether or not exponential growth is detected upon first macroscopic detection
     input:
         - mutation_freqs: Pandas dataframe rows mutation columns season > values frequency 
-        - f0: float with separation frequency
-        - seasons: list of all seasons in the data set, chronologically sorted
+        - seasons: list of seasons of interest (list)
+        - minor_cutoff: minor detection cutoff (float)
+        - fixed_cutoff: cut off for fixed mutations (float)
+        - lf_cutoff: additional frequency cutoff for additional timepoint identification
     output:
-        - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
-        - mutation_group: dict {mutation_group:[mutations]}
+        - mutation_timepoints: pandas dataframe with mutation of the rows timepoint t_0 (first detection) and 
+            t_onset (onset of exponential growth) + additional timepoint if lf_cutoff was specified + mutation_groups
+
     """
-    #create new data frame with group, and time point columns
+    #intialize new columns
     mutation_timepoints = pd.DataFrame({"mutation":mutation_freqs["mutation"].copy()})
-    mutation_timepoints[["group", "t0", "tf0", "tfmax"]] = ""
 
-    #determine group, and time points for all mutations
-    mutation_groups = {"A":[], "B":[], "C":[]}
-    for i, row in mutation_timepoints.iterrows():
-        mutation = row["mutation"]
+    for i, row in mutation_freqs.iterrows():
+        freqs = [v for k,v in row.items() if k in seasons]
 
-        #get the frequencies per season from mutation_freqs
-        freqs = {season:mutation_freqs[mutation_freqs["mutation"]==mutation][season].values[0] for season in seasons}
-        #determine if the mutation reaches or exceeds f0
-        if any(freq >= f0 for freq in freqs.values()):
-
-            #determine the season in which f0 is reached/exceeded
-            for season, freq in freqs.items():
-                if freq >= f0:
-                    tf0 = season 
-                    break
+        group = "C"
+        for j, f in enumerate(freqs[:-1]):
             
-            #determine the season preceeding tf0 during which the mutation made it's first appearance (above minor cutoff), continuously
-            for season in reversed(seasons[:seasons.index(tf0)+1]):
-                if freqs[season] >= minor_cutoff:
-                    t0 = season
-                else:
-                    break
+            nf = freqs[j+1]#next season frequency 
             
-            #only assigning t0 is if t0 != tf0 > else pop-up
-            if t0 == tf0:
-                t0 = "pop-up"
-
-            #determine if the mutation eventually fixes and assign groups 
-            if any(freqs[season]>=fixed_cutoff for season in seasons[seasons.index(tf0):]):
-                group = "A"
-            else:
+            #check for exponential increase; taking sqrt because 0. number 
+            if np.sqrt(f) <= nf and f>minor_cutoff:# and nf >= minor_cutoff and np.sqrt(f) >= minor_cutoff: 
                 group = "B"
-            
-            tfmax = "not relevant"
-            
-        else: #mutation never reaches f0
-            tf0 = "never"
-            group = "C"
+                onset_index = j
+                onset = seasons[j]
+                break
+            else:
+                try:
+                    nnf = freqs[j+2]#next season frequency 
+                    if (np.cbrt(f) <= nnf)and nf>minor_cutoff and f>0.0:
+                        group = "B"
+                        onset_index = j+1
+                        onset = seasons[j+1]
+                        break
+                except:
+                    continue
 
-            #determine t0 which is the season preceeding tfmax > the season maximum frequency is reached
-            tfmax = seasons[list(freqs.values()).index(max(freqs.values()))]
-            for season in reversed(seasons[:seasons.index(tfmax)+1]):
-                if freqs[season] >= minor_cutoff:
-                    t0 = season
-                else:
+
+        if group == "B" and len([f for f in freqs if f > fixed_cutoff]) >0:
+            group = "A"
+        
+        mutation_timepoints.loc[i,"group"] = group
+        if group in ["A", "B"]:
+            mutation_timepoints.loc[i,"t_onset"] = onset
+
+            #identify t_0 
+            for j, f in enumerate(freqs[:onset_index+1]):
+                if f >= minor_cutoff and freqs[j-1] < minor_cutoff:
+                    mutation_timepoints.loc[i, "t_0"] = seasons[j]
+                elif f >= minor_cutoff and j == 0:
+                    mutation_timepoints.loc[i, "t_0"] = seasons[j]
+
+        else: #group == C
+            for j, f in enumerate(freqs):#identify t_0 
+                if f >= minor_cutoff:
+                    mutation_timepoints.loc[i, "t_0"] = seasons[j]
+                    break
+        
+        if lf_cutoff is not None:
+             for j, f in enumerate(freqs):#identify t_0 
+                if f >= lf_cutoff:
+                    mutation_timepoints.loc[i, f"t_f{round(lf_cutoff*100)}"] = seasons[j]
                     break
 
-        mutation_groups[group].append(mutation)
-
-        #assign values to dataframe
-        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("group")] = group
-        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("t0")] = t0
-        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("tf0")] = tf0
-        mutation_timepoints.iloc[i, mutation_timepoints.columns.get_loc("tfmax")] = tfmax
-
-    return mutation_timepoints, mutation_groups
+    return mutation_timepoints
 
 #return mutation_info
 def get_additional_info(mutation_freqs, epitope_positions):
@@ -324,8 +321,6 @@ def get_additional_info(mutation_freqs, epitope_positions):
     """
     #create dataframe with additional information
     mutation_info = pd.DataFrame({"mutation":mutation_freqs["mutation"].copy()})
-    mutation_info[['epitope site']] = bool()
-    #mutation_info[['epitope']] = ''
 
     for i, row in mutation_info.iterrows():
         mutation = row["mutation"]
@@ -333,8 +328,12 @@ def get_additional_info(mutation_freqs, epitope_positions):
 
         #check if mutation is located in epitope site, if so in which
         if position in epitope_positions:
-            mutation_info.iloc[i, mutation_info.columns.get_loc("epitope site")] = True
-    
+            mutation_info.loc[i, "epitope site"] = True
+            # epitope_site = [epitope for epitope, sites in epitope_sites.items() if position in sites][0]
+            # mutation_info.loc[i, "epitope"] = epitope_site
+        else:
+            mutation_info.loc[i, "epitope site"] = False
+
     return mutation_info
 
 #return mutation_season_seqs
@@ -357,29 +356,8 @@ def get_mutation_seqs_season(mutation_freqs, mature_sequences):
 
     return mutation_season_seqs 
 
-#returns mutation_timeframes
-def get_mutation_timeframes(mutation_timepoints, seasons):
-    """
-    based on timepoints get seasons between t0 and tf0 for every mutation
-    input:
-        - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
-        - seasons: list of all seasons in the data set, chronologically sorted
-    output:
-        - mutation_timeframes: dict {mutation:[seasons]}
-    """
-    #for each mutation get the season from which nodes need to be extracted from the phylogenetic tree
-    mutation_timeframes = {}
-    for i, row in mutation_timepoints.iterrows():
-        if row["t0"] == "pop-up":
-            mutation_timeframes[row['mutation']] = [seasons[seasons.index(row['tf0'])]]
-        elif row["tf0"] == "never":
-            mutation_timeframes[row['mutation']] = [seasons[seasons.index(row['t0'])]]
-        else:
-            mutation_timeframes[row['mutation']] = seasons[seasons.index(row['t0']):seasons.index(row['tf0'])+1]
-    return mutation_timeframes
-
 #returns mutation_nodes
-def get_mutation_nodes(mutation_timeframes, mutation_season_seqs, trees):
+def get_mutation_nodes(mutation_timepoints, mutation_season_seqs, trees):
     """
     get the nodes for each mutation from season's tree for each season in the mutation time frame
     tracing nodes in tree pure clusters only
@@ -393,10 +371,13 @@ def get_mutation_nodes(mutation_timeframes, mutation_season_seqs, trees):
     #for each mutation collect the pure cluster, cherry, in singleton nodes that 'carry' the mutaiton per season
     mutation_nodes = {}
 
-    for mutation, timeframe in mutation_timeframes.items():
+    for i, row in mutation_timepoints.iterrows():
+        mutation = row["mutation"]
         mutation_nodes[mutation] = {}
-        #get of unique seasons in timeframes
-        for season in timeframe:
+        for c in [c for c in mutation_timepoints.columns if c.startswith("t")]:
+            season = row[c]
+            if pd.isna(season):
+                continue
             #get tre and sequences carrying the mutation
             tree = trees[season]
             seqs = mutation_season_seqs[mutation][season]
@@ -435,9 +416,8 @@ def collect_mutation_lbis(mutation_nodes, mutation_timepoints, mutation_info=Non
     get the LBI for the mutation nodes for each mutation per season in the mutation timeframe and create a df
     input:
         - mutation_nodes: dict with nodes per season per mutation {mutation:{season:{node_type:[nodes]}}}
-        - mutation_timeframes: dict {mutation:[seasons]}
-        - mutation_group: dict {mutation_group:[mutations]}
         - mutation_timepoints: Pandas dataframe, with mutations and their assigned timepoints and group
+        - mutation_info: Pandas dataframe with the mutations from mutation freqs and the additonal info
     output:
         - mutation_lbis: Pandas dataframe with the LBI per mutation per season and other additional info
     """
@@ -461,7 +441,7 @@ def collect_mutation_lbis(mutation_nodes, mutation_timepoints, mutation_info=Non
 
     mutation_lbis = pd.DataFrame.from_records(mutation_lbis, columns=["mutation", "season", "node type", "LBI"])
     #add mutation additional info to the data frame
-    mutation_lbis = mutation_lbis.set_index(["mutation", "season"]).join(mutation_timepoints.set_index("mutation")) #.reset_index()
+    mutation_lbis = mutation_lbis.set_index(["mutation", "season"]).join(mutation_timepoints.set_index("mutation"))
     if mutation_info is not None:
         mutation_lbis = mutation_lbis.join(mutation_info.set_index("mutation"))
     return mutation_lbis.reset_index()
