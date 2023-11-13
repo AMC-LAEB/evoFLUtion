@@ -1,6 +1,7 @@
 #!usr/bin/env python3
 import os, dendropy
 import pandas as pd, numpy as np
+from scipy.optimize import curve_fit
 from Bio import SeqIO
 from Bio.Seq import Seq
 from collections import OrderedDict
@@ -238,7 +239,7 @@ def get_mutation_frequency_trajectories(mature_sequences, minor_cutoff=0.05, ana
 
     return mutation_freqs
 
-#returns mutation timepoints
+#returns mutation timepoints NOT USED ANYMORE
 def get_mutation_groups_timepoints(mutation_freqs, seasons, minor_cutoff=0.05, fixed_cutoff=0.95, lf_cutoff=None):
     """
     determine mutation groups based on whether or not exponential growth is detected upon first macroscopic detection
@@ -310,6 +311,111 @@ def get_mutation_groups_timepoints(mutation_freqs, seasons, minor_cutoff=0.05, f
 
     return mutation_timepoints
 
+def calculate_r2(y, y_fit):
+    ss_res = np.sum((y - y_fit) ** 2) #residual sum of squares
+    ss_tot = np.sum((y - np.mean(y)) ** 2)#total sum of squares
+    r2 = 1 - (ss_res / ss_tot) #r-squared
+    return r2
+
+def sigmoid(x, L ,x0, k, b):
+    return L / (1 + np.exp(-k*(x-x0))) + b
+
+def exponential(x, a, b, c):
+    return a*np.exp(-b*x)+c
+
+def fit_sigmoid(l):
+    try:
+        (L, x0, k, b), _ = curve_fit(sigmoid, range(len(l)), l)
+        sigmoid_pred = [sigmoid(x, L, x0, k, b) for x in range(len(l))]
+        sigmoid_r2 = calculate_r2(np.array(l), np.array(sigmoid_pred))
+        return sigmoid_r2
+    except: 
+        return None
+
+def fit_exponential(l):
+    try:
+        (a,b,c), _ = curve_fit(exponential, range(len(l)), l)
+        exp_pred = [exponential(x, a, b,c) for x in range(len(l))]
+        exp_r2 = calculate_r2(np.array(l), np.array(exp_pred))
+        return exp_r2
+    except:
+        return None
+    
+def classify_trajectories(mutation_freqs, seasons, minor_cutoff=0.05, fixed_cutoff=0.95):
+    
+    #mutation_timepoints = pd.DataFrame({"mutation":mutation_freqs["mutation"].copy()})
+    mutation_timepoints = []
+    for i, row in mutation_freqs.iterrows():
+        freqs = [v for k,v in row.items() if k in seasons]
+        
+            
+        #identify whether mutation appeared twice > two trajectories / broken trajectory
+        fl, sl = [], [] #freq list, season list 
+        tfl, tsl = [], [] #temporary freq list, temporary season list 
+        above_mc = [True if f>=minor_cutoff else False for f in freqs]
+        
+        for i, b in enumerate(above_mc):
+            if b == True: 
+                tfl.append(freqs[i])
+                tsl.append(seasons[i])
+
+            if b is False and i!=0 and above_mc[i-1] == True:
+                fl.append(tfl)
+                sl.append(tsl)
+                tfl, tsl = [], []
+        if len(tfl) >0:
+            fl.append(tfl)
+            sl.append(tsl)
+        
+        for i, l in enumerate(fl):
+            if len(l) == 1:
+                group = "C"
+            elif len(l) == 2: #not enough points for a proper curve fit >>> see if there is the frequency doubles
+                if np.sqrt(l[0]) <= l[1]:
+                    group = "B"
+                else:
+                    group = "C"
+            else:
+                group = "C"
+                #determine max frequency to get the left side of the slope
+                ll = l[:l.index(max(l))+1] 
+                if row['mutation'] == "K745R":
+                    (a,b,c), _ = curve_fit(exponential, range(len(l)), l)
+                    exp_pred = [exponential(x, a, b,c) for x in range(len(l))]
+                    exp_r2 = calculate_r2(np.array(l), np.array(exp_pred))
+                if len(ll) == 2 and np.sqrt(ll[0]) <= ll[1]:
+                    group = "B"           
+                elif fit_sigmoid(ll) is not None and fit_sigmoid(ll) >= 0.9:
+                    group = "B"
+                elif fit_sigmoid(l) is not None and fit_sigmoid(l) >= 0.9 and len(ll)>1:
+                    group = "B"
+                elif fit_exponential(ll) is not None and fit_exponential(ll) >= 0.75:
+                    group = "B"
+                else: 
+                    for z in range(len(ll)-1):
+                        if np.sqrt(ll[z]) <= ll[z+1]:
+                            group="B"
+            
+            #determine whether mutation has reached fixation
+            if group == "B" and len([f for f in l if f>fixed_cutoff]):
+                group = "A"
+            
+            #identify the t_0 and t_d > time of last appearance
+            t_0 = sl[i][0]
+            t_d = sl[i][-1]
+            
+            #determine frequency in the subsequent season 
+            try:
+                t_1 = sl[i][1]
+            except:
+                t_1 = pd.NA
+
+            #add to mutation timepoints 
+            mutation_timepoints.append([row["mutation"], t_0, t_1, t_d, group, row["analysis"]])
+    
+    mutation_timepoints = pd.DataFrame.from_records(mutation_timepoints, columns=["mutation", "t_0", "t_1", "t_d", "group", 'analysis'])
+    return mutation_timepoints
+
 #return mutation_info
 def get_additional_info(mutation_freqs, epitope_positions):
     """
@@ -329,8 +435,6 @@ def get_additional_info(mutation_freqs, epitope_positions):
         #check if mutation is located in epitope site, if so in which
         if position in epitope_positions:
             mutation_info.loc[i, "epitope site"] = True
-            # epitope_site = [epitope for epitope, sites in epitope_sites.items() if position in sites][0]
-            # mutation_info.loc[i, "epitope"] = epitope_site
         else:
             mutation_info.loc[i, "epitope site"] = False
 
@@ -357,7 +461,7 @@ def get_mutation_seqs_season(mutation_freqs, mature_sequences):
     return mutation_season_seqs 
 
 #returns mutation_nodes
-def get_mutation_nodes(mutation_timepoints, mutation_season_seqs, trees):
+def get_mutation_nodes(mutation_classification, mutation_season_seqs, trees, timepoints=["t_0", "t_1"]):
     """
     get the nodes for each mutation from season's tree for each season in the mutation time frame
     tracing nodes in tree pure clusters only
@@ -371,12 +475,14 @@ def get_mutation_nodes(mutation_timepoints, mutation_season_seqs, trees):
     #for each mutation collect the pure cluster, cherry, in singleton nodes that 'carry' the mutaiton per season
     mutation_nodes = {}
 
-    for i, row in mutation_timepoints.iterrows():
+    for i, row in mutation_classification.iterrows():
         mutation = row["mutation"]
-        mutation_nodes[mutation] = {}
-        for c in [c for c in mutation_timepoints.columns if c.startswith("t")]:
-            season = row[c]
-            if pd.isna(season):
+        if not mutation in mutation_nodes.keys():
+            mutation_nodes[mutation] = {}
+        #get of unique seasons in timeframes
+        for tp in timepoints:
+            season = row[tp]
+            if pd.isna(season)or season in mutation_nodes[mutation].keys():
                 continue
             #get tre and sequences carrying the mutation
             tree = trees[season]
@@ -438,14 +544,22 @@ def collect_mutation_lbis(mutation_nodes, mutation_timepoints, mutation_info=Non
                             lbi = round(float(child.annotations.get_value("lbi")),3)
                             mutation_lbis.append([mutation, season,node_type.rstrip("s").replace("ie","y"), lbi])
 
-
     mutation_lbis = pd.DataFrame.from_records(mutation_lbis, columns=["mutation", "season", "node type", "LBI"])
+    #dealing with multiple observations per mutation
+    mtdf = []
+    for i, row in mutation_timepoints.iterrows():
+        for c in mutation_timepoints.columns:
+            if c.startswith("t_"):
+                mtdf.append(row.to_list() + [row[c]])
+    mtdf = pd.DataFrame.from_records(mtdf, columns=list(mutation_timepoints.columns) + ["season"] )
+    mutation_lbis = mutation_lbis.set_index(["mutation", "season"]).join(mtdf.set_index(["mutation", "season"]))
+
     #add mutation additional info to the data frame
-    mutation_lbis = mutation_lbis.set_index(["mutation", "season"]).join(mutation_timepoints.set_index("mutation"))
     if mutation_info is not None:
         mutation_lbis = mutation_lbis.join(mutation_info.set_index("mutation"))
-    return mutation_lbis.reset_index()
+    return mutation_lbis.reset_index() 
 
+#NOT USED ANYMORE
 def determine_f0(mutation_freqs, seasons, f0_freq_range, full_range=False):
     """
     determine f0 with specified range from input mutation frequencies
