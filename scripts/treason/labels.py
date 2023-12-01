@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 
 #tried a bunch of filtering methods for these but since there a typo"s and way to many variables solid vars was the best option 
+#months to numbers 
+m2n = {"January":1, "February":2, "March":3, "April":4, "May":5, "June":6, "July":7, "August":8, "September":9, "October":10, "November":11, "December":12,}
+#last day of month by month number
+ldm = {1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31}
+
+#GISAID metadata columns of interest
+metcols = ["Isolate_Id", "PB2 Segment_Id", "PB1 Segment_Id", "PA Segment_Id", "HA Segment_Id", "NP Segment_Id",
+               "NA Segment_Id", "MP Segment_Id", "NS Segment_Id", "Isolate_Name", "Passage_History", "Location", "Collection_Date"]
 
 #clinical passage labels 
 cpl = ["original", "Original", "Original specimen", "passage: Original", "passage: Original; Hospitalized", "clinical sample",
@@ -109,3 +117,42 @@ epl = ['C3/E8', 'C3E20/E8/E1', 'C3E3', 'C3E3/E1', 'C3E4', 'C3E8', 'C3E8/E2', 'CK
        'SPF eggs', 'X,E2', 'X,E6', 'clone123 E4', 'egg', 'embryonated egg', 'passage details: CK3, E6', 'passage details: E1', 'passage details: E2', 
        'passage details: E2, E5', 'passage details: E3', 'passage details: E3, BEAS-2B 1', 'passage details: E4', 'passage details: E5', 'passage details: E6', 
        'passage details: E6, BEAS-2B 1', 'passage details: E9', 'passage details: egg', 'passage details: embryonated egg', 'passage details: embryonated eggs'] 
+
+#country synonyms
+cs = {"Palestinian Territory":"Palestine", "Lao, People's Democratic Republic":"Laos", "Congo, the Democatic Republic of":"Democratic Republic of the Congo",
+      "Korea, Republic of":"South Korea", "Russian Federation": "Russia", "Hong Kong (SAR)":"Hong Kong", "Bolivia, Plurinationial State of":"Bolivia", 
+      "Venezuela, Bolivarian Republic of":"Venezuela", "Tanzania, United Republic of":"Tanzania", "Iran, Islamic Republic of":"Iran", 
+      "Moldova, Republic of": "Moldova", "Micronesia, Federated States of":"Micronesia", "Macedonia, the former Yogoslav Republic of":"North Macedonia"}
+
+#northern hemisphere countries
+nhc = ["Algeria", "Benin", "Burkina Faso", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Djibouti", "Egypt", "Eritrea", "Ethiopia", "Gambia", 
+       "Ghana", "Guinea", "Guinea-Bissau", "Ivory Coast", "Cote d'Ivoire", "Liberia", "Libya", "Mali", "Mauritania", "Morocco", "Niger", "Nigeria", "Senegal",
+       "Sierra Leone", "South Sudan", "Sudan", "Togo", "Tunisia", "Equatorial Guinea", "Kenya", "São Tomé and Príncipe", "Somalia", "Uganda", "Afghanistan", 
+       "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia", "China", "Cyprus", "Georgia", "Hong Kong", "India", 
+       "Iran", "Iraq", "Israel","Japan", "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Macao", "Guadeloupe",
+       "Lebanon", "Malaysia", "Mongolia", "Myanmar", "Nepal", "North Korea", "Oman", "Pakistan", "Palestine",  "Philippines", "Qatar",
+       "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "Taiwan", "Tajikistan", "Thailand", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", 
+       "Vietnam", "Yemen", "Maldives", "Belize", "Canada", "Costa Rica", "El Salvador", "Guatemala", "Guyana", "Honduras", "Mexico", "Nicaragua", "Panama", "Suriname", 
+       "Venezuela", "Cuba", "Colombia", "United States", "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", 
+       "Czech Republic", "Denmark", "Estonia", "Finland", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", 
+       "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Macedonia","Kosovo","Poland", "Portugal", "Romania", "Russia", 
+       "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine", "Vatican City", "France", 
+       "Norway", "United Kingdom", "Jan Mayen", "Svalbard and Jan Mayen","Kaffeklubben Island", "Queen Elizabeth Islands", "Russian Arctic islands", "Svalbard", 
+       "Akrotiri and Dhekelia", "Anguilla", "Antigua and Barbuda", "Aruba", "Bahamas", "Guernsey", "Jersey", "Barbados", "Belize", "Bermuda", "Bioko", "Bonaire", "French Guiana",
+       "British Virgin Islands", "Cape Verde", "Cayman Islands", "Curaçao", "Cyprus", "Dominica", "Dominican Republic", "Faroe Islands","Greenland", "Grenada", "Guyana", 
+       "Haiti", "Iceland", "Isle of Man", "Jamaica", "Montserrat", "Puerto Rico", "Saba", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", 
+       "Saint Vincent and the Grenadines", "Sint Eustatius", "Sint Maarten", "Trinidad and Tobago", "Turks and Caicos Islands", "U.S Virgin Islands", 
+       "São Tomé and Príncipe", "Sao Tome and Principe", "Bahrain", "Andaman Islands", "Sri Lanka", "Socotra", "Sumatra", "Maldives", "Singapore", "Guam", "Hainan", 
+       "Japan", "Northern Mariana Islands", "Palau", "Philippines", "Formosa", "Borneo", "Kalimantan", "Maluku Islands", "Micronesia", "Martinique"]
+
+#southern hemisphere countries
+shc = ["Angola", "Botswana", "Burundi", "Eswatini", "Lesotho", "Madagascar", "Malawi", "Mozambique", "Namibia", "Rwanda", "South Africa", "Tanzania", "Zambia", "Zimbabwe", 
+       "Democratic Republic of the Congo", "Gabon", "Republic of the Congo", "Argentina", "Bolivia", "Chile", "Paraguay", "Peru", "Uruguay", "Brazil", "Ecuador", "Antarctica", 
+       "Papua-New Guinea", "Australia", "New Zealand", "Annobón", "Bouvet Island", "Falkland Islands", "Islas Malvinas", "Saint Helena, Ascension and Tristan da Cunha", 
+       "Ascension Island", "Saint Helena", "Tristan da Cunha", "Gough Island", "South Georgia and the South Sandwich Islands", "Snake Island", "Ashmore and Cartier Islands",
+       "Australia", "British Indian Ocean Territory", "Australian Indian Ocean Territories", "Christmas Island", "Cocos Islands", "Comoros", "East Timor", "Timor-Leste",
+       "French Southern Territories", "Heard Island and McDonald Islands", "Java and Lesser Sunda Islands", "Madagascar", "Mauritius", "Mayotte", "Prince Edward Islands", "Réunion", 
+       "Seychelles", "American Samoa", "Australia", "Cook Islands", "Coral Sea Islands", "Desventuradas Islands", "Easter Island", "Salas and Gómez Island", "Fiji", "Rotuma", 
+       "French Polynesia", "Tahiti", "Jarvis Island", "Juan Fernández Islands", "Alejandro Selkirk Island", "Robinson Crusoe Island", "Santa Clara Island", "Galápagos Islands", 
+       "Nauru", "New Caledonia", "New Zealand", "Niue", "Norfolk Island", "Papua New Guinea", "Pitcairn, Henderson, Ducie and Oeno Islands", "Samoa", "Solomon Islands", "Tasmania", 
+       "Macquarie Island", "Tokelau", "Tonga", "Tuvalu", "Vanuatu", "Wallis and Futuna", "Kiribati", "Sulawesi and Western New Guinea", "Antarctic islands", "Reunion", "Indonesia"]
