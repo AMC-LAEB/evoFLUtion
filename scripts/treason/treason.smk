@@ -1,58 +1,56 @@
 import os, random, sys, copy, dendropy,re
 from Bio import SeqIO, Seq, SeqRecord
+import multiprocessing as mp 
 import pandas as pd
 import numpy as np
 from time import gmtime, strftime
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from utils import *
+from labels import *
+import dendropy
 
 ############### VARS ####################
 #molecular clock rates used for treetime determined for sequences from 2000 to 2019
 clock_rates = {"H3N2":{'PB2':0.00227, 'PB1':0.00202, 'PA':0.00192, 'HA':0.00415, 'NP':0.00177, 'NA':0.00266, 'M':0.00190, 'NS':0.00167},
                 "H1N1pdm":{'PB2':0.00277, 'PB1':.00230, 'PA':0.00279, 'HA':0.00357, 'NP':0.00221, 'NA':0.00326, }}
 
-############### WILDCARDS ####################
-wildcard_constraints:
-    segment = "[A-Za-z0-9]{1,3}"
-
-
 ############### MAIN RULE ####################
 if config["translate"]:
     rule all:
         input:
-            prot = expand(f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}_proteins.fasta", subtype=config['subtype'], segment=config['segments'], period=config['full_seasons']),
-            final = expand(f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}.nexus",subtype=config['subtype'], segment=config['segments'], period=config['full_seasons'])
+            prot = expand(f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{period}}_proteins.fasta",  period=config['periods']),
+            final = expand(f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{period}}.nexus", period=config['periods']),
 else:
     rule all:
         input:
-            LBI = expand(f"{config['output']}/lbi/{{subtype}}_{{segment}}_{{period}}_LBI.nexus", subtype=config['subtype'], segment=config['segments'], period=config['full_seasons'])
+            LBI = expand(f"{config['output']}/lbi/{config['subtype']}_{config['segment']}_{{period}}_LBI.nexus",  period=config['periods']),
 
 ############### RULES ####################
 ###### Nucleotides ######
 rule FilterClinical:
     #also editing the header of the clinical sequence here for se
     input:
-        fastas = expand(f"{config['output']}/raw/{{subtype}}_{{segment}}_gisaid_raw.fasta", subtype=config['subtype'], segment=config['segments']),
-        metadata = expand(f"{config['output']}/raw/{{subtype}}_metadata_gisaid_raw.csv", subtype=config['subtype'])
+        fastas = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid.fasta", 
+        metadata = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid.csv",
     params:
-        icb = config["icb"],
-        cell_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_cell_based.fasta",subtype=config['subtype'], segment=config['segments']),
-        cell_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_cell_based.csv",subtype=config['subtype']),
-        ieb = config["ieb"],
-        subtype = config["subtype"],
-        complete_subset = config["complete_subset"],
-        egg_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_egg_based.fasta",subtype=config['subtype'], segment=config['segments']),
-        egg_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_egg_based.csv", subtype=config['subtype']),
-        remaining_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_remaining.fasta",subtype=config['subtype'], segment=config['segments']),
-        remaining = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_remaining.csv", subtype=config['subtype']),
-        segments = config['segments'],
-        mnlp = config['mnlp'], #min length of the reference
-        mxa = config['mxa'], #max % of ambiguous nucleotides allowed
-        output_dir = f"{config['output']}/sequences",
-        to_drop_files = config['to_drop_files'], #file for each segment with GISAID IDs that need to be removed 
+        subtype = config["subtype"],  
+        segment = config['segment'],
+        output_dir =config['output'],
+        co = config["clinical_only"],
+
+        #specifying these files as parameters as work around > these are output files if clinical only is not specified
+        cell_based_sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_cell_based.fasta",
+        cell_based = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_cell_based.csv",
+        egg_based_sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_egg_based.fasta",
+        egg_based = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_egg_based.csv",
+        remaining_sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_remaining.fasta",
+        remaining = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_remaining.csv",
+        
     output:
-        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_clinical.fasta",subtype=config['subtype'], segment=config['segments']),
-        clinical = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_clinical.csv", subtype=config['subtype'])
-    threads: workflow.cores if workflow.cores < len(config['segments']) else len(config['segments'])
+        sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_clinical.fasta",
+        clinical = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_clinical.csv",
+    threads: 1
     message: "removing non-clinical isolates and previously reported outliers"
     priority: 1
     run:
@@ -60,276 +58,181 @@ rule FilterClinical:
         metadata = pd.read_csv(str(input.metadata)).drop_duplicates()
 
         #filter clinical sequences
-        clinical, clinical_sequences = filter_clinical(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp)
-
-        #read to drop files and remove isolates that need to be dropped
-        to_drop = []
-        for f in params.to_drop_files:
-            dropf = pd.read_csv(f)
-            to_drop.extend(list(dropf["Isolate_Id"]))
-
-        for segment, records in clinical_sequences.items():
-            temp_records = []
-            for record in records:
-                if record.id.split("|")[0] not in to_drop:
-                    temp_records.append(record)
-            clinical_sequences[segment] = temp_records
+        clinical = metadata[metadata["Passage_History"].isin(cpl)]
         
-        clinical = clinical[~clinical["Isolate_Id"].isin(to_drop)]
-
-        #write output fastas for all clinical sequences
-        for segment, records in clinical_sequences.items():
-            with open(f"{params.output_dir}/{params.subtype}_{segment}_gisaid_clinical.fasta", "w") as fw:
+       
+        print (f"Filtering clinical sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+        records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(clinical["Isolate_Id"])]
+        if len(records) > 0:
+            with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_clinical.fasta", "w") as fw:
                 SeqIO.write(records, fw, "fasta")
-    
+        print (f"Finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+            
         #write output clinical metadata file
         clinical.to_csv(str(output.clinical), index=False)
 
-        #if cell based is requested repeat the process for cell based isolates
-        if params.icb or params.complete_subset:
-            cell_based, cell_based_sequences = filter_cell_based(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp) 
-        
-            for segment, records in cell_based_sequences.items():
-                temp_records = []
-                for record in records:
-                    if record.id.split("|")[0] not in to_drop:
-                        temp_records.append(record)
-                cell_based_sequences[segment] = temp_records
-        
-            cell_based = cell_based[~cell_based["Isolate_Id"].isin(to_drop)]
-
-            #write output fastas for all cell based sequences
-            for segment, records in cell_based_sequences.items():
-                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_cell_based.fasta"
-                with open(fname, "w") as fw:
+        if not params.co: #if we're not filtering on clinical data
+            #filter cell based
+            cell_based = metadata[metadata["Passage_History"].isin(cbpl)].reset_index(drop=True) 
+            print (f"Filtering cell-based sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(cell_based["Isolate_Id"])]
+            if len(records) > 0:
+                with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_cell_based.fasta", "w") as fw:
                     SeqIO.write(records, fw, "fasta")
-    
-            #write output clinical metadata file
-            cell_based.to_csv(params.cell_based[0], index=False)
+            print (f"Finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+                
+            cell_based.to_csv(params.cell_based, index=False)
 
-        #if egg based is requested repeat the process for egg based isolates
-        if params.ieb or params.complete_subset:
-            egg_based, egg_based_sequences = filter_egg_based(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp)
-
-            for segment, records in egg_based_sequences.items():
-                temp_records = []
-                for record in records:
-                    if record.id.split("|")[0] not in to_drop:
-                        temp_records.append(record)
-                egg_based_sequences[segment] = temp_records
-
-            egg_based = egg_based[~egg_based["Isolate_Id"].isin(to_drop)]
+            #filter egg based 
+            egg_based = metadata[metadata["Passage_History"].isin(epl)].reset_index(drop=True) 
+            print (f"Filtering egg-based sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(egg_based["Isolate_Id"])]
+            if len(records) > 0:
+                with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_egg_based.fasta", "w") as fw:
+                    SeqIO.write(records, fw, "fasta")
+            print (f"Finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+                
+            egg_based.to_csv(params.egg_based, index=False)
             
-            #write output fastsas for all egg based sequences
-            for segment, records in egg_based_sequences.items():
-                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_egg_based.fasta"
-                with open(fname, "w") as fw:
+            #filter remaining 
+            remaining = metadata[~metadata["Passage_History"].isin(cpl+cbpl+epl)].reset_index(drop=True)
+            print (f"Filtering remaining sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(remaining["Isolate_Id"])]
+            if len(records) > 0:
+                with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_egg_based.fasta", "w") as fw:
                     SeqIO.write(records, fw, "fasta")
-    
-            #write output clinical metadata file
-            egg_based.to_csv(params.egg_based[0], index=False)
-        
-        if params.complete_subset:
-            remaining, remaining_sequences = filter_remaining(metadata, input.fastas, ncpu=threads, rh=True, adth=False, mxa=params.mxa, mnlp=params.mnlp)
+            print (f"Finished: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+            remaining.to_csv(params.remaining, index=False)
 
-            for segment, records in remaining_sequences.items():
-                temp_records = []
-                for record in records:
-                    if record.id.split("|")[0] not in to_drop:
-                        temp_records.append(record)
-                remaining_sequences[segment] = temp_records
-
-            remaining = remaining[~remaining["Isolate_Id"].isin(to_drop)]
-            
-            #write output fastsas for all egg based sequences
-            for segment, records in remaining_sequences.items():
-                fname = f"{params.output_dir}/{params.subtype}_{segment}_gisaid_remaining.fasta"
-                with open(fname, "w") as fw:
-                    SeqIO.write(records, fw, "fasta")
-    
-            #write output clinical metadata file
-            remaining.to_csv(params.remaining[0], index=False)
-
-rule GetSeason:
+rule Getperiods:
     input:
-        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_clinical.fasta", subtype=config['subtype'], segment=config['segments']),
-        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_clinical.csv",subtype=config['subtype']),
+        #sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_clinical.fasta", ),
+        sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid.fasta",
+        clinical = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_clinical.csv",
+        metadata = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid.csv",
+
     params:
         output_dir = f"{config['output']}/sequences",
         seed = config['seed'], #in case seed is used
         no_seed = config['no_seed'], #whether or not seed needs to be used
         subsample = config['subsample'],
-        timeframe = config['timeframe'],
-        icp = config['icp'],
-        sm = config['start_month'],
-        spcpm = config['pcm'],
-        icb = config['icb'],
-        ieb = config['ieb'],
-        complete_subset = config['complete_subset'],
-        icb_cutoff = 500, 
+        periods = config["periods"],
         subtype = config["subtype"],
-        cell_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_cell_based.fasta", subtype=config['subtype'], segment=config['segments']),
-        cell_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_cell_based.csv",subtype=config['subtype']),
-        egg_based_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_egg_based.fasta", subtype=config['subtype'], segment=config['segments']),
-        egg_based = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_egg_based.csv",subtype=config['subtype']),
-        remaining_sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_gisaid_remaining.fasta", subtype=config['subtype'], segment=config['segments']),
-        remaining = expand(f"{config['output']}/sequences/{{subtype}}_metadata_gisaid_remaining.csv", subtype=config['subtype'])
+        segment = config["segment"],
+        co = config["clinical_only"],
+
+        #specifying these files as parameters as work around > these are output files if clinical only is not specified
+        #cell_based_sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_cell_based.fasta", ),
+        cell_based = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_cell_based.csv",
+        #egg_based_sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_egg_based.fasta", ),
+        egg_based = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_egg_based.csv",
+        #remaining_sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_gisaid_remaining.fasta", ),
+        remaining = f"{config['output']}/sequences/{config['subtype']}_metadata_gisaid_remaining.csv",
     output:
-        sequences = expand(f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta",subtype=config['subtype'],  segment=config['segments'], period=config['full_seasons']),
-        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_{{season}}.csv", subtype=config['subtype'], season=config['seasons'])
+        sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta", period=config['periods']),
+        metadata = expand(f"{config['output']}/sequences/{config['subtype']}_metadata_{{period}}.csv", period=config['periods'])
     run:
-        #read clinical data
-        clinical = pd.read_csv(str(input.metadata))
+        #set seed if required
+        if not params.no_seed:
+            random.seed(params.seed)
 
-        #get the full time intervals
-        full_time_intervals = get_time_interval(params.timeframe, params.sm)
+        #read metadata files
+        metadata = pd.read_csv(input.metadata)
+        clinical = pd.read_csv(input.clinical, parse_dates=["Collection_Date"])
+        clinical["Country"] = pd.Series([i.split(" / ")[1] for i in clinical["Location"]]).replace(cs)
+        dfs = [clinical]
+        if not params.co:
+            cell_based = pd.read_csv(params.cell_based, parse_dates=["Collection_Date"])
+            cell_based["Country"] = pd.Series([i.split(" / ")[1] for i in cell_based["Location"]]).replace(cs)
+            dfs.append(cell_based)
+            egg_based = pd.read_csv(params.egg_based, parse_dates=["Collection_Date"])
+            egg_based["Country"] = pd.Series([i.split(" / ")[1] for i in egg_based["Location"]]).replace(cs)
+            dfs.append(egg_based)
+            remaining = pd.read_csv(params.remaining, parse_dates=["Collection_Date"])
+            remaining["Country"] = pd.Series([i.split(" / ")[1] for i in remaining["Location"]]).replace(cs)
+            dfs.append(remaining)
+
+        #get sequences as dict
+        seqs = {r.id.split("|")[0]:r for r in SeqIO.parse(input.sequences, "fasta")}
         
-        #check if subsample is specified
-        if params.subsample:
-            if params.no_seed: 
-                to_select_per_interval = select_per_year_per_month(clinical, full_time_intervals, params.spcpm, seed=None)
-            else:
-                to_select_per_interval = select_per_year_per_month(clinical, full_time_intervals, params.spcpm, seed=params.seed)
-        else:
-            to_select_per_interval = select_per_year(clinical, full_time_intervals)
+        #for each period select sequences
+        for period in params.periods:
+            i2s = [] #ids to select
 
-        #check if include cell based is specified > if so check if select per interval is smaller than the cufoff
-        if params.icb or params.complete_subset:
-            #read cell based metadata
-            cell_based = pd.read_csv(params.cell_based[0])
-            for i, to_select in to_select_per_interval.items():
-                idx = list(to_select_per_interval.keys()).index(i)
-                #if len(to_select) < params.icb_cutoff:
-                if params.no_seed: 
-                    to_select.extend(extend_to_select_cell(clinical, cell_based, full_time_intervals[idx], to_select, params.spcpm, seed=None))
-                else:
-                    to_select.extend(extend_to_select_cell(clinical, cell_based, full_time_intervals[idx], to_select, params.spcpm, seed=params.seed))
-                to_select_per_interval[i] = to_select
-        
-        #check if include egg based is specified > if so check if select per interal is smaller than the cutoff 
-        if params.ieb or params.complete_subset:
-            egg_based = pd.read_csv(params.egg_based[0])
-            for i, to_select in to_select_per_interval.items():
-                idx = list(to_select_per_interval.keys()).index(i)
-                #check wheter or not include cell based is specified
+            #get dates from period ASSUMING 
+            start_date = period.split("-")[-2].lstrip("0")
+            start_date = datetime(int(f'20{start_date[-2:]}'), int(start_date[:-2]),1)
+            end_date = period.split("-")[-1].lstrip("0")
+            end_date = datetime(int(f'20{end_date[-2:]}'), int(end_date[:-2]), ldm[int(end_date[:-2])])
+
+            spc = {} #sequences per country
+            for df in dfs:
                 
-                #if len(to_select) < params.icb_cutoff:
-                if params.icb or params.complete_subset:  
-                    if params.no_seed:
-                        to_select.extend(extend_to_select_egg(clinical, egg_based, full_time_intervals[idx], cell_based, to_select, params.spcpm, seed=None))
-                    else:
-                        to_select.extend(extend_to_select_egg(clinical, egg_based, full_time_intervals[idx], cell_based, to_select, params.spcpm, seed=params.seed))
+                if len(period.split("-")) > 2:#if per hemisphere
+                    if period.split("-") == "nh": #northern hemisphere
+                        subdf = df[df["Country"].isin(nhc)]
+                    else: #southern hemisphere
+                        subdf = df[df["Country"].isin(shc)]
                 else:
-                    if params.no_seed:
-                        to_select.extend(extend_to_select_egg(clinical, egg_based, full_time_intervals[idx], None, to_select, params.spcpm, seed=None))
-                    else:
-                        to_select.extend(extend_to_select_egg(clinical, egg_based, full_time_intervals[idx], None, to_select, params.spcpm, seed=params.seed))  
-                to_select_per_interval[i] = to_select
-
-        #check if subset needs to be completed 
-        if params.complete_subset:
-            remaining = pd.read_csv(params.remaining[0])
-            for i, to_select in to_select_per_interval.items():
-                idx = list(to_select_per_interval.keys()).index(i)
-
-                #if len(to_select) < params.icb_cutoff:
-                if params.no_seed:
-                    to_select.extend(extend_to_select_remaining(clinical, cell_based, egg_based, remaining, full_time_intervals[idx],to_select, params.spcpm, seed=None))
-                else:
-                    to_select.extend(extend_to_select_remaining(clinical, cell_based, egg_based, remaining, full_time_intervals[idx],to_select, params.spcpm, seed=params.seed))
+                    subdf = df
                 
-                to_select_per_interval[i] = to_select
-        
-        for i, to_select in to_select_per_interval.items():
-            fe = "_".join(["".join(i.split("_")[0].split("-")[::-1]), "".join(i.split("_")[-1].split("-")[::-1])])
-            season = ""
-            for y in fe.split("_"):
-                season += "".join(list(y)[-2:])
+                #filter on period data
+                subdf = subdf[(subdf["Collection_Date"]>=start_date)&(subdf["Collection_Date"]<=end_date)]
+    
+                # if subsampling is required
+                if params.subsample != False:
+                    for country in subdf["Country"].unique():
+                        if country not in spc.keys():
+                            spc[country] = {}
 
-            #include previous season if requested 
-            if params.icp:
-                indx = list(to_select_per_interval.keys()).index(i)
-                if indx > 0:
-                    icp_to_select = to_select.copy()
-                    previ = indx-1
-                    icp_to_select.extend(list(to_select_per_interval.values())[previ])
-                else:
-                    #store first season as no icp tree will be made for this season
-                    first_season = season
-                    icp_to_select = []
-            else: #to avoid problems
-                icp_to_select = []
+                        m = start_date
+                        while m < end_date:
+                            subsubdf = subdf[(subdf["Collection_Date"]>=m)&(subdf["Collection_Date"]<=m+relativedelta(months=1))]
+                            if m not in spc[country].keys():
+                                spc[country][m] = []
+    
+                            if len (spc[country][m]) < params.subsample:
+                                cids =subsubdf[subsubdf["Country"]==country]["Isolate_Id"].to_list()
+                                ts = params.subsample - len(spc[country][m])#target size 
+                                if ts > 0:
+                                    try:
+                                        spc[country][m].extend(random.sample(cids, ts))
+                                    except:
+                                        if len(cids) > 0:
+                                            spc[country][m].extend(cids)
 
-            for seqfile in input.sequences:
-                subtype = seqfile.split("/")[-1].split("_")[0]
-                segment = seqfile.split("/")[-1].split("_")[1]
-                selected_records = []
-                icp_records = []
-                for record in SeqIO.parse(seqfile, "fasta"):
-                    if record.id.split("|")[0] in to_select:
-                        selected_records.append(record)
-                    if record.id.split("|")[0] in icp_to_select:
-                        icp_records.append(record)
+                            m += relativedelta(months=1)
+                else: #not subsampling so select all ids
+                    i2s.extend(subdf["Isolate_Id"].to_list())
 
-                if params.icb or params.complete_subset:
-                    cell_based_f = seqfile.replace("clinical", "cell_based")
-                    for record in SeqIO.parse(cell_based_f, "fasta"):
-                        if record.id.split("|")[0] in to_select:
-                            selected_records.append(record)
-                        if record.id.split("|")[0] in icp_to_select:
-                            icp_records.append(record)
+            #add subsampled ids to i2s
+            if len(spc) > 0:
+                #i2s.extend([i for l in spc.values() for m,i in l])
+                i2s.extend([i for d in spc.values() for l in d.values() for i in l])
 
-                if params.ieb or params.complete_subset:
-                    egg_based_f = seqfile.replace("clinical", "egg_based")
-                    for record in SeqIO.parse(egg_based_f, "fasta"):
-                        if record.id.split("|")[0] in to_select:
-                            selected_records.append(record)
-                        if record.id.split("|")[0] in icp_to_select:
-                            icp_records.append(record)
-                
-                if params.complete_subset:
-                    remaining_f = seqfile.replace("clinical", "remaining")
-                    for record in SeqIO.parse(remaining_f, "fasta"):
-                        if record.id.split("|")[0] in to_select:
-                            selected_records.append(record)
-                        if record.id.split("|")[0] in icp_to_select:
-                            icp_records.append(record)
-                    
-                if params.icp:
-                    if season != first_season:
-                        prev = "".join(list(list(to_select_per_interval.keys())[indx-1].split("-")[0])[2:])
-                        with open(f"{params.output_dir}/{subtype}_{segment}_{prev+season}.fasta", "w")as fw:
-                            SeqIO.write(icp_records, fw, "fasta")
-                    with open(f"{params.output_dir}/{subtype}_{segment}_{season}.fasta", "w")as fw:
-                        SeqIO.write(selected_records, fw, "fasta")
-                else:
-                    with open(f"{params.output_dir}/{subtype}_{segment}_{season}.fasta", "w")as fw:
-                        SeqIO.write(selected_records, fw, "fasta")
-                    
-            subset = clinical[clinical["Isolate_Id"].isin(to_select)].reset_index(drop=True)
-            if params.icb or params.complete_subset:
-                cell_subset = cell_based[cell_based["Isolate_Id"].isin(to_select)].reset_index(drop=True)
-                subset = pd.concat([subset,cell_subset])
-            if params.ieb or params.complete_subset:
-                egg_subset = egg_based[egg_based["Isolate_Id"].isin(to_select)].reset_index(drop=True)
-                subset = pd.concat([subset, egg_subset])
-            if params.complete_subset:
-                remaining_subset = remaining[remaining["Isolate_Id"].isin(to_select)].reset_index(drop=True)
-            subset.to_csv(f"{params.output_dir}/{subtype}_metadata_{season}.csv", index=False)
+            #write fasta 
+            with open(f'{params.output_dir}/{params.subtype}_{params.segment}_{period}.fasta', 'w') as fw:
+                SeqIO.write([r for rid, r in seqs.items() if rid in i2s], fw, "fasta")
+
+            #write metadata
+            md = metadata[metadata["Isolate_Id"].isin(i2s)]
+            md.to_csv(f"{params.output_dir}/{params.subtype}_metadata_{period}.csv", index=False)
 
 rule MSA:
     input:
-        sequences =  f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta"
+        sequences =  f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta"
     params:
-        refdir = config["refdir"]
+        refdir = config["refdir"],
+        segment = config['segment'],
+        subtype = config['subtype']
     output:
-        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta"
+        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta"
     threads:  workflow.cores if workflow.cores < 3 else 3
-    message: "Performing multiple sequence alignment for{wildcards.subtype} {wildcards.segment} {wildcards.period} sequences"
+    message: "Performing multiple sequence alignment for {wildcards.period} sequences"
     run: 
         #get reference
         for f in os.listdir(params.refdir):
-            if wildcards.segment in f and wildcards.subtype in f:
+            if params.segment in f and params.subtype in f:
                 reference = os.path.join(params.refdir, f)
 
         #run mafft
@@ -348,10 +251,10 @@ rule PhyloTree:
         model = "GTR",
         seed = config['seed'],
         no_seed = config['no_seed'],
-        treefile = temp(f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta.treefile"),
+        treefile = temp(f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta.treefile"),
     output:
-        tree = f"{config['output']}/tree/{{subtype}}_{{segment}}_{{period}}.treefile",
-    message: "Constructing phylogenetic maximum likelihood tree for  {wildcards.subtype} {wildcards.segment} {wildcards.period}"
+        tree = f"{config['output']}/tree/{config['subtype']}_{config['segment']}_{{period}}.treefile",
+    message: "Constructing phylogenetic maximum likelihood tree for {wildcards.period}"
     threads: workflow.cores if workflow.cores < 3 else 3
     run:
         #run IQTREE 
@@ -375,50 +278,57 @@ rule PhyloTree:
 
 rule TreeTime:
     input:
-        metadata = expand(f"{config['output']}/sequences/{{subtype}}_metadata_{{season}}.csv",subtype=config['subtype'], season=config['seasons']),
+        metadata = expand(f"{config['output']}/sequences/{config['subtype']}_metadata_{{period}}.csv",period=config['periods']),
         msa = rules.MSA.output.msa, 
         tree = rules.PhyloTree.output.tree,
     params: 
         molclock_rates = clock_rates,
-        treetime_folder = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt"),
-        timetree = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/timetree.nexus"),
-        divergence_tree = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/divergence_tree.nexus"),
-        mol_clock = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_tt/molecular_clock.txt"),
+        segment = config['segment'],
+        subtype = config['subtype'],
+        treetime_folder = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt"),
+        timetree = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/timetree.nexus"),
+        divergence_tree = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/divergence_tree.nexus"),
+        mol_clock = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/molecular_clock.txt"),
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
     output:
-        dates = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_inputdates.csv",
-        timetree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_timetree.nexus",
-        divergence_tree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_divergence.nexus",
-        treelog = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_treetime.txt",
-        mol_clock = temp(f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_molecular_clock.txt"),
-        #dates_estimate = f"{config['output']}/treetime/{{segment}}/dates.tsv",
-    message: "Constructing time tree for {wildcards.subtype} {wildcards.segment} {wildcards.period}"
+        dates = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_inputdates.csv",
+        timetree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_timetree.nexus",
+        divergence_tree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_divergence.nexus",
+        treelog = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_treetime.txt",
+        mol_clock = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_molecular_clock.txt"),
+        #dates_estimate = f"{config['output']}/treetime/{config['segment']}/dates.tsv",
+    message: "Constructing time tree for {wildcards.period}"
     threads: 1 #no multi threading possible for treetime
     run: 
         #get the correct metadata file(s) and load metadata as pandas df
-        #print (wildcards.period)
-        if len(wildcards.period) > 4:
-            season = "".join(list(wildcards.period)[2:])
-            prevs = "".join(list(wildcards.period)[:4])
-            for f in input.metadata:
-                if season in f or prevs in f:
-                    try: 
-                        metadata = pd.concat([metadata, pd.read_csv(f)])
-                    except:
-                        metadata = pd.read_csv(f)
-        else:
-            for f in input.metadata:
-                if wildcards.period in f:
-                    metadata = pd.read_csv(f)
+        for f in input.metadata:
+            if wildcards.period in f:
+                metadata = pd.read_csv(f, parse_dates=["Collection_Date"], index_col="Isolate_Id")
+        
+        #iqtree fucks up the ids in the msa so fix that
+        ids = [i.taxon.label.replace(" ", "_") for i in dendropy.Tree.get(path=input.tree, schema="newick").leaf_node_iter()]
+        ids = {i.split("|")[0]:i for i in ids}
+
+        records = [SeqRecord.SeqRecord(r.seq, id=ids[r.id.split("|")[0]]) for r in SeqIO.parse(input.msa, "fasta")] 
+        with open(params.temp_msa, "w") as fw:
+            SeqIO.write(records, fw, "fasta")
+        #print (ids["EPI_ISL_363969"] =="EPI_ISL_363969|1487224|A/Cote_D_Ivoire/14/2019|A_/_H3N2|HA")
         
         #generate dates file
-        get_dates(wildcards.segment, metadata, output.dates) 
-
+        header_date = []
+        for rid, header in ids.items():
+            d = metadata.loc[rid, "Collection_Date"].date()
+            fd = d.year + (d.timetuple().tm_yday/365)
+            header_date.append([header, fd])
+        
+        dates = pd.DataFrame.from_records(header_date, columns=["accession", "date"])
+        dates.to_csv(output.dates, index=False)   
         #get clock rates 
-        clock_rate = params.molclock_rates[wildcards.subtype][wildcards.segment]
+        clock_rate = params.molclock_rates[params.subtype][params.segment]
         clock_stdev = clock_rate*0.2
 
         #run treetime 
-        cmd = ['treetime', '--tree', input.tree, '--aln', input.msa, '--dates', output.dates, '--outdir', params.treetime_folder,
+        cmd = ['treetime', '--tree', input.tree, '--aln', params.temp_msa, '--dates', output.dates, '--outdir', params.treetime_folder,
                '--clock-rate', str(clock_rate), '--clock-std-dev', str(clock_stdev)]
         #we need command line output > os tee as I also want to see what's happening
         cmd.extend(['|', 'tee', output.treelog])
@@ -432,15 +342,15 @@ rule TreeTime:
   
 rule LBI:
     input:
-        timetree = f"{config['output']}/treetime/{{subtype}}_{{segment}}_{{period}}_timetree.nexus"
+        timetree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_timetree.nexus"
     params:
         treeformat = "nexus",
         outputformat = "nexus",
         tau = 0.3, #might make these command line options
         normalize = True, #might make these command line options
     output:
-        lbi_tree = f"{config['output']}/lbi/{{subtype}}_{{segment}}_{{period}}_LBI.nexus"
-    message: "constructing LBI tree for  {wildcards.subtype} {wildcards.segment} {wildcards.period}"
+        lbi_tree = f"{config['output']}/lbi/{config['subtype']}_{config['segment']}_{{period}}_LBI.nexus"
+    message: "constructing LBI tree for {wildcards.period}"
     run:
         #read tree
         tree = dendropy.Tree.get(path=input.timetree, schema=params.treeformat)
@@ -457,17 +367,18 @@ rule LBI:
 ###### Proteins ######
 rule Translate:
     input:
-        sequences = f"{config['output']}/sequences/{{subtype}}_{{segment}}_{{period}}.fasta",
-        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta",
+        sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta",
+        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta",
     params:
         refdir = config["refdir"],
+        segment = config['segment'],
     output:
-        proteins = f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}_proteins.fasta",
-    message: "translating mcc sequences for  {wildcards.subtype} {wildcards.segment} {wildcards.period} into proteins"
+        proteins = f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{period}}_proteins.fasta",
+    message: "translating mcc sequences for {wildcards.period} into proteins"
     run:
         #get length of reference sequence
         for f in os.listdir(params.refdir):
-            if wildcards.segment in f:
+            if params.segment in f:
                 reference = os.path.join(params.refdir, f)
         ref_length = len(list(SeqIO.parse(reference,"fasta"))[0].seq)
 
@@ -492,8 +403,8 @@ rule Translate:
 
 rule TranslateMutations:
     input:
-        #sequences = f"{config['output']}/clinical/{{segment}}_{{period}}_mcc.fasta",
-        msa = f"{config['output']}/alignment/{{subtype}}_{{segment}}_{{period}}_MSA.fasta",
+        #sequences = f"{config['output']}/clinical/{config['segment']}_{{period}}_mcc.fasta",
+        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta",
         tree = rules.LBI.output.lbi_tree,
     params:
         seed = config['seed'],
@@ -501,8 +412,8 @@ rule TranslateMutations:
         o_nonsyn = config['o_nonsyn'], 
         treeformat = "nexus", #lbi output format should not change
     output:
-        tree = f"{config['output']}/protein/{{subtype}}_{{segment}}_{{period}}.nexus",
-    message: "translating the mutations within the phylogenetic tree for {wildcards.subtype} {wildcards.segment} {wildcards.period}"
+        tree = f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{period}}.nexus",
+    message: "translating the mutations within the phylogenetic tree for {wildcards.period}"
     run:
         #making a dict of the isolates with the sequences > using MSA 
         isolates = {}
