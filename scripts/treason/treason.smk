@@ -62,7 +62,7 @@ rule FilterClinical:
         
        
         print (f"Filtering clinical sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
-        records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(clinical["Isolate_Id"])]
+        records = [record for record in SeqIO.parse(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(clinical["Isolate_Id"])]
         if len(records) > 0:
             with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_clinical.fasta", "w") as fw:
                 SeqIO.write(records, fw, "fasta")
@@ -75,7 +75,7 @@ rule FilterClinical:
             #filter cell based
             cell_based = metadata[metadata["Passage_History"].isin(cbpl)].reset_index(drop=True) 
             print (f"Filtering cell-based sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
-            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(cell_based["Isolate_Id"])]
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(cell_based["Isolate_Id"])]
             if len(records) > 0:
                 with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_cell_based.fasta", "w") as fw:
                     SeqIO.write(records, fw, "fasta")
@@ -86,7 +86,7 @@ rule FilterClinical:
             #filter egg based 
             egg_based = metadata[metadata["Passage_History"].isin(epl)].reset_index(drop=True) 
             print (f"Filtering egg-based sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
-            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(egg_based["Isolate_Id"])]
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(egg_based["Isolate_Id"])]
             if len(records) > 0:
                 with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_egg_based.fasta", "w") as fw:
                     SeqIO.write(records, fw, "fasta")
@@ -97,7 +97,7 @@ rule FilterClinical:
             #filter remaining 
             remaining = metadata[~metadata["Passage_History"].isin(cpl+cbpl+epl)].reset_index(drop=True)
             print (f"Filtering remaining sequences: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
-            records = [record for record in SeqIO.parse(f"{params.output_dir}/raw/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(remaining["Isolate_Id"])]
+            records = [record for record in SeqIO.parse(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid.fasta", "fasta") if record.id.split("|")[0] in set(remaining["Isolate_Id"])]
             if len(records) > 0:
                 with open(f"{params.output_dir}/sequences/{params.subtype}_{params.segment}_gisaid_egg_based.fasta", "w") as fw:
                     SeqIO.write(records, fw, "fasta")
