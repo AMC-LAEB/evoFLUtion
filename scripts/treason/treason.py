@@ -94,20 +94,20 @@ def main():
         periods = []
         for h, m in {"sh":5, "nh":10}.items():
             pys, pms = tfs, m
-            pye, pme = pys if +ip <= 12 else pys+1, pms+ip if (pms+ip) <= 12 else (pms+ip)-12
+            pye, pme = pys if m+ip <= 12 else pys+1, pms+ip if (pms+ip) <= 12 else (pms+ip)-12
             while pye <= tfe:
                 periods.append(f"{h}-{'0' +str(pms) if pms<10 else str(pms)}{str(pys)[-2:]}-{'0' +str(pme-1) if pme-1<10 else str(pme-1)}{str(pye)[-2:]}")
                 pys, pms = pye, pme
-                pye, pme = pys if ins+ip <= 12 else pys+1, pms+ip if (pms+ip)<= 12 else (pms+ip)-12
+                pye, pme = pys if pms+ip <= 12 else pys+1, pms+ip if (pms+ip)<= 12 else (pms+ip)-12
     else:
         #if not per hemisphere
         pys, pms = tfs, ins #period year start, period month start
-        pye, pme = pys if ins+ip <= 12 else pys+1, pms+ip if (pms+ip) <= 12 else (pms+ip)-12
+        pye, pme = pys if pms+ip <= 12 else pys+1, pms+ip if (pms+ip) <= 12 else (pms+ip)-12
         periods = []
         while pye <= tfe:
             periods.append(f"{'0' +str(pms) if pms<10 else str(pms)}{str(pys)[-2:]}-{'0' +str(pme-1) if pme-1<10 else str(pme-1)}{str(pye)[-2:]}")
             pys, pms = pye, pme
-            pye, pme = pys if ins+ip <= 12 else pys+1, pms+ip if (pms+ip)<= 12 else (pms+ip)-12
+            pye, pme = pys if pms+ip <= 12 else pys+1, pms+ip if (pms+ip)<= 12 else (pms+ip)-12
 
     #get segments of interest
     segment = args.segment
