@@ -290,7 +290,7 @@ rule TreeTime:
         divergence_tree = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/divergence_tree.nexus"),
         mol_clock = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/molecular_clock.txt"),
     output:
-        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta"),
         dates = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_inputdates.csv",
         timetree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_timetree.nexus",
         divergence_tree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_divergence.nexus",
@@ -368,7 +368,7 @@ rule LBI:
 rule Translate:
     input:
         sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta",
-        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta"),
     params:
         refdir = config["refdir"],
         segment = config['segment'],
