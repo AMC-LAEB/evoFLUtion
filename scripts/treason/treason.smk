@@ -368,7 +368,7 @@ rule LBI:
 rule Translate:
     input:
         sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta",
-        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta"),
+        temp_msa = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta",
     params:
         refdir = config["refdir"],
         segment = config['segment'],
@@ -404,7 +404,7 @@ rule Translate:
 rule TranslateMutations:
     input:
         #sequences = f"{config['output']}/clinical/{config['segment']}_{{period}}_mcc.fasta",
-        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta"),
+        temp_msa = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta",
         tree = rules.LBI.output.lbi_tree,
     params:
         seed = config['seed'],
