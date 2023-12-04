@@ -368,7 +368,7 @@ rule LBI:
 rule Translate:
     input:
         sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta",
-        temp_msa = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta",
+        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta",
     params:
         refdir = config["refdir"],
         segment = config['segment'],
@@ -384,7 +384,7 @@ rule Translate:
 
         #get msa records 
         msa_recs = {}
-        for record in SeqIO.parse(input.temp_msa, "fasta"):
+        for record in SeqIO.parse(input.msa, "fasta"):
             msa_recs[record.id] = record.seq
         
         proteins = []
