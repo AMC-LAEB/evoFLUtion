@@ -289,8 +289,8 @@ rule TreeTime:
         timetree = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/timetree.nexus"),
         divergence_tree = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/divergence_tree.nexus"),
         mol_clock = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_tt/molecular_clock.txt"),
-        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
     output:
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
         dates = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_inputdates.csv",
         timetree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_timetree.nexus",
         divergence_tree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}_divergence.nexus",
@@ -310,7 +310,7 @@ rule TreeTime:
         ids = {i.split("|")[0]:i for i in ids}
 
         records = [SeqRecord.SeqRecord(r.seq, id=ids[r.id.split("|")[0]]) for r in SeqIO.parse(input.msa, "fasta")] 
-        with open(params.temp_msa, "w") as fw:
+        with open(output.temp_msa, "w") as fw:
             SeqIO.write(records, fw, "fasta")
         #print (ids["EPI_ISL_363969"] =="EPI_ISL_363969|1487224|A/Cote_D_Ivoire/14/2019|A_/_H3N2|HA")
         
@@ -328,7 +328,7 @@ rule TreeTime:
         clock_stdev = clock_rate*0.2
 
         #run treetime 
-        cmd = ['treetime', '--tree', input.tree, '--aln', params.temp_msa, '--dates', output.dates, '--outdir', params.treetime_folder,
+        cmd = ['treetime', '--tree', input.tree, '--aln', output.temp_msa, '--dates', output.dates, '--outdir', params.treetime_folder,
                '--clock-rate', str(clock_rate), '--clock-std-dev', str(clock_stdev)]
         #we need command line output > os tee as I also want to see what's happening
         cmd.extend(['|', 'tee', output.treelog])
@@ -368,7 +368,7 @@ rule LBI:
 rule Translate:
     input:
         sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{period}}.fasta",
-        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta",
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta")
     params:
         refdir = config["refdir"],
         segment = config['segment'],
@@ -384,7 +384,7 @@ rule Translate:
 
         #get msa records 
         msa_recs = {}
-        for record in SeqIO.parse(input.msa, "fasta"):
+        for record in SeqIO.parse(input.temp_msa, "fasta"):
             msa_recs[record.id] = record.seq
         
         proteins = []
@@ -404,7 +404,7 @@ rule Translate:
 rule TranslateMutations:
     input:
         #sequences = f"{config['output']}/clinical/{config['segment']}_{{period}}_mcc.fasta",
-        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{period}}_MSA.fasta",
+        temp_msa = temp(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{period}}.fasta"),
         tree = rules.LBI.output.lbi_tree,
     params:
         seed = config['seed'],
@@ -417,7 +417,7 @@ rule TranslateMutations:
     run:
         #making a dict of the isolates with the sequences > using MSA 
         isolates = {}
-        for record in SeqIO.parse(input.msa,"fasta"):
+        for record in SeqIO.parse(input.temp_msa,"fasta"):
             if record.id not in isolates.keys():
                 #only appending from start codon onwards as tree was build this way > important for numbering 
                 isolates[record.id] = str(record.seq)
